@@ -1,29 +1,11 @@
 <div>
-    {{ passengers.length }}
-    <ul>
-      <li *ngFor="let passenger of passengers; let i = index;">
-        <span class="status" [class.checked-in]="passenger.checkedIn"></span>
-        {{ i }}: {{ passenger.fullName }}
-        <!--<p>{{ passenger | json }}</p>-->
-        <p>
-          Check in Date:
-          {{ passenger.checkedInDate ? (passenger.checkedInDate | date: 'MMMM d, y' | uppercase) : 'Not checked in'}}
-        </p>
-        <p>
-          Children: {{ passenger.children?.length || 0}}
-        </p>
-      </li>
-    </ul>
-    <ul>
-      <li *ngFor="let passenger of passengers; let i = index;">
-        <span class="status" [style.backgroundColor]="(passenger.checkedIn ? 'green' : 'red')"></span>
-        {{ i }}: {{ passenger.fullName }}
-      </li>
-    </ul>
-    <ul>
-      <li *ngFor="let passenger of passengers; let i = index;">
-        <span class="status" [ngStyle]="{ backgroundColor: (passenger.checkedIn ? 'green' : 'red') }"></span>
-        {{ i }}: {{ passenger.fullName }}
-      </li>
-    </ul>
+    <passenger-count
+      [items]="passengers">
+    </passenger-count>
+    <passenger-detail
+      *ngFor="let passenger of passengers;"
+      [detail]="passenger"
+      (edit)="handleEdit($event)"
+      (remove)="handleRemove($event)">
+    </passenger-detail>
 </div>

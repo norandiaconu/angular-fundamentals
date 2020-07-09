@@ -7,27 +7,27 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title: string;
-  numberOne: number = 1;
-  numberTwo: number = 2;
-  isHappy: boolean = true;
-  logo: string = 'assets/logo.svg';
-  name: string = '';
+  numberOne = 1;
+  numberTwo = 2;
+  isHappy = true;
+  logo = 'assets/logo.svg';
+  name = '';
 
-  handleInput(event: any) {
+  handleInput(event: any): void {
     this.title = event.target.value;
   }
-  handleBlur(event: any) {
+  handleBlur(event: any): void {
     this.title = event.target.value;
     console.log(event);
   }
-  handleClick() {
+  handleClick(): void {
     this.title = 'Angular';
   }
-  handleChange(value: string) {
+  handleChange(value: string): void {
     this.title = value;
     console.log(value);
   }
-  handleNameChange(value: string) {
+  handleNameChange(value: string): void {
     this.name = value;
   }
   constructor() {

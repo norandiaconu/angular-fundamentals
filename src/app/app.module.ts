@@ -1,22 +1,20 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { PassengerDashboardComponent } from './passenger-dashboard/passenger-dashboard.component';
+import { PassengerDashboardModule } from './passenger-dashboard/passenger-dashboard.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    PassengerDashboardComponent
+    AppComponent
   ],
   imports: [
-    //Angular modules
-    BrowserModule,
+    // Angular modules
     CommonModule,
-    FormsModule
-    //Custom modules
+    FormsModule,
+    // Custom modules
+    PassengerDashboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
