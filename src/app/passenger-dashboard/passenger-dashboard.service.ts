@@ -1,0 +1,27 @@
+import { Injectable } from '@angular/core';
+
+import { Passenger } from './passenger-dashboard.module';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class PassengerDashboardService {
+
+  getPassengers(): Passenger[] {
+    return [{
+      id: 1,
+      fullName: 'Stephen',
+      checkedIn: true,
+      checkedInDate: 149074200000,
+      children: null
+    }, {
+      id: 2,
+      fullName: 'Rose',
+      checkedIn: false,
+      checkedInDate: null,
+      children: [{ name: 'Ted', age: 12 }, { name: 'Chloe', age: 7 }]
+    }];
+  }
+
+  constructor() { }
+}

@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { PassengerDashboardComponent } from './passenger-dashboard.component';
 import { PassengerCountComponent } from './passenger-count/passenger-count.component';
 import { PassengerDetailComponent } from './passenger-detail/passenger-detail.component';
+import { PassengerDashboardService } from './passenger-dashboard.service';
 
 export interface Passenger {
   id: number;
@@ -29,6 +30,9 @@ interface Child {
   ],
   exports: [
     PassengerDashboardComponent
+  ],
+  providers: [
+    PassengerDashboardService
   ]
 })
 export class PassengerDashboardModule { }

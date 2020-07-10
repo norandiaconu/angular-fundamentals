@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Passenger } from './passenger-dashboard.module';
+import { PassengerDashboardService } from './passenger-dashboard.service';
 
 @Component({
   selector: 'passenger-dashboard',
@@ -17,7 +18,6 @@ export class PassengerDashboardComponent implements OnInit {
       }
       return passenger;
     });
-    console.log(this.passengers);
   }
   handleRemove(event: Passenger): void {
     this.passengers = this.passengers.filter((passenger: Passenger) => {
@@ -25,22 +25,10 @@ export class PassengerDashboardComponent implements OnInit {
     });
   }
 
-  constructor() { }
+  constructor(private passengerDashboardService: PassengerDashboardService) { }
 
   ngOnInit(): void {
-    this.passengers = [{
-      id: 1,
-      fullName: 'Stephen',
-      checkedIn: true,
-      checkedInDate: 149074200000,
-      children: null
-    }, {
-      id: 2,
-      fullName: 'Rose',
-      checkedIn: false,
-      checkedInDate: null,
-      children: [{ name: 'Ted', age: 12 }, { name: 'Chloe', age: 7 }]
-    }];
+    this.passengers = this.passengerDashboardService.getPassengers();
   }
 
 }
