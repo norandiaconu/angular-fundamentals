@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { PassengerDashboardComponent } from './passenger-dashboard.component';
 import { PassengerCountComponent } from './passenger-count/passenger-count.component';
 import { PassengerDetailComponent } from './passenger-detail/passenger-detail.component';
@@ -26,7 +27,8 @@ interface Child {
   ],
   imports: [
     CommonModule,
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   exports: [
     PassengerDashboardComponent
