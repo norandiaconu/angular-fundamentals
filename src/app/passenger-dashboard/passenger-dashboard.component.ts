@@ -1,16 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
-import { Passenger } from './passenger-dashboard.module';
-import { PassengerDashboardService } from './passenger-dashboard.service';
+import { Passenger } from "./passenger";
+import { PassengerDashboardService } from "./passenger-dashboard.service";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
-  selector: 'passenger-dashboard',
-  templateUrl: './passenger-dashboard.component.html',
-  styleUrls: ['./passenger-dashboard.component.css']
+  selector: "passenger-dashboard",
+  templateUrl: "./passenger-dashboard.component.html",
+  styleUrls: ["./passenger-dashboard.component.css"]
 })
 export class PassengerDashboardComponent implements OnInit {
   passengers: Passenger[];
   passenger0: Passenger;
+
+  constructor(private passengerDashboardService: PassengerDashboardService) { }
 
   handleEdit(event: Passenger): void {
     this.passengerDashboardService.updatePassenger(event).subscribe((data: Passenger) => {
@@ -19,6 +22,9 @@ export class PassengerDashboardComponent implements OnInit {
         this.getAllPassengers();
       }
       return data;
+    },
+    (error: HttpErrorResponse) => {
+      console.error(error);
     });
   }
 
@@ -27,6 +33,9 @@ export class PassengerDashboardComponent implements OnInit {
       this.passengers = this.passengers.filter((passenger: Passenger) => {
         return passenger.id !== event.id;
       });
+    },
+    (error: HttpErrorResponse) => {
+      console.error(error);
     });
   }
 
@@ -35,13 +44,19 @@ export class PassengerDashboardComponent implements OnInit {
       console.log(data);
       this.passengers = data;
       console.log(this.passengers);
+    },
+    (error: HttpErrorResponse) => {
+      console.error(error);
     });
   }
 
   getThePassenger(): Passenger {
-    this.passengerDashboardService.getPassenger().subscribe((data: Passenger) => {
+    this.passengerDashboardService.getPassenger(1).subscribe((data: Passenger) => {
       this.passenger0 = data;
       console.log(this.passenger0);
+    },
+    (error: HttpErrorResponse) => {
+      console.error(error);
     });
     return this.passenger0;
   }
@@ -54,7 +69,7 @@ export class PassengerDashboardComponent implements OnInit {
     return this.passenger0;
   }
 
-  constructor(private passengerDashboardService: PassengerDashboardService) { }
+  
 
   ngOnInit(): void {
     this.getThePassenger();

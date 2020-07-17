@@ -5,7 +5,8 @@
       "fullName": "Stephen",
       "checkedIn": true,
       "checkedInDate": 149074200000,
-      "children": null
+      "children": null,
+      "baggage": "none"
     },
     {
       "id": 2,
@@ -21,7 +22,8 @@
           "name": "Chloe",
           "age": 7
         }
-      ]
+      ],
+      "baggage": ""
     }
   ]
 }

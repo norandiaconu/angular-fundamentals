@@ -1,11 +1,11 @@
-import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChanges } from "@angular/core";
 
-import { Passenger } from '../passenger-dashboard.module';
+import { Passenger } from "../passenger";
 
 @Component({
-  selector: 'passenger-detail',
-  templateUrl: './passenger-detail.component.html',
-  styleUrls: ['./passenger-detail.component.css']
+  selector: "passenger-detail",
+  templateUrl: "./passenger-detail.component.html",
+  styleUrls: ["./passenger-detail.component.css"]
 })
 export class PassengerDetailComponent implements OnInit, OnChanges {
   @Input() detail: Passenger;

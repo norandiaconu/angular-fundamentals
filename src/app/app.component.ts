@@ -1,17 +1,21 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
   title: string;
   numberOne = 1;
   numberTwo = 2;
   isHappy = true;
-  logo = 'assets/logo.svg';
-  name = '';
+  logo = "assets/logo.svg";
+  name = "";
+
+  constructor() {
+    this.title = "Ultimate Angular";
+  }
 
   handleInput(event: any): void {
     this.title = event.target.value;
@@ -21,7 +25,7 @@ export class AppComponent {
     console.log(event);
   }
   handleClick(): void {
-    this.title = 'Angular';
+    this.title = "Angular";
   }
   handleChange(value: string): void {
     this.title = value;
@@ -30,7 +34,5 @@ export class AppComponent {
   handleNameChange(value: string): void {
     this.name = value;
   }
-  constructor() {
-    this.title = 'Ultimate Angular';
-  }
+  
 }
