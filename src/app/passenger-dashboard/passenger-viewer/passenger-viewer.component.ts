@@ -13,6 +13,13 @@ export class PassengerViewerComponent implements OnInit {
 
   constructor(private passengerDashboardService: PassengerDashboardService) { }
 
+  onUpdatePassenger(event: Passenger): void {
+    console.log(event);
+    this.passengerDashboardService.updatePassenger(event).subscribe((data: Passenger) => {
+      this.passenger = Object.assign({}, this.passenger, event);
+    });
+  }
+
   ngOnInit(): void {
     this.passengerDashboardService.getPassenger(1).subscribe((data: Passenger) => {
       this.passenger = data;
