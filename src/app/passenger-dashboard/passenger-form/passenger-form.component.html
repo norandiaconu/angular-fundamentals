@@ -40,7 +40,7 @@
                 [value]="true"
                 name="checkedIn"
                 [ngModel]="detail?.checkedIn"
-                (ngModelChange)="toggleCheckIn($event)">
+                (ngModelChange)="toggleCheckedIn($event)">
             Yes
         </label>
         <label>
@@ -56,7 +56,7 @@
                 type="checkbox"
                 name="checkedIn"
                 [ngModel]="detail?.checkedIn"
-                (ngModelChange)="toggleCheckIn($event)">
+                (ngModelChange)="toggleCheckedIn($event)">
         </label>
         Toggle check in date
     </div>
@@ -64,10 +64,10 @@
         Check in date:
         <input
             type="number"
-            name="checkInDate"
+            name="checkedInDate"
             [ngModel]="detail?.checkedInDate">
     </div>
-
+    
     <div>
         Luggage:
         <select

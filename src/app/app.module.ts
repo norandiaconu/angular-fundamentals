@@ -7,13 +7,9 @@ import { AppComponent } from "./app.component";
 import { PassengerDashboardModule } from "./passenger-dashboard/passenger-dashboard.module";
 import { HomeComponent } from "./home/home.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
-import { PassengerDashboardComponent } from './passenger-dashboard/passenger-dashboard.component';
-import { PassengerViewerComponent } from './passenger-dashboard/passenger-viewer/passenger-viewer.component';
 
 const routes: Routes = [
-  { path: "passenger-dashboard", component: PassengerDashboardComponent },
-  { path: "passenger-viewer", component: PassengerViewerComponent },
-  { path: "", component: HomeComponent, pathMatch: "full" },
+  { path: "", redirectTo: "passengers", pathMatch: "full" },
   { path: "**", component: NotFoundComponent }
 ];
 

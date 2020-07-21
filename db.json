@@ -5,12 +5,13 @@
       "id": 1,
       "checkedIn": true,
       "baggage": "none",
-      "checkInDate": 1595271717001
+      "checkedInDate": 1595271717001
     },
     {
       "id": 2,
       "fullName": "Rose",
       "checkedIn": false,
+      "baggage": "hand-only",
       "checkedInDate": null,
       "children": [
         {
@@ -21,8 +22,7 @@
           "name": "Chloe",
           "age": 7
         }
-      ],
-      "baggage": ""
+      ]
     }
   ]
 }

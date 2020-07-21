@@ -32,7 +32,7 @@ export class PassengerFormComponent implements OnInit {
 
   constructor() { }
 
-  toggleCheckIn(checkedIn: boolean): void {
+  toggleCheckedIn(checkedIn: boolean): void {
     if (checkedIn) {
       this.detail.checkedInDate = Date.now();
     }

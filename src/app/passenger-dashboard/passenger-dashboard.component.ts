@@ -1,8 +1,9 @@
 import { Component, OnInit } from "@angular/core";
+import { HttpErrorResponse } from "@angular/common/http";
+import { Router } from "@angular/router";
 
 import { Passenger } from "./passenger";
 import { PassengerDashboardService } from "./passenger-dashboard.service";
-import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
   selector: "passenger-dashboard",
@@ -13,7 +14,10 @@ export class PassengerDashboardComponent implements OnInit {
   passengers: Passenger[];
   passenger0: Passenger;
 
-  constructor(private passengerDashboardService: PassengerDashboardService) { }
+  constructor(
+    private passengerDashboardService: PassengerDashboardService,
+    private router: Router
+  ) { }
 
   handleEdit(event: Passenger): void {
     this.passengerDashboardService.updatePassenger(event).subscribe((data: Passenger) => {
@@ -43,7 +47,7 @@ export class PassengerDashboardComponent implements OnInit {
     this.passengerDashboardService.getPassengers().subscribe((data: Passenger[]) => {
       // console.log(data);
       this.passengers = data;
-      console.log(this.passengers);
+      // console.log(this.passengers);
     },
     (error: HttpErrorResponse) => {
       console.error(error);
@@ -53,7 +57,7 @@ export class PassengerDashboardComponent implements OnInit {
   getThePassenger(): Passenger {
     this.passengerDashboardService.getPassenger(1).subscribe((data: Passenger) => {
       this.passenger0 = data;
-      console.log(this.passenger0);
+      // console.log(this.passenger0);
     },
     (error: HttpErrorResponse) => {
       console.error(error);
@@ -69,7 +73,9 @@ export class PassengerDashboardComponent implements OnInit {
     return this.passenger0;
   }
 
-  
+  handleView(event: Passenger): void {
+    this.router.navigate(["/passengers", event.id]);
+  }
 
   ngOnInit(): void {
     // this.getThePassenger();
