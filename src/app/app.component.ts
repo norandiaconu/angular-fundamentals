@@ -33,6 +33,11 @@ export class AppComponent {
       link: "/passengers",
       name: "Passengers",
       exact: false
+    },
+    {
+      link: "/rxjs-basics",
+      name: "RxJS Basics",
+      exact: false
     }
   ];
 

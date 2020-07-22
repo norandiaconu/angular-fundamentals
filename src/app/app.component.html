@@ -66,6 +66,12 @@
       (input)="handleNameChange($event.target.value)">
     <div *ngIf="name.length > 2">
       Searching for... {{ name }}
+      <br/><br/>
+      <nav class="nav" aria-label="nav1">
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a> &bull;
+        <a routerLink="oops" routerLinkActive="active">404</a> &bull;
+        <a routerLink="passengers" routerLinkActive="active">Passengers</a>
+      </nav>
     </div>
   </div>
   <br/>
@@ -73,11 +79,6 @@
   <!-- <passenger-viewer>/passenger-viewer> -->
 
   <div>
-    <nav class="nav" aria-label="nav1">
-      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a> &bull;
-      <a routerLink="oops" routerLinkActive="active">404</a> &bull;
-      <a routerLink="passengers" routerLinkActive="active">Passengers</a>
-    </nav>
     <nav class="nav" aria-label="nav2">
       <a
         *ngFor="let item of nav"
