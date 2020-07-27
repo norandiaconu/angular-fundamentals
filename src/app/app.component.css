@@ -16,3 +16,10 @@ a {
 a.active {
     background: purple;
 }
+.progress-bar {
+    position: fixed;
+    top: 0;
+    height: 4px;
+    width: 0%;
+    background: purple;
+}

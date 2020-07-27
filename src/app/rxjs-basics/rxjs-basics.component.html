@@ -2,3 +2,37 @@
 <div>
     Button presses: {{ amount }}
 </div>
+<div>
+    General:
+    <button (click)="helloWorld()">Hello World</button> &bull;
+    <button (click)="setTimeout()">Set Timeout</button> &bull;
+    <button (click)="countOnce()">Count Once</button> &bull;
+    <button (click)="intervalTimer()">Interval Timer</button> &bull;
+    <button (click)="fetch()">Fetch</button>
+    <br/><br/>
+    Looping:
+    <button (click)="ofSubscription()">Of Subscription</button> &bull;
+    <button (click)="range()">Range</button> &bull;
+    <button (click)="from()">From</button> &bull;
+    <button (click)="ofPipe()">Of Pipe</button> &bull;
+    <button (click)="ofFilter()">Of Filter</button> &bull;
+    <button (click)="reducer()">Reducer</button>
+    <br/><br/>
+    Event:
+    <span *ngIf="displayCount">
+        <button (click)="keyCount()">Key Count</button> &bull;
+    </span>
+    <span *ngIf="displayMouse">
+        <button (click)="mouseClickEvent()">Mouse Event</button> &bull;
+    </span>
+    <span *ngIf="displayKeys">
+        <button (click)="keyCodes()">Key Codes</button> &bull;
+    </span>
+    <span *ngIf="displayKeys">
+        <button (click)="scrollBar()">Scroll Bar</button> &bull;
+    </span>
+    <button (click)="restartEvents()">Restart Events</button>
+    <div *ngIf="displayText">
+        <br *ngFor="let i of [].constructor(100)"/>
+    </div>
+</div>
