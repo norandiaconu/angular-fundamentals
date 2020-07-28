@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { fromEvent, Observable, observable, Subscription, of, range, from, interval, timer, Observer } from "rxjs";
-import { map, pluck, mapTo, filter, reduce, take } from "rxjs/operators";
+import { fromEvent, Observable, Subscription, of, range, from, interval, timer, Observer } from "rxjs";
+import { map, pluck, mapTo, filter, reduce, take, scan, tap, first, takeWhile, takeUntil, distinctUntilChanged, distinctUntilKeyChanged } from "rxjs/operators";
 
 @Component({
   selector: "rxjs-basics",
@@ -17,6 +17,7 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
   displayMouse: boolean;
   displayKeys: boolean;
   displayText: boolean;
+  theCountdown: string;
   keyup$ = fromEvent(document, "keyup");
 
   constructor() { }
@@ -35,6 +36,7 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
     this.displayMouse = true;
     this.displayKeys = true;
     this.displayText = false;
+    this.theCountdown = "10";
   }
 
   helloWorld(): void {
@@ -115,7 +117,12 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
   ofPipe(): void {
     this.consoleString = "ofPipe";
     of(1, 2, 3, 4, 5).pipe(
-      map(value => value * 10)
+      tap(value => console.log("before", value)),
+      map(value => value * 10),
+      tap({
+        next: value => console.log("after", value),
+        complete: () => console.log("done")
+      })
     ).subscribe(this.observer).unsubscribe();
   }
 
@@ -146,6 +153,100 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       obs.unsubscribe();
     }, 1000);
+  }
+
+  scan(): void {
+    this.consoleString = "scan";
+    from([1, 2, 3, 4, 5]).pipe(
+      scan((accumulator, currentValue) => {
+        return accumulator + currentValue;
+      }, 0)
+    ).subscribe(this.observer).unsubscribe();
+
+    interface UserInfo {
+      name: string;
+      loggedIn: boolean;
+      token: string;
+    }
+    const user = [
+      {name: "Brian", loggedIn: false, token: null},
+      {name: "Brian", loggedIn: true, token: "abc"},
+      {name: "Brian", loggedIn: true, token: "123"}
+    ];
+    
+    const state$ = from(user).pipe(
+      scan((accumulator, currentValue) => {
+        return { ...accumulator, ...currentValue};
+      }, {})
+    );
+    state$.subscribe(this.observer).unsubscribe();
+    from(user).pipe(
+      map((state: UserInfo) => state.name),
+      distinctUntilChanged()
+    ).subscribe(console.log).unsubscribe();
+
+    from(user).pipe(
+      distinctUntilKeyChanged("name"),
+      map((state: UserInfo) => state.name)
+    ).subscribe(console.log).unsubscribe();
+  }
+
+  take(): void {
+    of(1, 2, 3, 4, 5).pipe(
+      take(3)
+    ).subscribe({
+      next: console.log,
+      complete: () => console.log("complete")
+    });
+
+    fromEvent(document, "click").pipe(
+      map((event: MouseEvent) => ({
+        x: event.clientX,
+        y: event.clientY
+      })),
+      take(1)
+    ).subscribe({
+      next: console.log,
+      complete: () => console.log("complete")
+    });
+
+    fromEvent(document, "click").pipe(
+      map((event: MouseEvent) => ({
+        x: event.clientX,
+        y: event.clientY
+      })),
+      first(({y}) => y > 500)
+    ).subscribe({
+      next: console.log,
+      complete: () => console.log("complete")
+    });
+    const randomNum = Math.floor(Math.random() * 1000);
+    document.getElementById("take").style.top = randomNum + "px";
+  }
+
+  takeWhile(): void {
+    fromEvent(document, "click").pipe(
+      map((event: MouseEvent) => ({
+        x: event.clientX,
+        y: event.clientY
+      })),
+      takeWhile(({y}) => y <= 800, true)
+    ).subscribe({
+      next: console.log,
+      complete: () => console.log("complete")
+    });
+  }
+
+  takeUntil(): void {
+    interval(1000).pipe(
+      takeUntil(fromEvent(document, "keyup"))
+    ).subscribe(console.log);
+  }
+
+  distinctUntilChanged(): void {
+    of(1, 1, 2, 3).pipe(
+      distinctUntilChanged()
+    ).subscribe(console.log).unsubscribe();
   }
 
   keyCount(): void {
@@ -214,6 +315,24 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
     this.displayKeys = true;
     this.displayText = false;
     this.eventSub = new Subscription();
+  }
+
+  countdown(): void {
+    const abortButton = document.getElementById("abort");
+
+    interval(1000).pipe(
+      mapTo(-1),
+      scan((accumulator, current) => {
+        return accumulator + current;
+      }, 10),
+      takeWhile(value => value >= 0),
+      takeUntil(fromEvent(abortButton, "click"))
+    ).subscribe(value => {
+      this.theCountdown = "" + value;
+      if (!value) {
+        this.theCountdown = "LIFTOFF";
+      }
+    });
   }
 
   ngOnDestroy(): void {

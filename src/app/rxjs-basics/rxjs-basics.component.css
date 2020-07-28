@@ -7,3 +7,6 @@ button {
 div {
     text-align: center;
 }
+#take {
+    position: absolute;
+}

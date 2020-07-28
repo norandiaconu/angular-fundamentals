@@ -16,7 +16,13 @@
     <button (click)="from()">From</button> &bull;
     <button (click)="ofPipe()">Of Pipe</button> &bull;
     <button (click)="ofFilter()">Of Filter</button> &bull;
-    <button (click)="reducer()">Reducer</button>
+    <button (click)="reducer()">Reducer</button> &bull;
+    <button (click)="scan()">Scan</button> &bull;
+    <button (click)="take()" id="take">Take</button>
+    <br/><br/>
+    <button (click)="takeWhile()">Take While</button> &bull;
+    <button (click)="takeUntil()">Take Until</button> &bull;
+    <button (click)="distinctUntilChanged()">Distinct Until Changed</button>
     <br/><br/>
     Event:
     <span *ngIf="displayCount">
@@ -35,4 +41,7 @@
     <div *ngIf="displayText">
         <br *ngFor="let i of [].constructor(100)"/>
     </div>
+    <br/><br/>
+    <button (click)="countdown()">Countdown</button> {{ theCountdown }}
+    <button id="abort">Abort Mission</button>
 </div>
