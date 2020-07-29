@@ -9,8 +9,7 @@
     <button (click)="countOnce()">Count Once</button> &bull;
     <button (click)="intervalTimer()">Interval Timer</button> &bull;
     <button (click)="fetch()">Fetch</button>
-    <br/><br/>
-    Looping:
+    <br/><br/>Looping:
     <button (click)="ofSubscription()">Of Subscription</button> &bull;
     <button (click)="range()">Range</button> &bull;
     <button (click)="from()">From</button> &bull;
@@ -23,8 +22,7 @@
     <button (click)="takeWhile()">Take While</button> &bull;
     <button (click)="takeUntil()">Take Until</button> &bull;
     <button (click)="distinctUntilChanged()">Distinct Until Changed</button>
-    <br/><br/>
-    Event:
+    <br/><br/>Event:
     <span *ngIf="displayCount">
         <button (click)="keyCount()">Key Count</button> &bull;
     </span>
@@ -44,4 +42,8 @@
     <br/><br/>
     <button (click)="countdown()">Countdown</button> {{ theCountdown }}
     <button id="abort">Abort Mission</button>
+    <br/><br/>Rate Limiting:
+    <button (click)="debounceTime()">{{ subscribed ? 'Unsubscribe' : 'Debounce Time'}}</button>
+    <input id="debounceText"> &bull;
+    <button (click)="throttleTime()">{{ subscribed ? 'Unsubscribe' : 'Throttle Time'}}</button>
 </div>

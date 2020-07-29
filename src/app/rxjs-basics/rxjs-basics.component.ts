@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { fromEvent, Observable, Subscription, of, range, from, interval, timer, Observer } from "rxjs";
-import { map, pluck, mapTo, filter, reduce, take, scan, tap, first, takeWhile, takeUntil, distinctUntilChanged, distinctUntilKeyChanged } from "rxjs/operators";
+import { fromEvent, Observable, Subscription, of, range, from, interval, timer, Observer, asyncScheduler } from "rxjs";
+import { map, pluck, mapTo, filter, reduce, take, scan, tap, first, takeWhile, takeUntil, distinctUntilChanged,
+  distinctUntilKeyChanged, debounceTime, throttleTime } from "rxjs/operators";
 
 @Component({
   selector: "rxjs-basics",
@@ -19,6 +20,8 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
   displayText: boolean;
   theCountdown: string;
   keyup$ = fromEvent(document, "keyup");
+  subscribed: boolean;
+  debounceSub: Subscription;
 
   constructor() { }
 
@@ -37,6 +40,7 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
     this.displayKeys = true;
     this.displayText = false;
     this.theCountdown = "10";
+    this.subscribed = false;
   }
 
   helloWorld(): void {
@@ -297,6 +301,10 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
     this.displayText = true;
     const scroll$ = fromEvent(document, "scroll");
     const progress$ = scroll$.pipe(
+      throttleTime(30, asyncScheduler, {
+        leading: false,
+        trailing: true
+      }),
       map(() => {
         const { scrollTop, scrollHeight, clientHeight} = document.documentElement;
         return (scrollTop / (scrollHeight - clientHeight)) * 100;
@@ -333,6 +341,40 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
         this.theCountdown = "LIFTOFF";
       }
     });
+  }
+
+  debounceTime(): void {
+    if (this.subscribed === false) {
+      this.debounceSub = fromEvent(document, "click").pipe(
+        debounceTime(1000)
+      ).subscribe(console.log);
+
+      this.debounceSub.add(fromEvent(document.getElementById("debounceText"), "keyup").pipe(
+        debounceTime(1000),
+        pluck("target", "value"),
+        distinctUntilChanged()
+      ).subscribe(console.log));
+    } else {
+      this.debounceSub.unsubscribe();
+    }
+    this.subscribed = !this.subscribed;
+  }
+
+  throttleTime(): void {
+    if (this.subscribed === false) {
+      this.debounceSub = fromEvent(document, "click").pipe(
+        throttleTime(1000)
+      ).subscribe(console.log);
+
+      this.debounceSub.add(fromEvent(document.getElementById("debounceText"), "keyup").pipe(
+        throttleTime(1000),
+        pluck("target", "value"),
+        distinctUntilChanged()
+      ).subscribe(console.log));
+    } else {
+      this.debounceSub.unsubscribe();
+    }
+    this.subscribed = !this.subscribed;
   }
 
   ngOnDestroy(): void {
