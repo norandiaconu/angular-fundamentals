@@ -42,8 +42,25 @@
     <br/><br/>
     <button (click)="countdown()">Countdown</button> {{ theCountdown }}
     <button id="abort">Abort Mission</button>
+    <hr>
+    <input id="timeText">
     <br/><br/>Rate Limiting:
-    <button (click)="debounceTime()">{{ subscribed ? 'Unsubscribe' : 'Debounce Time'}}</button>
-    <input id="debounceText"> &bull;
-    <button (click)="throttleTime()">{{ subscribed ? 'Unsubscribe' : 'Throttle Time'}}</button>
+    <button (click)="debounceTime()">{{ subscribed ? 'Unsubscribe' : 'Debounce Time'}}</button> &bull;
+    <button (click)="throttleTime()">{{ subscribed ? 'Unsubscribe' : 'Throttle Time'}}</button> &bull;
+    <button (click)="sampleTime()">{{ subscribed ? 'Unsubscribe' : 'Sample Time'}}</button> &bull;
+    <button (click)="sample()">{{ subscribed ? 'Unsubscribe' : 'Sample'}}</button> &bull;
+    <button (click)="auditTime()">{{ subscribed ? 'Unsubscribe' : 'Audit Time'}}</button>
+    <br/><br/>Transformation:
+    <button (click)="ajax()" title="Get and return JSON api request responses">
+        {{ subscribed ? 'Unsubscribe' : 'Ajax'}}</button> &bull;
+    <button (click)="mergeMap()" title="Combines multiple observables/pipes into one">
+        {{ subscribed ? 'Unsubscribe' : 'Merge Map'}}</button> &bull;
+    <button (click)="switchMap()"
+            title="Similar to mergeMap, but restarts observable instead of creating a new one each time">
+        {{ subscribed ? 'Unsubscribe' : 'Switch Map'}}</button> &bull;
+        <button (click)="concatMap()"
+        title="Similar to mergeMap, but queues subsequent observables until the prior ones complete">
+    {{ subscribed ? 'Unsubscribe' : 'Concat Map'}}</button>
+    <br/><br/>
+    <div id="typeahead"></div>
 </div>

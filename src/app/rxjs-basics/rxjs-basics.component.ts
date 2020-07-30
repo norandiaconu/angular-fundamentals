@@ -1,7 +1,9 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { fromEvent, Observable, Subscription, of, range, from, interval, timer, Observer, asyncScheduler } from "rxjs";
 import { map, pluck, mapTo, filter, reduce, take, scan, tap, first, takeWhile, takeUntil, distinctUntilChanged,
-  distinctUntilKeyChanged, debounceTime, throttleTime } from "rxjs/operators";
+  distinctUntilKeyChanged, debounceTime, throttleTime, sampleTime, sample, auditTime, mergeAll, mergeMap,
+  switchMap, concatMap } from "rxjs/operators";
+import { ajax } from "rxjs/ajax";
 
 @Component({
   selector: "rxjs-basics",
@@ -21,7 +23,7 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
   theCountdown: string;
   keyup$ = fromEvent(document, "keyup");
   subscribed: boolean;
-  debounceSub: Subscription;
+  timeSub: Subscription;
 
   constructor() { }
 
@@ -301,6 +303,7 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
     this.displayText = true;
     const scroll$ = fromEvent(document, "scroll");
     const progress$ = scroll$.pipe(
+      // same as auditTime(30)
       throttleTime(30, asyncScheduler, {
         leading: false,
         trailing: true
@@ -344,35 +347,123 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
   }
 
   debounceTime(): void {
+    this.genericTime(debounceTime(1000));
+  }
+
+  throttleTime(): void {
+    this.genericTime(throttleTime(1000));
+  }
+
+  sampleTime(): void {
+    this.genericTime(sampleTime(1000));
+  }
+
+  sample(): void {
+    this.genericTime(sample(interval(1000)));
+  }
+
+  auditTime(): void {
+    this.genericTime(auditTime(1000));
+  }
+
+  genericTime(style: any): void {
     if (this.subscribed === false) {
-      this.debounceSub = fromEvent(document, "click").pipe(
-        debounceTime(1000)
+      this.timeSub = fromEvent(document, "click").pipe(
+        style,
+        map((event: MouseEvent) => ({
+          x: event.clientX,
+          y: event.clientY
+        })),
       ).subscribe(console.log);
 
-      this.debounceSub.add(fromEvent(document.getElementById("debounceText"), "keyup").pipe(
-        debounceTime(1000),
+      this.timeSub.add(fromEvent(document.getElementById("timeText"), "keyup").pipe(
+        style,
         pluck("target", "value"),
         distinctUntilChanged()
       ).subscribe(console.log));
     } else {
-      this.debounceSub.unsubscribe();
+      this.timeSub.unsubscribe();
     }
     this.subscribed = !this.subscribed;
   }
 
-  throttleTime(): void {
+  ajax(): void {
     if (this.subscribed === false) {
-      this.debounceSub = fromEvent(document, "click").pipe(
-        throttleTime(1000)
+      this.timeSub = fromEvent(document.getElementById("timeText"), "keyup").pipe(
+        debounceTime(1000),
+        pluck("target", "value"),
+        map(event => {
+          return ajax.getJSON("http://localhost:3000/passengers/" + event);
+        }),
+        mergeAll()
       ).subscribe(console.log);
 
-      this.debounceSub.add(fromEvent(document.getElementById("debounceText"), "keyup").pipe(
-        throttleTime(1000),
+      this.timeSub.add(fromEvent(document.getElementById("timeText"), "keyup").pipe(
+        debounceTime(1000),
         pluck("target", "value"),
-        distinctUntilChanged()
+        mergeMap(event => {
+          return ajax.getJSON("https://api.github.com/users/" + event);
+        })
       ).subscribe(console.log));
     } else {
-      this.debounceSub.unsubscribe();
+      this.timeSub.unsubscribe();
+    }
+    this.subscribed = !this.subscribed;
+  }
+
+  mergeMap(): void {
+    if (this.subscribed === false) {
+      this.timeSub = fromEvent(document, "mousedown").pipe(
+        mergeMap(() => interval(1000).pipe(
+          takeUntil(fromEvent(document, "mouseup"))
+        ))
+      ).subscribe(console.log);
+
+      this.timeSub.add(fromEvent(document, "click").pipe(
+        map((event: MouseEvent) => ({
+          x: event.clientX,
+          y: event.clientY
+        }))
+      ).pipe(
+        mergeMap(coords => ajax.post("https://run.mocky.io/v3/4cd66c07-e46c-425d-94ec-a53724bdc1ec", coords))
+      ).subscribe(console.log));
+    } else {
+      this.timeSub.unsubscribe();
+    }
+    this.subscribed = !this.subscribed;
+  }
+
+  switchMap(): void {
+    const baseUrl = "https://api.openbrewerydb.org/breweries";
+    const typeaheadBox = document.getElementById("typeahead");
+    if (this.subscribed === false) {
+      this.timeSub = fromEvent(document, "click").pipe(
+        switchMap(() => interval(1000))
+      ).subscribe(console.log);
+
+      this.timeSub.add(fromEvent(document.getElementById("timeText"), "keyup").pipe(
+        debounceTime(1000),
+        pluck("target", "value"),
+        distinctUntilChanged(),
+        switchMap((searchTerm: string) => ajax.getJSON(baseUrl + "?by_name=" + searchTerm))
+      ).subscribe((response: any) => {
+        typeaheadBox.innerHTML = response.map(
+          b => b.name
+        ).join("<br>");
+      }));
+    } else {
+      this.timeSub.unsubscribe();
+    }
+    this.subscribed = !this.subscribed;
+  }
+
+  concatMap(): void {
+    if (this.subscribed === false) {
+      this.timeSub = fromEvent(document, "click").pipe(
+        concatMap(() => interval(1000).pipe(take(3)))
+      ).subscribe(console.log);
+    } else {
+      this.timeSub.unsubscribe();
     }
     this.subscribed = !this.subscribed;
   }

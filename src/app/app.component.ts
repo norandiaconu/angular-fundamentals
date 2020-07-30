@@ -18,6 +18,7 @@ export class AppComponent {
   isHappy = true;
   logo = "assets/logo.svg";
   name = "";
+  display = false;
   nav: Nav[] = [
     {
       link: "/",
@@ -61,6 +62,9 @@ export class AppComponent {
   }
   handleNameChange(value: string): void {
     this.name = value;
+  }
+  toggle(): void {
+    this.display = !this.display;
   }
   
 }
