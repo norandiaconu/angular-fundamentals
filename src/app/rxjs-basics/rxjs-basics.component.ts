@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { fromEvent, Observable, Subscription, of, range, from, interval, timer, Observer, asyncScheduler } from "rxjs";
+import { fromEvent, Observable, Subscription, of, range, from, interval, timer, Observer, asyncScheduler,
+  EMPTY } from "rxjs";
 import { map, pluck, mapTo, filter, reduce, take, scan, tap, first, takeWhile, takeUntil, distinctUntilChanged,
   distinctUntilKeyChanged, debounceTime, throttleTime, sampleTime, sample, auditTime, mergeAll, mergeMap,
-  switchMap, concatMap } from "rxjs/operators";
+  switchMap, concatMap, exhaustMap, catchError, switchMapTo } from "rxjs/operators";
 import { ajax } from "rxjs/ajax";
 
 @Component({
@@ -24,6 +25,7 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
   keyup$ = fromEvent(document, "keyup");
   subscribed: boolean;
   timeSub: Subscription;
+  polling: boolean;
 
   constructor() { }
 
@@ -43,6 +45,7 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
     this.displayText = false;
     this.theCountdown = "10";
     this.subscribed = false;
+    this.polling = false;
   }
 
   helloWorld(): void {
@@ -393,7 +396,11 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
         debounceTime(1000),
         pluck("target", "value"),
         map(event => {
-          return ajax.getJSON("http://localhost:3000/passengers/" + event);
+          return ajax.getJSON("http://localhost:3000/passengers/" + event).pipe(
+            catchError(() => {
+              return EMPTY;
+            })
+          );
         }),
         mergeAll()
       ).subscribe(console.log);
@@ -402,7 +409,11 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
         debounceTime(1000),
         pluck("target", "value"),
         mergeMap(event => {
-          return ajax.getJSON("https://api.github.com/users/" + event);
+          return ajax.getJSON("https://api.github.com/users/" + event).pipe(
+            catchError(() => {
+              return EMPTY;
+            })
+          );
         })
       ).subscribe(console.log));
     } else {
@@ -425,7 +436,11 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
           y: event.clientY
         }))
       ).pipe(
-        mergeMap(coords => ajax.post("https://run.mocky.io/v3/4cd66c07-e46c-425d-94ec-a53724bdc1ec", coords))
+        mergeMap(coords => ajax.post("https://run.mocky.io/v3/4cd66c07-e46c-425d-94ec-a53724bdc1ec", coords).pipe(
+          catchError(() => {
+            return EMPTY;
+          })
+        ))
       ).subscribe(console.log));
     } else {
       this.timeSub.unsubscribe();
@@ -438,14 +453,18 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
     const typeaheadBox = document.getElementById("typeahead");
     if (this.subscribed === false) {
       this.timeSub = fromEvent(document, "click").pipe(
-        switchMap(() => interval(1000))
+        switchMap(() => interval(1000).pipe(take(10)))
       ).subscribe(console.log);
 
       this.timeSub.add(fromEvent(document.getElementById("timeText"), "keyup").pipe(
         debounceTime(1000),
         pluck("target", "value"),
         distinctUntilChanged(),
-        switchMap((searchTerm: string) => ajax.getJSON(baseUrl + "?by_name=" + searchTerm))
+        switchMap((searchTerm: string) => ajax.getJSON(baseUrl + "?by_name=" + searchTerm).pipe(
+          catchError(() => {
+            return EMPTY;
+          })
+        ))
       ).subscribe((response: any) => {
         typeaheadBox.innerHTML = response.map(
           b => b.name
@@ -466,6 +485,53 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
       this.timeSub.unsubscribe();
     }
     this.subscribed = !this.subscribed;
+  }
+
+  exhaustMap(): void {
+    if (this.subscribed === false) {
+      this.timeSub = fromEvent(document, "click").pipe(
+        exhaustMap(() => interval(1000).pipe(take(3)))
+      ).subscribe(console.log);
+    } else {
+      this.timeSub.unsubscribe();
+    }
+    this.subscribed = !this.subscribed;
+  }
+
+  dogSub(): void {
+    const dogImage = (document.getElementById("dog") as HTMLImageElement);
+    const dogVideo = (document.getElementById("dogVid") as HTMLVideoElement);
+    if (this.subscribed === false) {
+      this.timeSub = fromEvent(document.getElementById("dogStart"), "click").pipe(
+        exhaustMap(() => timer(0, 5000).pipe(
+          switchMapTo(ajax.getJSON("https://random.dog/woof.json").pipe(
+            pluck("url")
+          )),
+          takeUntil(fromEvent(document.getElementById("dogStop"), "click"))
+        ))
+      ).subscribe((url: string) => {
+        if (url.includes(".mp4")) {
+          dogVideo.src = url;
+        } else {
+          dogImage.src = url;
+        }
+      });
+    } else {
+      this.timeSub.unsubscribe();
+    }
+    this.subscribed = !this.subscribed;
+  }
+
+  dogStart(): void {
+    if (this.polling === false) {
+      this.polling = true;
+    }
+  }
+
+  dogStop(): void {
+    if (this.polling === true) {
+      this.polling = false;
+    }
   }
 
   ngOnDestroy(): void {
