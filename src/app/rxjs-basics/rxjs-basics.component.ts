@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { fromEvent, Observable, Subscription, of, range, from, interval, timer, Observer, asyncScheduler,
-  EMPTY } from "rxjs";
+  EMPTY, concat, merge, combineLatest, forkJoin } from "rxjs";
 import { map, pluck, mapTo, filter, reduce, take, scan, tap, first, takeWhile, takeUntil, distinctUntilChanged,
   distinctUntilKeyChanged, debounceTime, throttleTime, sampleTime, sample, auditTime, mergeAll, mergeMap,
-  switchMap, concatMap, exhaustMap, catchError, switchMapTo } from "rxjs/operators";
+  switchMap, concatMap, exhaustMap, catchError, startWith, endWith, delay, withLatestFrom } from "rxjs/operators";
 import { ajax } from "rxjs/ajax";
 
 @Component({
@@ -25,7 +25,6 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
   keyup$ = fromEvent(document, "keyup");
   subscribed: boolean;
   timeSub: Subscription;
-  polling: boolean;
 
   constructor() { }
 
@@ -45,7 +44,6 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
     this.displayText = false;
     this.theCountdown = "10";
     this.subscribed = false;
-    this.polling = false;
   }
 
   helloWorld(): void {
@@ -303,23 +301,29 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
   }
 
   scrollBar(): void {
-    this.displayText = true;
-    const scroll$ = fromEvent(document, "scroll");
-    const progress$ = scroll$.pipe(
-      // same as auditTime(30)
-      throttleTime(30, asyncScheduler, {
-        leading: false,
-        trailing: true
-      }),
-      map(() => {
-        const { scrollTop, scrollHeight, clientHeight} = document.documentElement;
-        return (scrollTop / (scrollHeight - clientHeight)) * 100;
-      })
-    );
-    const progressBar = document.querySelector<Element>(".progress-bar");
-    this.eventSub.add(progress$.subscribe(percent => {
-      progressBar.setAttribute("style", "width: " + percent + "%");
-    }));
+    if (this.subscribed === false) {
+      this.displayText = true;
+      const scroll$ = fromEvent(document, "scroll");
+      const progress$ = scroll$.pipe(
+        // same as auditTime(30)
+        throttleTime(30, asyncScheduler, {
+          leading: false,
+          trailing: true
+        }),
+        map(() => {
+          const { scrollTop, scrollHeight, clientHeight} = document.documentElement;
+          return (scrollTop / (scrollHeight - clientHeight)) * 100;
+        })
+      );
+      const progressBar = document.querySelector<Element>(".progress-bar");
+      this.eventSub.add(progress$.subscribe(percent => {
+        progressBar.setAttribute("style", "width: " + percent + "%");
+      }));
+    } else {
+      this.eventSub.unsubscribe();
+      this.displayText = false;
+    }
+    this.subscribed = !this.subscribed;
   }
 
   restartEvents(): void {
@@ -498,40 +502,128 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
     this.subscribed = !this.subscribed;
   }
 
-  dogSub(): void {
-    const dogImage = (document.getElementById("dog") as HTMLImageElement);
-    const dogVideo = (document.getElementById("dogVid") as HTMLVideoElement);
+  startWith(): void {
     if (this.subscribed === false) {
-      this.timeSub = fromEvent(document.getElementById("dogStart"), "click").pipe(
-        exhaustMap(() => timer(0, 5000).pipe(
-          switchMapTo(ajax.getJSON("https://random.dog/woof.json").pipe(
-            pluck("url")
-          )),
-          takeUntil(fromEvent(document.getElementById("dogStop"), "click"))
-        ))
-      ).subscribe((url: string) => {
-        if (url.includes(".mp4")) {
-          dogVideo.src = url;
-        } else {
-          dogImage.src = url;
-        }
-      });
+      const numbers = of(1, 2, 3);
+      this.timeSub = numbers.pipe(
+        startWith("a", "b"),
+        endWith("c", "d")
+      ).subscribe(console.log);
     } else {
       this.timeSub.unsubscribe();
     }
     this.subscribed = !this.subscribed;
   }
 
-  dogStart(): void {
-    if (this.polling === false) {
-      this.polling = true;
+  concat(): void {
+    if (this.subscribed === false) {
+      const interval$ = interval(1000);
+      this.timeSub = concat(
+        interval$.pipe(take(3)),
+        interval$.pipe(take(2))
+      ).subscribe(console.log);
+    } else {
+      this.timeSub.unsubscribe();
+    }
+    this.subscribed = !this.subscribed;
+  }
+
+  merge(): void {
+    if (this.subscribed === false) {
+      this.timeSub = merge(
+        fromEvent(document, "keyup"),
+        fromEvent(document, "click")
+      ).subscribe(console.log);
+    } else {
+      this.timeSub.unsubscribe();
+    }
+    this.subscribed = !this.subscribed;
+  }
+  
+  countdown2(): void {
+    const startButton = document.getElementById("countdown2");
+    const pauseButton = document.getElementById("abort2");
+
+    merge(
+      fromEvent(startButton, "click").pipe(mapTo(true)),
+      fromEvent(pauseButton, "click").pipe(mapTo(false))
+    ).pipe(
+      switchMap(shouldStart => {
+        return shouldStart ? interval(1000) : EMPTY;
+      }),
+      mapTo(-1),
+      scan((accumulator, current) => {
+        return accumulator + current;
+      }, 10),
+      takeWhile(value => value >= 0),
+      startWith(10)
+    ).subscribe(value => {
+      this.theCountdown = "" + value;
+      if (!value) {
+        this.theCountdown = "LIFTOFF";
+      }
+    });
+    if (this.subscribed === false) {
+      this.subscribed = true;
     }
   }
 
-  dogStop(): void {
-    if (this.polling === true) {
-      this.polling = false;
+  combineLatest(): void {  
+    if (this.subscribed === false) {
+      const firstElem = document.getElementById("first");
+      const secondElem = document.getElementById("second");
+
+      this.timeSub = combineLatest(
+        [fromEvent(document, "keyup"),
+        fromEvent(document, "click")]
+      ).subscribe(console.log);
+
+      const keyupAsValue = elem => {
+        return fromEvent(elem, "keyup").pipe(
+          map((event: any) => event.target.valueAsNumber)
+        );
+      };
+      this.timeSub = combineLatest(
+        [keyupAsValue(firstElem),
+          keyupAsValue(secondElem)]
+      ).pipe(
+        filter(([firstNum, secondNum]) => {
+          return !isNaN(firstNum) && !isNaN(secondNum);
+        }),
+        map(([firstOperand, secondOperand]) => firstOperand + secondOperand)
+      ).subscribe(console.log);
+    } else {
+      this.timeSub.unsubscribe();
     }
+    this.subscribed = !this.subscribed;
+  }
+
+  withLatestFrom(): void {
+    if (this.subscribed === false) {
+      this.timeSub = fromEvent(document, "click").pipe(
+        withLatestFrom(interval(1000))
+      ).subscribe(console.log);
+    } else {
+      this.timeSub.unsubscribe();
+    }
+    this.subscribed = !this.subscribed;
+  }
+
+  forkJoin(): void {
+    if (this.subscribed === false) {
+      this.timeSub = forkJoin({
+        numbers: of(1, 2, 3),
+        letters: of("a", "b", "c").pipe(delay(2000))
+      }).subscribe(console.log);
+
+      this.timeSub = forkJoin({
+        user: ajax.getJSON("https://api.github.com/users/reactivex"),
+        repo: ajax.getJSON("https://api.github.com/users/reactivex/repos")
+      }).subscribe(console.log);
+    } else {
+      this.timeSub.unsubscribe();
+    }
+    this.subscribed = !this.subscribed;
   }
 
   ngOnDestroy(): void {

@@ -32,7 +32,7 @@
         <button (click)="keyCodes()">Key Codes</button> &bull;
     </span>
     <span *ngIf="displayKeys">
-        <button (click)="scrollBar()">Scroll Bar</button> &bull;
+        <button (click)="scrollBar()">{{ subscribed ? 'Unsubscribe' : 'Scroll Bar'}}</button> &bull;
     </span>
     <button (click)="restartEvents()">Restart Events</button>
     <div *ngIf="displayText">
@@ -65,17 +65,30 @@
     {{ subscribed ? 'Unsubscribe' : 'Exhaust Map'}}</button>
     <br/><br/>
     <div id="typeahead"></div>
-    Dog Polling:
-    <button (click)="dogSub()" title="Start dog subscription" id="dogSub">
-        {{ subscribed ? 'Unsub' : 'Dog Sub'}}</button>
-    <button (click)="dogStart()" title="Start and stop dog polling" id="dogStart">Start Polling</button>
-    <button (click)="dogStop()" title="Start and stop dog polling" id="dogStop">Stop Polling</button>
-    Polling: {{ polling }}
+    Combination Operators:
+    <button (click)="startWith()"
+        title="Start and end with specified values">
+    {{ subscribed ? 'Unsubscribe' : 'Start With'}}</button>
+    <button (click)="concat()"
+        title="Order events to run one after another">
+    {{ subscribed ? 'Unsubscribe' : 'Concat'}}</button>
+    <button (click)="merge()"
+        title="Start and end with specified values">
+    {{ subscribed ? 'Unsubscribe' : 'Merge'}}</button>
+    <button (click)="withLatestFrom()"
+        title="Include latest value from stream that is passed in">
+    {{ subscribed ? 'Unsubscribe' : 'With Latest From'}}</button>
+    <button (click)="forkJoin()"
+        title="Combine latest values before emitting">
+    {{ subscribed ? 'Unsubscribe' : 'Fork Join'}}</button>
     <br/><br/>
-    <img id="dog" alt="dog" style="height: 190px"
-        src="https://random.dog/967eae80-8f34-490b-944c-4f6bd4697712.jpeg"/>
-    <video id="dogVid" alt="dog" style="height: 190px"
-        src="https://random.dog/c494d883-9a34-4d8d-b0b3-449069c30f23.mp4" autoplay loop>
-        <track label="English" kind="subtitles">
-    </video>
+    <button id="countdown2" (click)="countdown2()">{{ subscribed ? 'Start' : 'Countdown'}}</button> {{ theCountdown }}
+    <button id="abort2">Abort Mission</button>
+    <br/><br/>
+    <button (click)="combineLatest()"
+        title="Emit latest values when all passed observables have fired at least once">
+    {{ subscribed ? 'Unsubscribe' : 'Combine Latest'}}</button>
+    <input type="number" id="first">
+    <input type="number" id="second">
+    <br/><br/>
 </div>

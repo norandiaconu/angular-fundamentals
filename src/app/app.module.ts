@@ -8,10 +8,12 @@ import { PassengerDashboardModule } from "./passenger-dashboard/passenger-dashbo
 import { HomeComponent } from "./home/home.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
 import { RxjsBasicsComponent } from "./rxjs-basics/rxjs-basics.component";
+import { RxjsProjectsComponent } from "./rxjs-projects/rxjs-projects.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "passengers", pathMatch: "full" },
   { path: "rxjs-basics", component: RxjsBasicsComponent },
+  { path: "rxjs-projects", component: RxjsProjectsComponent },
   { path: "**", component: NotFoundComponent }
 ];
 
@@ -20,7 +22,8 @@ const routes: Routes = [
     AppComponent,
     HomeComponent,
     NotFoundComponent,
-    RxjsBasicsComponent
+    RxjsBasicsComponent,
+    RxjsProjectsComponent
   ],
   imports: [
     // Angular modules
