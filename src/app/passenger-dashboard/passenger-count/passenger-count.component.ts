@@ -6,7 +6,7 @@ import { Passenger } from "../passenger";
 @Component({
   selector: "passenger-count",
   templateUrl: "./passenger-count.component.html",
-  styleUrls: ["./passenger-count.component.css"]
+  styleUrls: ["./passenger-count.component.scss"]
 })
 export class PassengerCountComponent implements OnInit {
   @Input() items: Passenger[];

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PassengerDetailComponent } from './passenger-detail.component';
+import { RxjsProjectsComponent } from '../app/rxjs-projects/rxjs-projects.component';
 
-describe('PassengerDetailComponent', () => {
-  let component: PassengerDetailComponent;
-  let fixture: ComponentFixture<PassengerDetailComponent>;
+describe('RxjsProjectsComponent', () => {
+  let component: RxjsProjectsComponent;
+  let fixture: ComponentFixture<RxjsProjectsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PassengerDetailComponent ]
+      declarations: [ RxjsProjectsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PassengerDetailComponent);
+    fixture = TestBed.createComponent(RxjsProjectsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -5,7 +5,7 @@ import { Passenger } from "../passenger";
 @Component({
   selector: "passenger-detail",
   templateUrl: "./passenger-detail.component.html",
-  styleUrls: ["./passenger-detail.component.css"]
+  styleUrls: ["./passenger-detail.component.scss"]
 })
 export class PassengerDetailComponent implements OnInit, OnChanges {
   @Input() detail: Passenger;

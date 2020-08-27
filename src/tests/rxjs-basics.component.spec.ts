@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PassengerFormComponent } from './passenger-form.component';
+import { RxjsBasicsComponent } from '../app/rxjs-basics/rxjs-basics.component';
 
-describe('PassengerFormComponent', () => {
-  let component: PassengerFormComponent;
-  let fixture: ComponentFixture<PassengerFormComponent>;
+describe('RxjsBasicsComponent', () => {
+  let component: RxjsBasicsComponent;
+  let fixture: ComponentFixture<RxjsBasicsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PassengerFormComponent ]
+      declarations: [ RxjsBasicsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PassengerFormComponent);
+    fixture = TestBed.createComponent(RxjsBasicsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

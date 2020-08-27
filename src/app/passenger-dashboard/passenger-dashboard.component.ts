@@ -8,7 +8,7 @@ import { PassengerDashboardService } from "./passenger-dashboard.service";
 @Component({
   selector: "passenger-dashboard",
   templateUrl: "./passenger-dashboard.component.html",
-  styleUrls: ["./passenger-dashboard.component.css"]
+  styleUrls: ["./passenger-dashboard.component.scss"]
 })
 export class PassengerDashboardComponent implements OnInit {
   passengers: Passenger[];

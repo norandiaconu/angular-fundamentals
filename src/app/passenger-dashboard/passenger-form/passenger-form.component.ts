@@ -4,7 +4,7 @@ import { Passenger, Baggage } from "../passenger";
 @Component({
   selector: "passenger-form",
   templateUrl: "./passenger-form.component.html",
-  styleUrls: ["./passenger-form.component.css"]
+  styleUrls: ["./passenger-form.component.scss"]
 })
 export class PassengerFormComponent implements OnInit {
   @Input()

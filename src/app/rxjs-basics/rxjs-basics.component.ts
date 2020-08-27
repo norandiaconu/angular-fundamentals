@@ -9,7 +9,7 @@ import { ajax } from "rxjs/ajax";
 @Component({
   selector: "rxjs-basics",
   templateUrl: "./rxjs-basics.component.html",
-  styleUrls: ["./rxjs-basics.component.css"]
+  styleUrls: ["./rxjs-basics.component.scss"]
 })
 export class RxjsBasicsComponent implements OnInit, OnDestroy {
   amount: number;

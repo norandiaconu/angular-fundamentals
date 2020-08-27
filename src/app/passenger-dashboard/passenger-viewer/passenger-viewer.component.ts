@@ -8,7 +8,7 @@ import { switchMap } from "rxjs/operators";
 @Component({
   selector: "passenger-viewer",
   templateUrl: "./passenger-viewer.component.html",
-  styleUrls: ["./passenger-viewer.component.css"]
+  styleUrls: ["./passenger-viewer.component.scss"]
 })
 export class PassengerViewerComponent implements OnInit {
   passenger: Passenger;

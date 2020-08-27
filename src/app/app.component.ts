@@ -9,7 +9,7 @@ interface Nav {
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"]
+  styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
   title: string;
@@ -43,6 +43,16 @@ export class AppComponent {
     {
       link: "/rxjs-projects",
       name: "RxJS Projects",
+      exact: false
+    },
+    {
+      link: "/typescript-basics",
+      name: "TypeScript Basics",
+      exact: false
+    },
+    {
+      link: "/angular-pro",
+      name: "Angular Pro",
       exact: false
     }
   ];

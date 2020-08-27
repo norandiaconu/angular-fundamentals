@@ -9,11 +9,16 @@ import { HomeComponent } from "./home/home.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
 import { RxjsBasicsComponent } from "./rxjs-basics/rxjs-basics.component";
 import { RxjsProjectsComponent } from "./rxjs-projects/rxjs-projects.component";
+import { TypescriptBasicsComponent } from "./typescript-basics/typescript-basics.component";
+import { AuthFormComponent } from "./angular-pro/auth-form/auth-form.component";
+import { AngularProComponent } from "./angular-pro/angular-pro.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "passengers", pathMatch: "full" },
   { path: "rxjs-basics", component: RxjsBasicsComponent },
   { path: "rxjs-projects", component: RxjsProjectsComponent },
+  { path: "typescript-basics", component: TypescriptBasicsComponent },
+  { path: "angular-pro", component: AngularProComponent },
   { path: "**", component: NotFoundComponent }
 ];
 
@@ -23,7 +28,10 @@ const routes: Routes = [
     HomeComponent,
     NotFoundComponent,
     RxjsBasicsComponent,
-    RxjsProjectsComponent
+    RxjsProjectsComponent,
+    TypescriptBasicsComponent,
+    AuthFormComponent,
+    AngularProComponent
   ],
   imports: [
     // Angular modules
