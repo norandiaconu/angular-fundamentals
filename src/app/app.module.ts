@@ -12,6 +12,8 @@ import { RxjsProjectsComponent } from "./rxjs-projects/rxjs-projects.component";
 import { TypescriptBasicsComponent } from "./typescript-basics/typescript-basics.component";
 import { AuthFormComponent } from "./angular-pro/auth-form/auth-form.component";
 import { AngularProComponent } from "./angular-pro/angular-pro.component";
+import { AuthRememberComponent } from "./angular-pro/auth-remember/auth-remember.component";
+import { AuthMessageComponent } from "./angular-pro/auth-message/auth-message.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "passengers", pathMatch: "full" },
@@ -31,7 +33,9 @@ const routes: Routes = [
     RxjsProjectsComponent,
     TypescriptBasicsComponent,
     AuthFormComponent,
-    AngularProComponent
+    AngularProComponent,
+    AuthRememberComponent,
+    AuthMessageComponent
   ],
   imports: [
     // Angular modules
@@ -40,6 +44,9 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     // Custom modules
     PassengerDashboardModule
+  ],
+  entryComponents: [
+    AuthFormComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
