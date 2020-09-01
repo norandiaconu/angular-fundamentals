@@ -21,6 +21,8 @@ export class AuthFormComponent implements OnInit, AfterContentInit, AfterViewIni
   @ViewChildren(AuthMessageComponent) message2: QueryList<AuthMessageComponent>;
   @ViewChild("email") email: ElementRef;
   showMessage: boolean;
+  title: string;
+  showButton: boolean;
 
   constructor(
     private cd: ChangeDetectorRef,
