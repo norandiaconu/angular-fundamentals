@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver,
-  AfterContentInit } from "@angular/core";
+import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver, AfterContentInit, ComponentRef,
+  TemplateRef } from "@angular/core";
 import { AuthFormComponent } from "./auth-form/auth-form.component";
-import { Subject, Observable, Subscription } from "rxjs";
+import { Subject, Observable } from "rxjs";
 import { tap, takeUntil } from "rxjs/operators";
 
 interface User {
@@ -16,10 +16,12 @@ interface User {
 })
 export class AngularProComponent implements OnInit, AfterContentInit {
   @ViewChild("entry", { read: ViewContainerRef }) entry: ViewContainerRef;
+  @ViewChild("tmpl") tmpl: TemplateRef<any>;
   rememberMe: boolean;
   subjectOne: Subject<number>;
   observableOne: Observable<number>;
   unsubscribe$: Subject<void>;
+  component: ComponentRef<AuthFormComponent>;
 
   constructor(
     private resolver: ComponentFactoryResolver
@@ -46,10 +48,16 @@ export class AngularProComponent implements OnInit, AfterContentInit {
     setTimeout(() => {
       // dynamically create third component
       const authFormFactory = this.resolver.resolveComponentFactory(AuthFormComponent);
-      const component = this.entry.createComponent(authFormFactory);
-      component.instance.title = "Dynamic";
-      component.instance.showButton = true;
-      component.instance.submitted.subscribe(this.createUser);
+      this.component = this.entry.createComponent(authFormFactory);
+      this.component.instance.title = "Dynamic";
+      this.component.instance.showButton = true;
+      this.component.instance.submitted.subscribe(this.createUser);
+      this.entry.createComponent(authFormFactory, 0);
+      
+      this.entry.createEmbeddedView(this.tmpl, {
+        $implicit: "Angular",
+        angularVar: "Template"
+      });
     });
   }
   
@@ -63,6 +71,14 @@ export class AngularProComponent implements OnInit, AfterContentInit {
 
   loginUser(user: User): void {
     console.log("Log in user", user, this.rememberMe);
+  }
+
+  destroyComponent(): void {
+    this.component.destroy();
+  }
+
+  moveComponent(): void {
+    this.entry.move(this.component.hostView, 0);
   }
 
 }

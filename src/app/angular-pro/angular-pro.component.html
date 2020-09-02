@@ -10,4 +10,11 @@
 </auth-form>
 <div #entry>
     <h3>Dynamic Component</h3>
+    <button (click)="destroyComponent()">Destroy</button>
+    <button (click)="moveComponent()">Move</button>
 </div>
+<ng-template #tmpl let-implicitVar let-angularVar="angularVar">
+    {{ implicitVar }} {{ angularVar }}
+</ng-template>
+<ng-container [ngTemplateOutlet]="tmpl2"></ng-container>
+<ng-template #tmpl2>Angular Template Outlet</ng-template>
