@@ -1,10 +1,15 @@
-import { Injectable } from "@angular/core";
+import { Injectable, isDevMode } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 
 import { Passenger } from "./passenger";
 
-const path  = "http://localhost:3000/passengers";
+var path = "";
+if (isDevMode()) {
+  path = "http://localhost:3000/passengers";
+} else {
+  path = "https://my-json-server.typicode.com/norandiaconu/angular-fundamentals/passengers";
+}
 
 @Injectable({
   providedIn: "root"
