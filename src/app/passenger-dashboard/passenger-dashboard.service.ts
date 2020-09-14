@@ -5,18 +5,19 @@ import { Observable } from "rxjs";
 import { Passenger } from "./passenger";
 
 var path = "";
-if (isDevMode()) {
-  path = "http://localhost:3000/passengers";
-} else {
-  path = "https://my-json-server.typicode.com/norandiaconu/angular-fundamentals/passengers";
-}
 
 @Injectable({
   providedIn: "root"
 })
 export class PassengerDashboardService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+    if (isDevMode()) {
+      path = "http://localhost:3000/passengers";
+    } else {
+      path = "https://my-json-server.typicode.com/norandiaconu/angular-fundamentals/passengers";
+    }
+  }
 
   getPassengers(): Observable<Passenger[]> {
     return this.httpClient.get<Passenger[]>(path);
