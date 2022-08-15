@@ -41,7 +41,7 @@ const routes: Routes = [
     // Angular modules
     CommonModule,
     FormsModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
     // Custom modules
     PassengerDashboardModule
   ],

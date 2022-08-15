@@ -7,15 +7,15 @@ import { Passenger } from "./passenger";
 var path = "";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class PassengerDashboardService {
-
   constructor(private httpClient: HttpClient) {
     if (isDevMode()) {
       path = "http://localhost:3000/passengers";
     } else {
-      path = "https://my-json-server.typicode.com/norandiaconu/angular-fundamentals/passengers";
+      path =
+        "https://my-json-server.typicode.com/norandiaconu/angular-fundamentals/passengers";
     }
   }
 
@@ -38,6 +38,4 @@ export class PassengerDashboardService {
   deletePassenger(passenger: Passenger): Observable<Passenger> {
     return this.httpClient.delete<Passenger>(path + "/" + passenger.id);
   }
-
-  
 }

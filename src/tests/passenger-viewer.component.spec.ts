@@ -1,5 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { PassengerViewerComponent } from '../app/passenger-dashboard/passenger-viewer/passenger-viewer.component';
@@ -8,7 +8,7 @@ describe('PassengerViewerComponent', () => {
   let component: PassengerViewerComponent;
   let fixture: ComponentFixture<PassengerViewerComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, RouterTestingModule],
       declarations: [ PassengerViewerComponent ]
