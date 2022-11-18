@@ -3,7 +3,7 @@ export interface Passenger {
     fullName: string;
     checkedIn: boolean;
     checkedInDate?: number;
-    children: Child[] | null;
+    children?: Child[] | null;
     baggage: string;
 }
 interface Child {

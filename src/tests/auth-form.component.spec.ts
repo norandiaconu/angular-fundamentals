@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
+import { AuthMessageComponent } from 'src/app/angular-pro/auth-message/auth-message.component';
 
 import { AuthFormComponent } from '../app/angular-pro/auth-form/auth-form.component';
 
@@ -10,7 +11,7 @@ describe('AuthFormComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule],
-      declarations: [ AuthFormComponent ]
+      declarations: [ AuthFormComponent, AuthMessageComponent ]
     })
     .compileComponents();
   }));

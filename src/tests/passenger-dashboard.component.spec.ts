@@ -1,6 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { PassengerCountComponent } from 'src/app/passenger-dashboard/passenger-count/passenger-count.component';
 
 import { PassengerDashboardComponent } from '../app/passenger-dashboard/passenger-dashboard.component';
 
@@ -11,7 +12,7 @@ describe('PassengerDashboardComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, RouterTestingModule],
-      declarations: [ PassengerDashboardComponent ]
+      declarations: [ PassengerDashboardComponent, PassengerCountComponent ]
     })
     .compileComponents();
   }));
