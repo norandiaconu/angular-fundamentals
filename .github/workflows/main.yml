@@ -13,7 +13,7 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: run tests
-        run: yarn test
+        run: yarn test -- --watch=false
 
       - name: tests passed
         if: ${{ success() }}
