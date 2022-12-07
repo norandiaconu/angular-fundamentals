@@ -1,12 +1,17 @@
 import { TestBed, waitForAsync } from '@angular/core/testing';
+import { ChildrenOutletContexts, RouterOutlet } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from '../app/app.component';
 
 describe('AppComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
+      imports: [ RouterTestingModule ],
       declarations: [
-        AppComponent
+        AppComponent,
+        RouterOutlet
       ],
+      providers: [ ChildrenOutletContexts ]
     }).compileComponents();
   }));
 
@@ -16,7 +21,7 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'angular-fundamentals'`, () => {
+  it(`should have as title 'Ultimate Angular'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app.title).toEqual('Ultimate Angular');

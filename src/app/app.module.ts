@@ -25,30 +25,27 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    NotFoundComponent,
-    RxjsBasicsComponent,
-    RxjsProjectsComponent,
-    TypescriptBasicsComponent,
-    AuthFormComponent,
-    AngularProComponent,
-    AuthRememberComponent,
-    AuthMessageComponent
-  ],
-  imports: [
-    // Angular modules
-    CommonModule,
-    FormsModule,
-    RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
-    // Custom modules
-    PassengerDashboardModule
-  ],
-  entryComponents: [
-    AuthFormComponent
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        NotFoundComponent,
+        RxjsBasicsComponent,
+        RxjsProjectsComponent,
+        TypescriptBasicsComponent,
+        AuthFormComponent,
+        AngularProComponent,
+        AuthRememberComponent,
+        AuthMessageComponent
+    ],
+    imports: [
+        // Angular modules
+        CommonModule,
+        FormsModule,
+        RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
+        // Custom modules
+        PassengerDashboardModule
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
