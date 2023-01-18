@@ -1,5 +1,4 @@
 import { TestBed, waitForAsync } from '@angular/core/testing';
-import { ChildrenOutletContexts, RouterOutlet } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from '../app/app.component';
 
@@ -9,9 +8,7 @@ describe('AppComponent', () => {
       imports: [ RouterTestingModule ],
       declarations: [
         AppComponent,
-        RouterOutlet
       ],
-      providers: [ ChildrenOutletContexts ]
     }).compileComponents();
   }));
 

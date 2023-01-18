@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output, AfterContentInit, ContentChild, ContentChildren, QueryList,
+import { Component, EventEmitter, Output, AfterContentInit, ContentChild, ContentChildren, QueryList,
   ViewChild, ViewChildren, AfterViewInit, ChangeDetectorRef, ElementRef, Renderer2 } from "@angular/core";
 import { AuthRememberComponent } from "../auth-remember/auth-remember.component";
 import { AuthMessageComponent } from "../auth-message/auth-message.component";
@@ -13,7 +13,7 @@ interface User {
   templateUrl: "./auth-form.component.html",
   styleUrls: ["./auth-form.component.scss"]
 })
-export class AuthFormComponent implements OnInit, AfterContentInit, AfterViewInit {
+export class AuthFormComponent implements AfterContentInit, AfterViewInit {
   @Output() submitted: EventEmitter<User> = new EventEmitter<User>();
   @ContentChild(AuthRememberComponent) remember: AuthRememberComponent;
   @ContentChildren(AuthRememberComponent) remember2: QueryList<AuthRememberComponent>;
@@ -28,9 +28,6 @@ export class AuthFormComponent implements OnInit, AfterContentInit, AfterViewIni
     private cd: ChangeDetectorRef,
     private renderer: Renderer2
   ) { }
-
-  ngOnInit(): void {
-  }
 
   ngAfterContentInit(): void {
     if (this.remember) {

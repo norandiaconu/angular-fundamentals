@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
+import { Component, Input, EventEmitter, Output } from "@angular/core";
 import { Passenger, Baggage } from "../passenger";
 
 @Component({
@@ -6,7 +6,7 @@ import { Passenger, Baggage } from "../passenger";
   templateUrl: "./passenger-form.component.html",
   styleUrls: ["./passenger-form.component.scss"]
 })
-export class PassengerFormComponent implements OnInit {
+export class PassengerFormComponent {
   @Input()
   detail: Passenger;
 
@@ -43,8 +43,4 @@ export class PassengerFormComponent implements OnInit {
       this.update.emit(passenger);
     }
   }
-
-  ngOnInit(): void {
-  }
-
 }

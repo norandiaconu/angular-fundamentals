@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 import { Passenger } from "../passenger";
 
@@ -8,7 +8,7 @@ import { Passenger } from "../passenger";
   templateUrl: "./passenger-count.component.html",
   styleUrls: ["./passenger-count.component.scss"]
 })
-export class PassengerCountComponent implements OnInit {
+export class PassengerCountComponent {
   @Input() items: Passenger[];
 
   constructor() { }
@@ -20,9 +20,4 @@ export class PassengerCountComponent implements OnInit {
       return this.items.filter((passenger: Passenger) => passenger.checkedIn).length;
     }
   }
-
-  ngOnInit(): void {
-
-  }
-
 }

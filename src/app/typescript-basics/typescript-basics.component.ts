@@ -72,7 +72,7 @@ export class TypescriptBasicsComponent implements OnInit {
       name: "Pepperoni",
       toppings: ["Pepperoni"]
     };
-    // tslint:disable-next-line: no-shadowed-variable
+
     function order({ name: pizzaName, toppings: pizzaToppings }: any): any {
       return { pizzaName, pizzaToppings };
     }
@@ -84,7 +84,6 @@ export class TypescriptBasicsComponent implements OnInit {
     const [first, second, third] = toppings;
     console.log(first, second, third);
 
-    // tslint:disable-next-line: no-shadowed-variable
     function logToppings([first, second, third]: any): void {
       console.log(first, second, third);
     }
