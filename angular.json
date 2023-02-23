@@ -96,7 +96,10 @@
               "src/styles.scss"
             ],
             "scripts": [],
-            "codeCoverage": true
+            "codeCoverage": true,
+            "codeCoverageExclude": [
+              "src/polyfills.ts"
+            ]
           }
         },
         "e2e": {
