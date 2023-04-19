@@ -22,4 +22,17 @@ describe('RxjsBasicsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should helloWorld', () => {
+    spyOn(console, 'log');
+    component.helloWorld();
+    expect(console.log).toHaveBeenCalledTimes(5);
+    expect(component.consoleString).toBe('helloWorld');
+  });
+
+  it('should countOnce', () => {
+    component.countOnce();
+    expect(component.counter.closed).toBeFalsy();
+    expect(component.consoleString).toBe('countOnce');
+  });
 });
