@@ -6,7 +6,7 @@ import { PassengerDetailComponent } from '../app/passenger-dashboard/passenger-d
 describe('PassengerDetailComponent', () => {
   let component: PassengerDetailComponent;
   let fixture: ComponentFixture<PassengerDetailComponent>;
-  let passenger: Passenger = {
+  const passenger: Passenger = {
     fullName: "Stephen",
     id: 1,
     checkedIn: true,
