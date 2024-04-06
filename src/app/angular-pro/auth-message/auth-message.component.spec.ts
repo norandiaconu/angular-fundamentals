@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-
-import { AuthMessageComponent } from '../app/angular-pro/auth-message/auth-message.component';
+import { AuthMessageComponent } from './auth-message.component';
 
 describe('AuthMessageComponent', () => {
   let component: AuthMessageComponent;

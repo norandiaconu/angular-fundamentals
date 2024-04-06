@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-
-import { RxjsBasicsComponent } from '../app/rxjs-basics/rxjs-basics.component';
+import { RxjsBasicsComponent } from './rxjs-basics.component';
 
 describe('RxjsBasicsComponent', () => {
   let component: RxjsBasicsComponent;
@@ -24,7 +23,7 @@ describe('RxjsBasicsComponent', () => {
   });
 
   it('should helloWorld', () => {
-    spyOn(console, 'log');
+    jest.spyOn(console, 'log');
     component.helloWorld();
     expect(console.log).toHaveBeenCalledTimes(5);
     expect(component.consoleString).toBe('helloWorld');

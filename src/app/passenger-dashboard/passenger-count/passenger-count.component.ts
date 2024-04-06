@@ -11,8 +11,6 @@ import { Passenger } from "../passenger";
 export class PassengerCountComponent {
   @Input() items: Passenger[];
 
-  constructor() { }
-
   checkedInCount(): number {
     if (!this.items) {
       return;

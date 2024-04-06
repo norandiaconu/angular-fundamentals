@@ -1,8 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { PassengerCountComponent } from 'src/app/passenger-dashboard/passenger-count/passenger-count.component';
-
-import { PassengerDashboardService } from '../app/passenger-dashboard/passenger-dashboard.service';
+import { PassengerDashboardService } from './passenger-dashboard.service';
+import { PassengerCountComponent } from './passenger-count/passenger-count.component';
 
 describe('PassengerDashboardService', () => {
   let service: PassengerDashboardService;

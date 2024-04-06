@@ -8,8 +8,6 @@ import { Component, EventEmitter, Output } from "@angular/core";
 export class AuthRememberComponent {
   @Output() checked: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor() { }
-
   onChecked(value: boolean): void {
     this.checked.emit(value);
   }

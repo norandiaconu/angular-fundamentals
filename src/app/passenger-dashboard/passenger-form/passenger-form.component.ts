@@ -30,8 +30,6 @@ export class PassengerFormComponent {
     value: "Hand and hold baggage"
   }];
 
-  constructor() { }
-
   toggleCheckedIn(checkedIn: boolean): void {
     if (checkedIn) {
       this.detail.checkedInDate = Date.now();

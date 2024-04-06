@@ -13,8 +13,6 @@ export class RxjsProjectsComponent implements OnInit {
   timeSub: Subscription;
   polling: boolean;
 
-  constructor() { }
-
   ngOnInit(): void {
     this.subscribed = false;
     this.polling = false;

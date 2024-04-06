@@ -8,8 +8,6 @@ import { Component, OnInit } from "@angular/core";
 export class TypescriptBasicsComponent implements OnInit {
   subscribed: boolean;
 
-  constructor() { }
-
   ngOnInit(): void {
     this.subscribed = false;
   }
@@ -84,7 +82,7 @@ export class TypescriptBasicsComponent implements OnInit {
     const [first, second, third] = toppings;
     console.log(first, second, third);
 
-    function logToppings([first, second, third]: any): void {
+    function logToppings([first, second, third]: string[]): void {
       console.log(first, second, third);
     }
     logToppings(toppings);

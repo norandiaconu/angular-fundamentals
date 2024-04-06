@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 
 import { Passenger } from "./passenger";
 
-var path = "";
+let path = "";
 
 @Injectable({
   providedIn: "root",

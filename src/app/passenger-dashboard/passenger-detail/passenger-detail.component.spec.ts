@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { Passenger } from 'src/app/passenger-dashboard/passenger';
-
-import { PassengerDetailComponent } from '../app/passenger-dashboard/passenger-detail/passenger-detail.component';
+import { PassengerDetailComponent } from './passenger-detail.component';
+import { Passenger } from '../passenger';
 
 describe('PassengerDetailComponent', () => {
   let component: PassengerDetailComponent;

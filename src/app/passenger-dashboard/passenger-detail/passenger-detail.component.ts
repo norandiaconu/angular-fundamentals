@@ -16,8 +16,6 @@ export class PassengerDetailComponent implements OnChanges {
   @Output() remove: EventEmitter<Passenger> = new EventEmitter();
   @Output() view: EventEmitter<Passenger> = new EventEmitter();
 
-  constructor() { }
-
   onNameChange(value: string): void {
     this.detail.fullName = value;
   }

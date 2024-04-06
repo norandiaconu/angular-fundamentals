@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-
-import { AuthRememberComponent } from '../app/angular-pro/auth-remember/auth-remember.component';
+import { AuthRememberComponent } from './auth-remember.component';
 
 describe('AuthRememberComponent', () => {
   let component: AuthRememberComponent;

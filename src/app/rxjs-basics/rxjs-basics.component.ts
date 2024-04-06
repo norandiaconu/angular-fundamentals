@@ -26,8 +26,6 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
   subscribed: boolean;
   timeSub: Subscription;
 
-  constructor() { }
-
   ngOnInit(): void {
     this.amount = 0;
     this.consoleString = "";

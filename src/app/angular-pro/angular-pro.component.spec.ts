@@ -1,10 +1,9 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
-import { AuthFormComponent } from 'src/app/angular-pro/auth-form/auth-form.component';
-import { AuthMessageComponent } from 'src/app/angular-pro/auth-message/auth-message.component';
-import { AuthRememberComponent } from 'src/app/angular-pro/auth-remember/auth-remember.component';
-
-import { AngularProComponent } from '../app/angular-pro/angular-pro.component';
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { AngularProComponent } from "./angular-pro.component";
+import { FormsModule } from "@angular/forms";
+import { AuthRememberComponent } from "./auth-remember/auth-remember.component";
+import { AuthFormComponent } from "./auth-form/auth-form.component";
+import { AuthMessageComponent } from "./auth-message/auth-message.component";
 
 describe('AngularProComponent', () => {
   let component: AngularProComponent;

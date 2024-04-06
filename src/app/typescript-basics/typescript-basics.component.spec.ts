@@ -22,14 +22,14 @@ describe("TypescriptBasicsComponent", () => {
   });
 
   it("should multiplier", () => {
-    spyOn(window.console, "log");
+    jest.spyOn(window.console, "log");
     component.multiplier();
     expect(window.console.log).toHaveBeenCalledWith(50);
     expect(window.console.log).toHaveBeenCalledWith(25);
   });
 
   it("should functionTypes", () => {
-    spyOn(window.console, "log");
+    jest.spyOn(window.console, "log");
     component.functionTypes();
     expect(window.console.log).toHaveBeenCalledWith(50);
   });

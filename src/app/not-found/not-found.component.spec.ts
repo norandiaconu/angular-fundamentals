@@ -1,20 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { NotFoundComponent } from './not-found.component';
 
-import { RxjsProjectsComponent } from '../app/rxjs-projects/rxjs-projects.component';
-
-describe('RxjsProjectsComponent', () => {
-  let component: RxjsProjectsComponent;
-  let fixture: ComponentFixture<RxjsProjectsComponent>;
+describe('NotFoundComponent', () => {
+  let component: NotFoundComponent;
+  let fixture: ComponentFixture<NotFoundComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ RxjsProjectsComponent ]
+      declarations: [ NotFoundComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RxjsProjectsComponent);
+    fixture = TestBed.createComponent(NotFoundComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-
-import { PassengerFormComponent } from '../app/passenger-dashboard/passenger-form/passenger-form.component';
+import { PassengerFormComponent } from './passenger-form.component';
 
 describe('PassengerFormComponent', () => {
   let component: PassengerFormComponent;

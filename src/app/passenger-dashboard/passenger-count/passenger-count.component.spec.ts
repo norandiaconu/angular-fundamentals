@@ -1,20 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { PassengerCountComponent } from './passenger-count.component';
 
-import { NotFoundComponent } from '../app/not-found/not-found.component';
-
-describe('NotFoundComponent', () => {
-  let component: NotFoundComponent;
-  let fixture: ComponentFixture<NotFoundComponent>;
+describe('PassengerCountComponent', () => {
+  let component: PassengerCountComponent;
+  let fixture: ComponentFixture<PassengerCountComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ NotFoundComponent ]
+      declarations: [ PassengerCountComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NotFoundComponent);
+    fixture = TestBed.createComponent(PassengerCountComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

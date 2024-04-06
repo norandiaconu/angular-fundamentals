@@ -1,20 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { RxjsProjectsComponent } from './rxjs-projects.component';
 
-import { PassengerCountComponent } from '../app/passenger-dashboard/passenger-count/passenger-count.component';
-
-describe('PassengerCountComponent', () => {
-  let component: PassengerCountComponent;
-  let fixture: ComponentFixture<PassengerCountComponent>;
+describe('RxjsProjectsComponent', () => {
+  let component: RxjsProjectsComponent;
+  let fixture: ComponentFixture<RxjsProjectsComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ PassengerCountComponent ]
+      declarations: [ RxjsProjectsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PassengerCountComponent);
+    fixture = TestBed.createComponent(RxjsProjectsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
