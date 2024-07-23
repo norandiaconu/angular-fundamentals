@@ -3,7 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { PassengerDashboardService } from "../passenger-dashboard.service";
 import { Passenger } from "../passenger";
 import { Router, ActivatedRoute, Params } from "@angular/router";
-import { switchMap } from "rxjs/operators";
+import { map, switchMap } from "rxjs/operators";
 
 @Component({
   selector: "passenger-viewer",
@@ -11,13 +11,14 @@ import { switchMap } from "rxjs/operators";
   styleUrls: ["./passenger-viewer.component.scss"]
 })
 export class PassengerViewerComponent implements OnInit {
-  passenger: Passenger;
+  passenger: Passenger = {
+    id: 0,
+    fullName: "",
+    checkedIn: false,
+    baggage: ""
+  };
 
-  constructor(
-    private passengerDashboardService: PassengerDashboardService,
-    private router: Router,
-    private route: ActivatedRoute
-  ) { }
+  constructor(private passengerDashboardService: PassengerDashboardService, private router: Router, private route: ActivatedRoute) {}
 
   onUpdatePassenger(event: Passenger): void {
     console.log(event);
@@ -31,12 +32,14 @@ export class PassengerViewerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe((data: Passenger) => {
+    this.route.params.pipe(map((data: Params) => data as Passenger)).subscribe((data: Passenger) => {
       console.log(data);
     });
-    this.route.params.pipe(
-      switchMap((data: Passenger) => this.passengerDashboardService.getPassenger(data.id)))
-      .subscribe((data: Passenger) => this.passenger = data);
+    this.route.params
+      .pipe(
+        map((data: Params) => data as Passenger),
+        switchMap((data: Passenger) => this.passengerDashboardService.getPassenger(data.id))
+      )
+      .subscribe((data: Passenger) => (this.passenger = data));
   }
-
 }

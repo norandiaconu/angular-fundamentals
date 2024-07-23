@@ -1,5 +1,18 @@
-import { Component, EventEmitter, Output, AfterContentInit, ContentChild, ContentChildren, QueryList,
-  ViewChild, ViewChildren, AfterViewInit, ChangeDetectorRef, ElementRef, Renderer2 } from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  Output,
+  AfterContentInit,
+  ContentChild,
+  ContentChildren,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+  AfterViewInit,
+  ChangeDetectorRef,
+  ElementRef,
+  Renderer2
+} from "@angular/core";
 import { AuthRememberComponent } from "../auth-remember/auth-remember.component";
 import { AuthMessageComponent } from "../auth-message/auth-message.component";
 
@@ -15,19 +28,16 @@ interface User {
 })
 export class AuthFormComponent implements AfterContentInit, AfterViewInit {
   @Output() submitted: EventEmitter<User> = new EventEmitter<User>();
-  @ContentChild(AuthRememberComponent) remember: AuthRememberComponent;
-  @ContentChildren(AuthRememberComponent) remember2: QueryList<AuthRememberComponent>;
-  @ViewChild(AuthMessageComponent) message: AuthMessageComponent;
-  @ViewChildren(AuthMessageComponent) message2: QueryList<AuthMessageComponent>;
-  @ViewChild("email") email: ElementRef;
-  showMessage: boolean;
-  title: string;
-  showButton: boolean;
+  @ContentChild(AuthRememberComponent) remember: AuthRememberComponent = new AuthRememberComponent();
+  @ContentChildren(AuthRememberComponent) remember2: QueryList<AuthRememberComponent> = new QueryList<AuthRememberComponent>();
+  @ViewChild(AuthMessageComponent) message: AuthMessageComponent = new AuthMessageComponent();
+  @ViewChildren(AuthMessageComponent) message2: QueryList<AuthMessageComponent> = new QueryList<AuthMessageComponent>();
+  @ViewChild("email") email!: ElementRef;
+  showMessage: boolean = false;
+  title: string = "";
+  showButton: boolean = false;
 
-  constructor(
-    private cd: ChangeDetectorRef,
-    private renderer: Renderer2
-  ) { }
+  constructor(private cd: ChangeDetectorRef, private renderer: Renderer2) {}
 
   ngAfterContentInit(): void {
     if (this.remember) {

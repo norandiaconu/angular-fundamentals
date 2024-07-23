@@ -1,16 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 
 @Component({
   selector: "typescript-basics",
   templateUrl: "./typescript-basics.component.html",
   styleUrls: ["./typescript-basics.component.scss"]
 })
-export class TypescriptBasicsComponent implements OnInit {
-  subscribed: boolean;
-
-  ngOnInit(): void {
-    this.subscribed = false;
-  }
+export class TypescriptBasicsComponent {
+  subscribed = false;
 
   multiplier(): void {
     function multiply(a: number, b: number = 5): number {
@@ -25,7 +21,7 @@ export class TypescriptBasicsComponent implements OnInit {
     const pizza = {
       name: "Pepperoni",
       price: 15,
-      getName: function(): string {
+      getName: function (): string {
         return this.name;
       }
     };
@@ -58,9 +54,9 @@ export class TypescriptBasicsComponent implements OnInit {
   }
 
   spreadOperator(): void {
-    const pizza = { name: "Pepperoni"};
+    const pizza = { name: "Pepperoni" };
     const toppings = ["Pepperoni"];
-    const spreadOrder = { ...pizza, toppings};
+    const spreadOrder = { ...pizza, toppings };
 
     console.log(spreadOrder);
   }
@@ -114,5 +110,4 @@ export class TypescriptBasicsComponent implements OnInit {
     const sum = sumOrder(25, 2);
     console.log(sum);
   }
-
 }

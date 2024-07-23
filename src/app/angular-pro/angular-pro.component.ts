@@ -15,13 +15,13 @@ interface User {
   styleUrls: ["./angular-pro.component.scss"]
 })
 export class AngularProComponent implements OnInit, AfterContentInit {
-  @ViewChild("entry", { read: ViewContainerRef }) entry: ViewContainerRef;
-  @ViewChild("tmpl") tmpl: TemplateRef<any>;
-  rememberMe: boolean;
-  subjectOne: Subject<number>;
-  observableOne: Observable<number>;
-  unsubscribe$: Subject<void>;
-  component: ComponentRef<AuthFormComponent>;
+  @ViewChild("entry", { read: ViewContainerRef }) entry!: ViewContainerRef;
+  @ViewChild("tmpl") tmpl!: TemplateRef<any>;
+  rememberMe: boolean = false;
+  subjectOne: Subject<number> = new Subject<number>();
+  observableOne: Observable<number> = new Observable<number>();
+  unsubscribe$: Subject<void> = new Subject<void>();
+  component!: ComponentRef<AuthFormComponent>;
 
   constructor(
     private resolver: ComponentFactoryResolver

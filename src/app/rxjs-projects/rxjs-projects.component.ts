@@ -9,9 +9,9 @@ import { ajax } from "rxjs/ajax";
   styleUrls: ["./rxjs-projects.component.scss"]
 })
 export class RxjsProjectsComponent implements OnInit {
-  subscribed: boolean;
-  timeSub: Subscription;
-  polling: boolean;
+  subscribed: boolean = false;
+  timeSub: Subscription = new Subscription();
+  polling: boolean = false;
 
   ngOnInit(): void {
     this.subscribed = false;
@@ -20,22 +20,24 @@ export class RxjsProjectsComponent implements OnInit {
 
   dogSub(): void {
     if (this.subscribed === false) {
-      const dogImage = (document.getElementById("dog") as HTMLImageElement);
-      const dogVideo = (document.getElementById("dogVid") as HTMLVideoElement);
-      this.timeSub = fromEvent(document.getElementById("dogStart"), "click").pipe(
-        exhaustMap(() => timer(0, 5000).pipe(
-          switchMapTo(ajax.getJSON("https://random.dog/woof.json").pipe(
-            pluck("url")
-          )),
-          takeUntil(fromEvent(document.getElementById("dogStop"), "click"))
-        ))
-      ).subscribe((url: string) => {
-        if (url.includes(".mp4")) {
-          dogVideo.src = url;
-        } else {
-          dogImage.src = url;
-        }
-      });
+      const dogImage = document.getElementById("dog") as HTMLImageElement;
+      const dogVideo = document.getElementById("dogVid") as HTMLVideoElement;
+      this.timeSub = fromEvent(document.getElementById("dogStart")!, "click")
+        .pipe(
+          exhaustMap(() =>
+            timer(0, 5000).pipe(
+              switchMapTo(ajax.getJSON("https://random.dog/woof.json").pipe(pluck("url"))),
+              takeUntil(fromEvent(document.getElementById("dogStop")!, "click"))
+            )
+          )
+        )
+        .subscribe((url: string) => {
+          if (url.includes(".mp4")) {
+            dogVideo.src = url;
+          } else {
+            dogImage.src = url;
+          }
+        });
     } else {
       this.timeSub.unsubscribe();
     }
@@ -56,8 +58,7 @@ export class RxjsProjectsComponent implements OnInit {
 
   calculateMortgage(interest: number, loanAmount: number, loanLength: number): string {
     const calculatedInterest = interest / 1200;
-    const total = loanAmount *
-      calculatedInterest / (1 - (Math.pow(1 / (1 + calculatedInterest), loanLength)));
+    const total = (loanAmount * calculatedInterest) / (1 - Math.pow(1 / (1 + calculatedInterest), loanLength));
     return total.toFixed(2);
   }
 
@@ -67,10 +68,8 @@ export class RxjsProjectsComponent implements OnInit {
       const interest = document.getElementById("interest");
       const loanLength = document.querySelectorAll(".loanLength");
       const expected = document.getElementById("expected");
-      const createInputValueStream = elem => {
-        return fromEvent(elem, "input").pipe(
-          map((event: any) => parseFloat(event.target.value))
-        );
+      const createInputValueStream = (elem: any) => {
+        return fromEvent(elem, "input").pipe(map((event: any) => parseFloat(event.target.value)));
       };
       const interest$ = createInputValueStream(interest);
       const loanLength$ = createInputValueStream(loanLength);
@@ -91,20 +90,21 @@ export class RxjsProjectsComponent implements OnInit {
         mergeMap(mortgageAmount => of(mortgageAmount).pipe(delay(1000)))
       ).subscribe();*/
 
-      this.timeSub = combineLatest([interest$, loanAmount$, loanLength$]).pipe(
-        map(([interestTemp, loanAmountTemp, loanLengthTemp]) => {
-          return this.calculateMortgage(interestTemp, loanAmountTemp, loanLengthTemp);
-        }),
-        tap(console.log),
-        filter(mortgageAmount => !isNaN(Number(mortgageAmount))),
-        share()
-      ).subscribe(mortgageAmount => {
-        expected.innerHTML = mortgageAmount;
-      });
+      this.timeSub = combineLatest([interest$, loanAmount$, loanLength$])
+        .pipe(
+          map(([interestTemp, loanAmountTemp, loanLengthTemp]) => {
+            return this.calculateMortgage(interestTemp, loanAmountTemp, loanLengthTemp);
+          }),
+          tap(console.log),
+          filter((mortgageAmount) => !isNaN(Number(mortgageAmount))),
+          share()
+        )
+        .subscribe((mortgageAmount) => {
+          expected!.innerHTML = mortgageAmount;
+        });
     } else {
       this.timeSub.unsubscribe();
     }
     this.subscribed = !this.subscribed;
   }
-
 }

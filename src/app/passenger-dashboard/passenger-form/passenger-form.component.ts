@@ -8,27 +8,34 @@ import { Passenger, Baggage } from "../passenger";
 })
 export class PassengerFormComponent {
   @Input()
-  detail: Passenger;
+  detail: Passenger = {
+    id: 0,
+    fullName: "",
+    checkedIn: false,
+    baggage: ""
+  };
 
   @Output()
   update: EventEmitter<Passenger> = new EventEmitter<Passenger>();
 
-  baggage: Baggage[] = [{
-    key: "none",
-    value: "No baggage"
-  },
-  {
-    key: "hand-only",
-    value: "Hand baggage"
-  },
-  {
-    key: "hold-only",
-    value: "Hold baggage"
-  },
-  {
-    key: "hand-hold",
-    value: "Hand and hold baggage"
-  }];
+  baggage: Baggage[] = [
+    {
+      key: "none",
+      value: "No baggage"
+    },
+    {
+      key: "hand-only",
+      value: "Hand baggage"
+    },
+    {
+      key: "hold-only",
+      value: "Hold baggage"
+    },
+    {
+      key: "hand-hold",
+      value: "Hand and hold baggage"
+    }
+  ];
 
   toggleCheckedIn(checkedIn: boolean): void {
     if (checkedIn) {

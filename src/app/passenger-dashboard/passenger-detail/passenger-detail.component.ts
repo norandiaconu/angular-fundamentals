@@ -8,7 +8,12 @@ import { Passenger } from "../passenger";
   styleUrls: ["./passenger-detail.component.scss"]
 })
 export class PassengerDetailComponent implements OnChanges {
-  @Input() detail: Passenger;
+  @Input() detail: Passenger = {
+    id: 0,
+    fullName: "",
+    checkedIn: false,
+    baggage: ""
+  };
 
   editing = false;
 
