@@ -5,24 +5,24 @@ import { PassengerDashboardComponent } from './passenger-dashboard.component';
 import { PassengerCountComponent } from './passenger-count/passenger-count.component';
 
 describe('PassengerDashboardComponent', () => {
-  let component: PassengerDashboardComponent;
-  let fixture: ComponentFixture<PassengerDashboardComponent>;
+    let component: PassengerDashboardComponent;
+    let fixture: ComponentFixture<PassengerDashboardComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, RouterTestingModule],
-      declarations: [ PassengerDashboardComponent, PassengerCountComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            imports: [HttpClientTestingModule, RouterTestingModule],
+            declarations: [ PassengerDashboardComponent, PassengerCountComponent ]
+        })
+            .compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(PassengerDashboardComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(PassengerDashboardComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

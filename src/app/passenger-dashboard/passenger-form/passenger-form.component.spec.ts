@@ -3,24 +3,24 @@ import { FormsModule } from '@angular/forms';
 import { PassengerFormComponent } from './passenger-form.component';
 
 describe('PassengerFormComponent', () => {
-  let component: PassengerFormComponent;
-  let fixture: ComponentFixture<PassengerFormComponent>;
+    let component: PassengerFormComponent;
+    let fixture: ComponentFixture<PassengerFormComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [FormsModule],
-      declarations: [ PassengerFormComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            imports: [FormsModule],
+            declarations: [ PassengerFormComponent ]
+        })
+            .compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(PassengerFormComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(PassengerFormComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

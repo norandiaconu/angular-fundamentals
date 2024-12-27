@@ -1,14 +1,14 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
 @Component({
-  selector: "auth-message",
-  templateUrl: "./auth-message.component.html",
-  styleUrls: ["./auth-message.component.scss"]
+    selector: 'auth-message',
+    templateUrl: './auth-message.component.html',
+    styleUrls: ['./auth-message.component.scss']
 })
 export class AuthMessageComponent {
-  days: number;
+    days: number;
 
-  constructor() {
-    this.days = 7;
-  }
+    constructor() {
+        this.days = 7;
+    }
 }

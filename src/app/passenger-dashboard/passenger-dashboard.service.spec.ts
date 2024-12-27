@@ -4,17 +4,17 @@ import { PassengerDashboardService } from './passenger-dashboard.service';
 import { PassengerCountComponent } from './passenger-count/passenger-count.component';
 
 describe('PassengerDashboardService', () => {
-  let service: PassengerDashboardService;
+    let service: PassengerDashboardService;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-      declarations: [ PassengerCountComponent ]
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [HttpClientTestingModule],
+            declarations: [ PassengerCountComponent ]
+        });
+        service = TestBed.inject(PassengerDashboardService);
     });
-    service = TestBed.inject(PassengerDashboardService);
-  });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
+    it('should be created', () => {
+        expect(service).toBeTruthy();
+    });
 });
