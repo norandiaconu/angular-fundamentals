@@ -8,15 +8,15 @@ import { Passenger, Baggage } from '../passenger';
 })
 export class PassengerFormComponent {
     @Input()
-        detail: Passenger = {
-            id: 0,
-            fullName: '',
-            checkedIn: false,
-            baggage: ''
-        };
+    detail: Passenger = {
+        id: 0,
+        fullName: '',
+        checkedIn: false,
+        baggage: ''
+    };
 
     @Output()
-        update: EventEmitter<Passenger> = new EventEmitter<Passenger>();
+    update: EventEmitter<Passenger> = new EventEmitter<Passenger>();
 
     baggage: Baggage[] = [
         {
@@ -43,7 +43,7 @@ export class PassengerFormComponent {
         }
     }
 
-    handleSubmit(passenger: Passenger, isValid: boolean): void {
+    handleSubmit(passenger: Passenger, isValid: boolean | null): void {
         if (isValid) {
             this.update.emit(passenger);
         }
