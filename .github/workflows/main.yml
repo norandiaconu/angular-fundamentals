@@ -1,17 +1,33 @@
 name: Run tests
 on:
   push:
-    branches: ["master"]
+    branches: ['master']
   workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 9
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Adding Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
 
       - name: run install
         run: npm ci
+
+      - name: Build
+        run: npm run build-prod
+
+      - name: Deploy to gh pages
+        run: |
+          npx angular-cli-ghpages --dir=dist
+        env:
+          CI: true
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: run linter
         run: npm run lint
