@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { BrowserModule } from "@angular/platform-browser";
-import { HttpClientModule } from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 import { RouterModule, Routes } from "@angular/router";
 
@@ -22,27 +22,21 @@ const routes: Routes = [
   }
 ];
 
-@NgModule({
-  declarations: [
-    PassengerDashboardComponent,
-    PassengerCountComponent,
-    PassengerDetailComponent,
-    PassengerViewerComponent,
-    PassengerFormComponent
-  ],
-  imports: [
-    CommonModule,
-    BrowserModule,
-    HttpClientModule,
-    FormsModule,
-    RouterModule.forChild(routes)
-  ],
-  exports: [
-    PassengerDashboardComponent,
-    PassengerViewerComponent
-  ],
-  providers: [
-    PassengerDashboardService
-  ]
-})
+@NgModule({ declarations: [
+        PassengerDashboardComponent,
+        PassengerCountComponent,
+        PassengerDetailComponent,
+        PassengerViewerComponent,
+        PassengerFormComponent
+    ],
+    exports: [
+        PassengerDashboardComponent,
+        PassengerViewerComponent
+    ], imports: [CommonModule,
+        BrowserModule,
+        FormsModule,
+        RouterModule.forChild(routes)], providers: [
+        PassengerDashboardService,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class PassengerDashboardModule { }
