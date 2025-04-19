@@ -95,8 +95,8 @@ class AngularProComponent {
     this.entry.move(this.component.hostView, 0);
   }
   static {
-    this.ɵfac = function AngularProComponent_Factory(t) {
-      return new (t || AngularProComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_2__.ComponentFactoryResolver));
+    this.ɵfac = function AngularProComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || AngularProComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_2__.ComponentFactoryResolver));
     };
   }
   static {
@@ -278,8 +278,8 @@ class AuthFormComponent {
     this.submitted.emit(value);
   }
   static {
-    this.ɵfac = function AuthFormComponent_Factory(t) {
-      return new (t || AuthFormComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_2__.ChangeDetectorRef), _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_2__.Renderer2));
+    this.ɵfac = function AuthFormComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || AuthFormComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_2__.ChangeDetectorRef), _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_2__.Renderer2));
     };
   }
   static {
@@ -378,8 +378,8 @@ class AuthMessageComponent {
     this.days = 7;
   }
   static {
-    this.ɵfac = function AuthMessageComponent_Factory(t) {
-      return new (t || AuthMessageComponent)();
+    this.ɵfac = function AuthMessageComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || AuthMessageComponent)();
     };
   }
   static {
@@ -427,8 +427,8 @@ class AuthRememberComponent {
     this.checked.emit(value);
   }
   static {
-    this.ɵfac = function AuthRememberComponent_Factory(t) {
-      return new (t || AuthRememberComponent)();
+    this.ɵfac = function AuthRememberComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || AuthRememberComponent)();
     };
   }
   static {
@@ -679,8 +679,8 @@ class AppComponent {
     this.display = !this.display;
   }
   static {
-    this.ɵfac = function AppComponent_Factory(t) {
-      return new (t || AppComponent)();
+    this.ɵfac = function AppComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || AppComponent)();
     };
   }
   static {
@@ -802,8 +802,8 @@ const routes = [{
 }];
 class AppModule {
   static {
-    this.ɵfac = function AppModule_Factory(t) {
-      return new (t || AppModule)();
+    this.ɵfac = function AppModule_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || AppModule)();
     };
   }
   static {
@@ -849,8 +849,8 @@ __webpack_require__.r(__webpack_exports__);
 
 class HomeComponent {
   static {
-    this.ɵfac = function HomeComponent_Factory(t) {
-      return new (t || HomeComponent)();
+    this.ɵfac = function HomeComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || HomeComponent)();
     };
   }
   static {
@@ -889,8 +889,8 @@ __webpack_require__.r(__webpack_exports__);
 
 class NotFoundComponent {
   static {
-    this.ɵfac = function NotFoundComponent_Factory(t) {
-      return new (t || NotFoundComponent)();
+    this.ɵfac = function NotFoundComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || NotFoundComponent)();
     };
   }
   static {
@@ -942,8 +942,8 @@ class PassengerCountComponent {
     }
   }
   static {
-    this.ɵfac = function PassengerCountComponent_Factory(t) {
-      return new (t || PassengerCountComponent)();
+    this.ɵfac = function PassengerCountComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || PassengerCountComponent)();
     };
   }
   static {
@@ -1095,8 +1095,8 @@ class PassengerDashboardComponent {
     this.getAllPassengers();
   }
   static {
-    this.ɵfac = function PassengerDashboardComponent_Factory(t) {
-      return new (t || PassengerDashboardComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdirectiveInject"](_passenger_dashboard_service__WEBPACK_IMPORTED_MODULE_0__.PassengerDashboardService), _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_4__.Router));
+    this.ɵfac = function PassengerDashboardComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || PassengerDashboardComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdirectiveInject"](_passenger_dashboard_service__WEBPACK_IMPORTED_MODULE_0__.PassengerDashboardService), _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_4__.Router));
     };
   }
   static {
@@ -1143,9 +1143,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   PassengerDashboardModule: () => (/* binding */ PassengerDashboardModule)
 /* harmony export */ });
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common */ 316);
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/platform-browser */ 436);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common/http */ 6443);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common */ 316);
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/platform-browser */ 436);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ 6443);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/forms */ 4456);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/router */ 5072);
 /* harmony import */ var _passenger_dashboard_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./passenger-dashboard.component */ 7372);
@@ -1180,8 +1180,8 @@ const routes = [{
 }];
 class PassengerDashboardModule {
   static {
-    this.ɵfac = function PassengerDashboardModule_Factory(t) {
-      return new (t || PassengerDashboardModule)();
+    this.ɵfac = function PassengerDashboardModule_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || PassengerDashboardModule)();
     };
   }
   static {
@@ -1191,15 +1191,15 @@ class PassengerDashboardModule {
   }
   static {
     this.ɵinj = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdefineInjector"]({
-      providers: [_passenger_dashboard_service__WEBPACK_IMPORTED_MODULE_3__.PassengerDashboardService],
-      imports: [_angular_common__WEBPACK_IMPORTED_MODULE_7__.CommonModule, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_8__.BrowserModule, _angular_common_http__WEBPACK_IMPORTED_MODULE_9__.HttpClientModule, _angular_forms__WEBPACK_IMPORTED_MODULE_10__.FormsModule, _angular_router__WEBPACK_IMPORTED_MODULE_11__.RouterModule.forChild(routes)]
+      providers: [_passenger_dashboard_service__WEBPACK_IMPORTED_MODULE_3__.PassengerDashboardService, (0,_angular_common_http__WEBPACK_IMPORTED_MODULE_7__.provideHttpClient)((0,_angular_common_http__WEBPACK_IMPORTED_MODULE_7__.withInterceptorsFromDi)())],
+      imports: [_angular_common__WEBPACK_IMPORTED_MODULE_8__.CommonModule, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__.BrowserModule, _angular_forms__WEBPACK_IMPORTED_MODULE_10__.FormsModule, _angular_router__WEBPACK_IMPORTED_MODULE_11__.RouterModule.forChild(routes)]
     });
   }
 }
 (function () {
   (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵsetNgModuleScope"](PassengerDashboardModule, {
     declarations: [_passenger_dashboard_component__WEBPACK_IMPORTED_MODULE_0__.PassengerDashboardComponent, _passenger_count_passenger_count_component__WEBPACK_IMPORTED_MODULE_1__.PassengerCountComponent, _passenger_detail_passenger_detail_component__WEBPACK_IMPORTED_MODULE_2__.PassengerDetailComponent, _passenger_viewer_passenger_viewer_component__WEBPACK_IMPORTED_MODULE_4__.PassengerViewerComponent, _passenger_form_passenger_form_component__WEBPACK_IMPORTED_MODULE_5__.PassengerFormComponent],
-    imports: [_angular_common__WEBPACK_IMPORTED_MODULE_7__.CommonModule, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_8__.BrowserModule, _angular_common_http__WEBPACK_IMPORTED_MODULE_9__.HttpClientModule, _angular_forms__WEBPACK_IMPORTED_MODULE_10__.FormsModule, _angular_router__WEBPACK_IMPORTED_MODULE_11__.RouterModule],
+    imports: [_angular_common__WEBPACK_IMPORTED_MODULE_8__.CommonModule, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__.BrowserModule, _angular_forms__WEBPACK_IMPORTED_MODULE_10__.FormsModule, _angular_router__WEBPACK_IMPORTED_MODULE_11__.RouterModule],
     exports: [_passenger_dashboard_component__WEBPACK_IMPORTED_MODULE_0__.PassengerDashboardComponent, _passenger_viewer_passenger_viewer_component__WEBPACK_IMPORTED_MODULE_4__.PassengerViewerComponent]
   });
 })();
@@ -1247,8 +1247,8 @@ class PassengerDashboardService {
     return this.httpClient.delete(path + '/' + passenger.id);
   }
   static {
-    this.ɵfac = function PassengerDashboardService_Factory(t) {
-      return new (t || PassengerDashboardService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpClient));
+    this.ɵfac = function PassengerDashboardService_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || PassengerDashboardService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpClient));
     };
   }
   static {
@@ -1341,8 +1341,8 @@ class PassengerDetailComponent {
     }
   }
   static {
-    this.ɵfac = function PassengerDetailComponent_Factory(t) {
-      return new (t || PassengerDetailComponent)();
+    this.ɵfac = function PassengerDetailComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || PassengerDetailComponent)();
     };
   }
   static {
@@ -1528,8 +1528,8 @@ class PassengerFormComponent {
     }
   }
   static {
-    this.ɵfac = function PassengerFormComponent_Factory(t) {
-      return new (t || PassengerFormComponent)();
+    this.ɵfac = function PassengerFormComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || PassengerFormComponent)();
     };
   }
   static {
@@ -1711,8 +1711,8 @@ class PassengerViewerComponent {
     this.route.params.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_2__.map)(data => data), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_3__.switchMap)(data => this.passengerDashboardService.getPassenger(data.id))).subscribe(data => this.passenger = data);
   }
   static {
-    this.ɵfac = function PassengerViewerComponent_Factory(t) {
-      return new (t || PassengerViewerComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_passenger_dashboard_service__WEBPACK_IMPORTED_MODULE_0__.PassengerDashboardService), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_5__.Router), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_5__.ActivatedRoute));
+    this.ɵfac = function PassengerViewerComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || PassengerViewerComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_passenger_dashboard_service__WEBPACK_IMPORTED_MODULE_0__.PassengerDashboardService), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_5__.Router), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_5__.ActivatedRoute));
     };
   }
   static {
@@ -2306,8 +2306,8 @@ class RxjsBasicsComponent {
     this.eventSub.unsubscribe();
   }
   static {
-    this.ɵfac = function RxjsBasicsComponent_Factory(t) {
-      return new (t || RxjsBasicsComponent)();
+    this.ɵfac = function RxjsBasicsComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || RxjsBasicsComponent)();
     };
   }
   static {
@@ -2745,8 +2745,8 @@ class RxjsProjectsComponent {
     this.subscribed = !this.subscribed;
   }
   static {
-    this.ɵfac = function RxjsProjectsComponent_Factory(t) {
-      return new (t || RxjsProjectsComponent)();
+    this.ɵfac = function RxjsProjectsComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || RxjsProjectsComponent)();
     };
   }
   static {
@@ -2945,8 +2945,8 @@ class TypescriptBasicsComponent {
     console.log(sum);
   }
   static {
-    this.ɵfac = function TypescriptBasicsComponent_Factory(t) {
-      return new (t || TypescriptBasicsComponent)();
+    this.ɵfac = function TypescriptBasicsComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || TypescriptBasicsComponent)();
     };
   }
   static {
