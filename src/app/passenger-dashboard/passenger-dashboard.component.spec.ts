@@ -10,10 +10,8 @@ describe('PassengerDashboardComponent', () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule, RouterTestingModule],
-            declarations: [ PassengerDashboardComponent, PassengerCountComponent ]
-        })
-            .compileComponents();
+            imports: [HttpClientTestingModule, RouterTestingModule, PassengerDashboardComponent, PassengerCountComponent]
+        }).compileComponents();
     }));
 
     beforeEach(() => {

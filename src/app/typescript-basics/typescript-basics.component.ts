@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 @Component({
     selector: 'typescript-basics',
     templateUrl: './typescript-basics.component.html',
-    styleUrls: ['./typescript-basics.component.scss']
+    styleUrls: ['./typescript-basics.component.scss'],
+    standalone: true
 })
 export class TypescriptBasicsComponent {
     subscribed = false;

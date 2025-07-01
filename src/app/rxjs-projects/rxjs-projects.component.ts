@@ -6,7 +6,8 @@ import { ajax } from 'rxjs/ajax';
 @Component({
     selector: 'rxjs-projects',
     templateUrl: './rxjs-projects.component.html',
-    styleUrls: ['./rxjs-projects.component.scss']
+    styleUrls: ['./rxjs-projects.component.scss'],
+    standalone: true
 })
 export class RxjsProjectsComponent implements OnInit {
     subscribed = false;

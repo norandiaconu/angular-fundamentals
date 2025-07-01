@@ -48,10 +48,13 @@ import {
 } from 'rxjs/operators';
 import { ajax } from 'rxjs/ajax';
 
+
 @Component({
     selector: 'rxjs-basics',
     templateUrl: './rxjs-basics.component.html',
-    styleUrls: ['./rxjs-basics.component.scss']
+    styleUrls: ['./rxjs-basics.component.scss'],
+    standalone: true,
+    imports: []
 })
 export class RxjsBasicsComponent implements OnInit, OnDestroy {
     amount = 0;

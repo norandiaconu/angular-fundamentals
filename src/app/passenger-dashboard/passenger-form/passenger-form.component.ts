@@ -1,10 +1,14 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { Passenger, Baggage } from '../passenger';
+import { FormsModule } from '@angular/forms';
+import { JsonPipe } from '@angular/common';
 
 @Component({
     selector: 'passenger-form',
     templateUrl: './passenger-form.component.html',
-    styleUrls: ['./passenger-form.component.scss']
+    styleUrls: ['./passenger-form.component.scss'],
+    standalone: true,
+    imports: [FormsModule, JsonPipe]
 })
 export class PassengerFormComponent {
     @Input()

@@ -7,9 +7,8 @@ describe('RxjsBasicsComponent', () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            declarations: [ RxjsBasicsComponent ]
-        })
-            .compileComponents();
+            imports: [RxjsBasicsComponent]
+        }).compileComponents();
     }));
 
     beforeEach(() => {

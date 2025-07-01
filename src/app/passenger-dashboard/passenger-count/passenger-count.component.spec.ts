@@ -7,9 +7,8 @@ describe('PassengerCountComponent', () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            declarations: [ PassengerCountComponent ]
-        })
-            .compileComponents();
+            imports: [PassengerCountComponent]
+        }).compileComponents();
     }));
 
     beforeEach(() => {

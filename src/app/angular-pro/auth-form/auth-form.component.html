@@ -3,17 +3,19 @@
         <ng-content select="h3"></ng-content>
         <label>
             {{ title }} Email Address
-            <input type="email" name="email" ngModel #email/>
+            <input type="email" name="email" ngModel #email />
         </label>
         <label>
             Password
-            <input type="password" name="password" ngModel/>
+            <input type="password" name="password" ngModel />
         </label>
         <ng-content select="auth-remember"></ng-content>
-        <br/>
-        <auth-message [style.display]="(showMessage ? 'inherit' : 'none')"></auth-message>
-        <auth-message [style.display]="(showMessage ? 'inherit' : 'none')"></auth-message>
+        <br />
+        <auth-message [style.display]="showMessage ? 'inherit' : 'none'"></auth-message>
+        <auth-message [style.display]="showMessage ? 'inherit' : 'none'"></auth-message>
         <ng-content select="button"></ng-content>
-        <button type="submit" *ngIf="showButton">Submit</button>
+        @if (showButton) {
+        <button type="submit">Submit</button>
+        }
     </form>
 </div>

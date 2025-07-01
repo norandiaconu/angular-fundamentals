@@ -9,10 +9,8 @@ describe('AuthFormComponent', () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [FormsModule],
-            declarations: [ AuthFormComponent, AuthMessageComponent ]
-        })
-            .compileComponents();
+            imports: [FormsModule, AuthFormComponent, AuthMessageComponent]
+        }).compileComponents();
     }));
 
     beforeEach(() => {

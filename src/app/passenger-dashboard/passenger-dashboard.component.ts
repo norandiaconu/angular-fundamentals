@@ -1,16 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 import { Passenger } from './passenger';
 import { PassengerDashboardService } from './passenger-dashboard.service';
+import { PassengerCountComponent } from './passenger-count/passenger-count.component';
+
+import { PassengerDetailComponent } from './passenger-detail/passenger-detail.component';
 
 @Component({
     selector: 'passenger-dashboard',
     templateUrl: './passenger-dashboard.component.html',
-    styleUrls: ['./passenger-dashboard.component.scss']
+    styleUrls: ['./passenger-dashboard.component.scss'],
+    standalone: true,
+    imports: [PassengerCountComponent, PassengerDetailComponent]
 })
 export class PassengerDashboardComponent implements OnInit {
+    private passengerDashboardService = inject(PassengerDashboardService);
+    private router = inject(Router);
+
     passengers: Passenger[] = [];
     passenger0: Passenger = {
         id: 0,
@@ -18,8 +26,6 @@ export class PassengerDashboardComponent implements OnInit {
         checkedIn: false,
         baggage: ''
     };
-
-    constructor(private passengerDashboardService: PassengerDashboardService, private router: Router) {}
 
     handleEdit(event: Passenger): void {
         this.passengerDashboardService.updatePassenger(event).subscribe(

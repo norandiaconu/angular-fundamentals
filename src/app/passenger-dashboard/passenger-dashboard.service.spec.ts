@@ -8,8 +8,7 @@ describe('PassengerDashboardService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            declarations: [ PassengerCountComponent ]
+            imports: [HttpClientTestingModule, PassengerCountComponent]
         });
         service = TestBed.inject(PassengerDashboardService);
     });

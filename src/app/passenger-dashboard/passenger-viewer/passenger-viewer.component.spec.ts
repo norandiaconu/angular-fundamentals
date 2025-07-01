@@ -12,10 +12,15 @@ describe('PassengerViewerComponent', () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [FormsModule, HttpClientTestingModule, RouterTestingModule],
-            declarations: [ AuthFormComponent, PassengerFormComponent, PassengerViewerComponent ]
-        })
-            .compileComponents();
+            imports: [
+                FormsModule,
+                HttpClientTestingModule,
+                RouterTestingModule,
+                AuthFormComponent,
+                PassengerFormComponent,
+                PassengerViewerComponent
+            ]
+        }).compileComponents();
     }));
 
     beforeEach(() => {

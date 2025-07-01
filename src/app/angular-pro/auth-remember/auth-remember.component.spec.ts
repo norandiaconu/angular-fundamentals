@@ -7,9 +7,8 @@ describe('AuthRememberComponent', () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            declarations: [ AuthRememberComponent ]
-        })
-            .compileComponents();
+            imports: [AuthRememberComponent]
+        }).compileComponents();
     }));
 
     beforeEach(() => {

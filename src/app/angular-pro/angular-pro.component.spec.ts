@@ -11,10 +11,8 @@ describe('AngularProComponent', () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [ FormsModule ],
-            declarations: [ AngularProComponent, AuthRememberComponent, AuthFormComponent, AuthMessageComponent ]
-        })
-            .compileComponents();
+            imports: [FormsModule, AngularProComponent, AuthRememberComponent, AuthFormComponent, AuthMessageComponent]
+        }).compileComponents();
     }));
 
     beforeEach(() => {

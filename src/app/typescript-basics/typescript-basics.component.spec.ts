@@ -7,7 +7,7 @@ describe('TypescriptBasicsComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [TypescriptBasicsComponent],
+            imports: [TypescriptBasicsComponent]
         }).compileComponents();
     });
 

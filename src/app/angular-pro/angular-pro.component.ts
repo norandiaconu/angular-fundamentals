@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver, AfterContentInit, ComponentRef,
-    TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver, AfterContentInit, ComponentRef, TemplateRef, inject } from '@angular/core';
 import { AuthFormComponent } from './auth-form/auth-form.component';
 import { Subject, Observable } from 'rxjs';
 import { tap, takeUntil } from 'rxjs/operators';
+import { AuthRememberComponent } from './auth-remember/auth-remember.component';
+import { NgTemplateOutlet } from '@angular/common';
 
 interface User {
     email: string;
@@ -12,9 +13,13 @@ interface User {
 @Component({
     selector: 'angular-pro',
     templateUrl: './angular-pro.component.html',
-    styleUrls: ['./angular-pro.component.scss']
+    styleUrls: ['./angular-pro.component.scss'],
+    standalone: true,
+    imports: [AuthFormComponent, AuthRememberComponent, NgTemplateOutlet]
 })
 export class AngularProComponent implements OnInit, AfterContentInit {
+    private resolver = inject(ComponentFactoryResolver);
+
     @ViewChild('entry', { read: ViewContainerRef }) entry!: ViewContainerRef;
     @ViewChild('tmpl') tmpl!: TemplateRef<any>;
     rememberMe = false;
@@ -22,10 +27,6 @@ export class AngularProComponent implements OnInit, AfterContentInit {
     observableOne: Observable<number> = new Observable<number>();
     unsubscribe$: Subject<void> = new Subject<void>();
     component!: ComponentRef<AuthFormComponent>;
-
-    constructor(
-        private resolver: ComponentFactoryResolver
-    ) { }
 
     ngOnInit(): void {
         this.rememberMe = false;

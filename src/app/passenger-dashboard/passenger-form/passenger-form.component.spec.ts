@@ -8,10 +8,8 @@ describe('PassengerFormComponent', () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [FormsModule],
-            declarations: [ PassengerFormComponent ]
-        })
-            .compileComponents();
+            imports: [FormsModule, PassengerFormComponent]
+        }).compileComponents();
     }));
 
     beforeEach(() => {

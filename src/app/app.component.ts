@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 
+import { FormsModule } from '@angular/forms';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+
 interface Nav {
     link: string;
     name: string;
@@ -9,7 +12,9 @@ interface Nav {
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss']
+    styleUrls: ['./app.component.scss'],
+    standalone: true,
+    imports: [FormsModule, RouterLink, RouterLinkActive, RouterOutlet]
 })
 export class AppComponent {
     title: string;

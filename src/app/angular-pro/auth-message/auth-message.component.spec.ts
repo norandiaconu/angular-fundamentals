@@ -7,9 +7,8 @@ describe('AuthMessageComponent', () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            declarations: [ AuthMessageComponent ]
-        })
-            .compileComponents();
+            imports: [AuthMessageComponent]
+        }).compileComponents();
     }));
 
     beforeEach(() => {

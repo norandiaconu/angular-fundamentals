@@ -1,24 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 
 import { PassengerDashboardService } from '../passenger-dashboard.service';
 import { Passenger } from '../passenger';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { map, switchMap } from 'rxjs/operators';
+import { PassengerFormComponent } from '../passenger-form/passenger-form.component';
 
 @Component({
     selector: 'passenger-viewer',
     templateUrl: './passenger-viewer.component.html',
-    styleUrls: ['./passenger-viewer.component.scss']
+    styleUrls: ['./passenger-viewer.component.scss'],
+    standalone: true,
+    imports: [PassengerFormComponent]
 })
 export class PassengerViewerComponent implements OnInit {
+    private passengerDashboardService = inject(PassengerDashboardService);
+    private router = inject(Router);
+    private route = inject(ActivatedRoute);
+
     passenger: Passenger = {
         id: 0,
         fullName: '',
         checkedIn: false,
         baggage: ''
     };
-
-    constructor(private passengerDashboardService: PassengerDashboardService, private router: Router, private route: ActivatedRoute) {}
 
     onUpdatePassenger(event: Passenger): void {
         console.log(event);

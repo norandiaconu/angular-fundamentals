@@ -1,11 +1,14 @@
 import { Component, OnChanges, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 
 import { Passenger } from '../passenger';
+import { UpperCasePipe, DatePipe } from '@angular/common';
 
 @Component({
     selector: 'passenger-detail',
     templateUrl: './passenger-detail.component.html',
-    styleUrls: ['./passenger-detail.component.scss']
+    styleUrls: ['./passenger-detail.component.scss'],
+    standalone: true,
+    imports: [UpperCasePipe, DatePipe]
 })
 export class PassengerDetailComponent implements OnChanges {
     @Input() detail: Passenger = {

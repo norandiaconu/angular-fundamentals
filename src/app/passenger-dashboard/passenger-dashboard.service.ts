@@ -1,4 +1,4 @@
-import { Injectable, isDevMode } from '@angular/core';
+import { Injectable, isDevMode, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -10,7 +10,9 @@ let path = '';
     providedIn: 'root',
 })
 export class PassengerDashboardService {
-    constructor(private httpClient: HttpClient) {
+    private httpClient = inject(HttpClient);
+
+    constructor() {
         if (isDevMode()) {
             path = 'http://localhost:3000/passengers';
         } else {
