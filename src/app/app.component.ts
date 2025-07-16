@@ -13,7 +13,6 @@ interface Nav {
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
-    standalone: true,
     imports: [FormsModule, RouterLink, RouterLinkActive, RouterOutlet]
 })
 export class AppComponent {

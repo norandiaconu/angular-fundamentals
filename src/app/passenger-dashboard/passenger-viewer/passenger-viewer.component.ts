@@ -10,7 +10,6 @@ import { PassengerFormComponent } from '../passenger-form/passenger-form.compone
     selector: 'passenger-viewer',
     templateUrl: './passenger-viewer.component.html',
     styleUrls: ['./passenger-viewer.component.scss'],
-    standalone: true,
     imports: [PassengerFormComponent]
 })
 export class PassengerViewerComponent implements OnInit {

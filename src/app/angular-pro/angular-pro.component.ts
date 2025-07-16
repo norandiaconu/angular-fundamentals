@@ -14,7 +14,6 @@ interface User {
     selector: 'angular-pro',
     templateUrl: './angular-pro.component.html',
     styleUrls: ['./angular-pro.component.scss'],
-    standalone: true,
     imports: [AuthFormComponent, AuthRememberComponent, NgTemplateOutlet]
 })
 export class AngularProComponent implements OnInit, AfterContentInit {

@@ -1,7 +1,4 @@
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[5].rules[0].oneOf[0].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[5].rules[0].oneOf[0].use[2]!./node_modules/resolve-url-loader/index.js??ruleSet[1].rules[5].rules[1].use[0]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[5].rules[1].use[1]!./src/styles.scss?ngGlobalStyle ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/* You can add global styles to this file, and also import other style files */
+/* src/styles.scss */
 h1,
 h2,
 h3,
@@ -10,21 +7,17 @@ h5,
 h6 {
   margin: 8px 0;
 }
-
 p {
   margin: 0;
 }
-
 input {
   border: 2px solid gray;
   padding: 2px 2px 2px 2px;
   margin: 2px;
 }
-
 .spacer {
   flex: 1;
 }
-
 .toolbar {
   position: absolute;
   top: 0;
@@ -37,20 +30,16 @@ input {
   color: white;
   font-weight: 600;
 }
-
 .toolbar img {
   margin: 0 16px;
 }
-
 .toolbar #twitter-logo {
   height: 40px;
   margin: 0 16px;
 }
-
 .toolbar #twitter-logo:hover {
   opacity: 0.8;
 }
-
 .content {
   display: flex;
   margin: 82px auto 32px;
@@ -59,18 +48,15 @@ input {
   flex-direction: column;
   align-items: center;
 }
-
 a,
 a:visited,
 a:hover {
   color: #1976d2;
   text-decoration: none;
 }
-
 a:hover {
   color: #125699;
 }
-
 .circle-link {
   height: 40px;
   width: 40px;
@@ -85,12 +71,10 @@ a:hover {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: 1s ease-out;
 }
-
 .circle-link:hover {
   transform: translateY(-0.25rem);
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
 }
-
 svg#clouds {
   position: fixed;
   bottom: -160px;
@@ -98,8 +82,6 @@ svg#clouds {
   z-index: -10;
   width: 1920px;
 }
-
-/* Responsive Styles */
 @media screen and (max-width: 767px) {
   svg#rocket-smoke {
     right: 120px;
@@ -112,3 +94,5 @@ svg#clouds {
     visibility: hidden;
   }
 }
+
+/* angular:styles/global:styles */

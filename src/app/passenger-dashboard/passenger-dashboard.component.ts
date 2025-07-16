@@ -12,7 +12,6 @@ import { PassengerDetailComponent } from './passenger-detail/passenger-detail.co
     selector: 'passenger-dashboard',
     templateUrl: './passenger-dashboard.component.html',
     styleUrls: ['./passenger-dashboard.component.scss'],
-    standalone: true,
     imports: [PassengerCountComponent, PassengerDetailComponent]
 })
 export class PassengerDashboardComponent implements OnInit {

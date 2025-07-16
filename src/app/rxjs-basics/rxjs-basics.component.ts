@@ -53,7 +53,6 @@ import { ajax } from 'rxjs/ajax';
     selector: 'rxjs-basics',
     templateUrl: './rxjs-basics.component.html',
     styleUrls: ['./rxjs-basics.component.scss'],
-    standalone: true,
     imports: []
 })
 export class RxjsBasicsComponent implements OnInit, OnDestroy {

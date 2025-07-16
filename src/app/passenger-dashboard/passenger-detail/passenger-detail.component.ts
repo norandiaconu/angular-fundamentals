@@ -7,7 +7,6 @@ import { UpperCasePipe, DatePipe } from '@angular/common';
     selector: 'passenger-detail',
     templateUrl: './passenger-detail.component.html',
     styleUrls: ['./passenger-detail.component.scss'],
-    standalone: true,
     imports: [UpperCasePipe, DatePipe]
 })
 export class PassengerDetailComponent implements OnChanges {

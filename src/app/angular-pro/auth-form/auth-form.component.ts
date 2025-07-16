@@ -13,7 +13,6 @@ interface User {
     selector: 'auth-form',
     templateUrl: './auth-form.component.html',
     styleUrls: ['./auth-form.component.scss'],
-    standalone: true,
     imports: [FormsModule, AuthMessageComponent]
 })
 export class AuthFormComponent implements AfterContentInit, AfterViewInit {

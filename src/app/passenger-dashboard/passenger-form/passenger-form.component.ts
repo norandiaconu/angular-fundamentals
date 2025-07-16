@@ -7,7 +7,6 @@ import { JsonPipe } from '@angular/common';
     selector: 'passenger-form',
     templateUrl: './passenger-form.component.html',
     styleUrls: ['./passenger-form.component.scss'],
-    standalone: true,
     imports: [FormsModule, JsonPipe]
 })
 export class PassengerFormComponent {
