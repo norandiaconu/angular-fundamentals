@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { Passenger, Baggage } from '../passenger';
 import { FormsModule } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
@@ -10,16 +10,14 @@ import { JsonPipe } from '@angular/common';
     imports: [FormsModule, JsonPipe]
 })
 export class PassengerFormComponent {
-    @Input()
-    detail: Passenger = {
-        id: 0,
-        fullName: '',
-        checkedIn: false,
-        baggage: ''
-    };
+    readonly detail = input<Passenger>({
+    id: 0,
+    fullName: '',
+    checkedIn: false,
+    baggage: ''
+});
 
-    @Output()
-    update: EventEmitter<Passenger> = new EventEmitter<Passenger>();
+    readonly update = output<Passenger>();
 
     baggage: Baggage[] = [
         {
@@ -42,7 +40,7 @@ export class PassengerFormComponent {
 
     toggleCheckedIn(checkedIn: boolean): void {
         if (checkedIn) {
-            this.detail.checkedInDate = Date.now();
+            this.detail().checkedInDate = Date.now();
         }
     }
 

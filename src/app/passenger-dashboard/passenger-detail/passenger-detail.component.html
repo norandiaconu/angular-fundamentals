@@ -1,19 +1,19 @@
 <div>
-    <span class="status" [class.checked-in]="detail.checkedIn"> </span>
+    <span class="status" [class.checked-in]="detail().checkedIn"> </span>
     @if (editing) {
     <div>
-        <input type="text" [value]="detail.fullName" (input)="onNameChange(name.value)" #name />
+        <input type="text" [value]="detail().fullName" (input)="onNameChange(name.value)" #name />
     </div>
     } @if (!editing) {
     <div>
-        {{ detail.fullName }}
+        {{ detail().fullName }}
     </div>
     }
     <p>
         Check in Date:
-        {{ detail.checkedInDate ? (detail.checkedInDate | date : 'MMMM d, y' | uppercase) : 'Not checked in' }}
+        {{ detail().checkedInDate ? (detail().checkedInDate | date : 'MMMM d, y' | uppercase) : 'Not checked in' }}
     </p>
-    <p>Children: {{ detail.children?.length || 0 }}</p>
+    <p>Children: {{ detail().children?.length || 0 }}</p>
     <button (click)="toggleEdit()">
         {{ editing ? 'Done' : 'Edit' }}
     </button>

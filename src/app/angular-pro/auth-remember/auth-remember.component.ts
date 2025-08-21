@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, output } from '@angular/core';
 
 @Component({
     selector: 'auth-remember',
@@ -7,7 +7,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
     standalone: true
 })
 export class AuthRememberComponent {
-    @Output() checked: EventEmitter<boolean> = new EventEmitter<boolean>();
+    readonly checked = output<boolean>();
 
     onChecked(value: boolean): void {
         this.checked.emit(value);

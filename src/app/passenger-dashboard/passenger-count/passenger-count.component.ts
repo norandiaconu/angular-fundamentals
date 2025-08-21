@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core';
-
+import { Component, input } from '@angular/core';
 import { Passenger } from '../passenger';
 
 @Component({
@@ -9,13 +8,14 @@ import { Passenger } from '../passenger';
     standalone: true
 })
 export class PassengerCountComponent {
-    @Input() items: Passenger[] = [];
+    readonly items = input<Passenger[]>([]);
 
     checkedInCount(): number {
-        if (!this.items) {
+        const items = this.items();
+        if (!items) {
             return 0;
         } else {
-            return this.items.filter((passenger: Passenger) => passenger.checkedIn).length;
+            return items.filter((passenger: Passenger) => passenger.checkedIn).length;
         }
     }
 }

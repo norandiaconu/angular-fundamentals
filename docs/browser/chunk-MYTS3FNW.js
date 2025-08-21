@@ -7814,6 +7814,10 @@ var OutputEmitterRef = class {
     }
   }
 };
+function output(opts) {
+  ngDevMode && assertInInjectionContext(output);
+  return new OutputEmitterRef();
+}
 function inputFunction(initialValue, opts) {
   ngDevMode && assertInInjectionContext(input);
   return createInputSignal(initialValue, opts);
@@ -14387,6 +14391,10 @@ var viewChild = (() => {
   viewChildFn.required = viewChildRequiredFn;
   return viewChildFn;
 })();
+function viewChildren(locator, opts) {
+  ngDevMode && assertInInjectionContext(viewChildren);
+  return createMultiResultQuerySignalFn(opts);
+}
 function contentChildFn(locator, opts) {
   ngDevMode && assertInInjectionContext(contentChild);
   return createSingleResultOptionalQuerySignalFn(opts);
@@ -20736,13 +20744,13 @@ function listenToOutput(tNode, lView, directiveIndex, lookupName, eventName, lis
   const tView = lView[TVIEW];
   const def = tView.data[directiveIndex];
   const propertyName = def.outputs[lookupName];
-  const output = instance[propertyName];
-  if (ngDevMode && !isOutputSubscribable(output)) {
+  const output2 = instance[propertyName];
+  if (ngDevMode && !isOutputSubscribable(output2)) {
     throw new Error(`@Output ${propertyName} not initialized in '${instance.constructor.name}'.`);
   }
   const tCleanup = tView.firstCreatePass ? getOrCreateTViewCleanup(tView) : null;
   const lCleanup = getOrCreateLViewCleanup(lView);
-  const subscription = output.subscribe(listenerFn);
+  const subscription = output2.subscribe(listenerFn);
   const idx = lCleanup.length;
   lCleanup.push(listenerFn, subscription);
   tCleanup && tCleanup.push(eventName, tNode.index, idx, -(idx + 1));
@@ -25387,10 +25395,10 @@ export {
   EventEmitter,
   NgZone,
   ErrorHandler,
+  output,
   input,
   ElementRef,
   signal,
-  QueryList,
   setDocument,
   APP_ID,
   PLATFORM_INITIALIZER,
@@ -25425,10 +25433,11 @@ export {
   ɵɵdirectiveInject,
   ɵɵinvalidFactory,
   ViewContainerRef,
+  viewChild,
+  viewChildren,
+  contentChild,
+  contentChildren,
   ContentChildren,
-  ContentChild,
-  ViewChildren,
-  ViewChild,
   NgModuleRef$1,
   NgModuleFactory$1,
   createNgModule,
@@ -25471,9 +25480,11 @@ export {
   ɵɵprojectionDef,
   ɵɵprojection,
   ɵɵcontentQuery,
-  ɵɵviewQuery,
   ɵɵqueryRefresh,
   ɵɵloadQuery,
+  ɵɵcontentQuerySignal,
+  ɵɵviewQuerySignal,
+  ɵɵqueryAdvance,
   ɵɵreference,
   ɵɵtext,
   ɵɵtextInterpolate,

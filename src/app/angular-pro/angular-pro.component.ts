@@ -1,4 +1,14 @@
-import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver, AfterContentInit, ComponentRef, TemplateRef, inject } from '@angular/core';
+import {
+    Component,
+    OnInit,
+    ViewContainerRef,
+    ComponentFactoryResolver,
+    AfterContentInit,
+    ComponentRef,
+    TemplateRef,
+    inject,
+    viewChild
+} from '@angular/core';
 import { AuthFormComponent } from './auth-form/auth-form.component';
 import { Subject, Observable } from 'rxjs';
 import { tap, takeUntil } from 'rxjs/operators';
@@ -19,8 +29,8 @@ interface User {
 export class AngularProComponent implements OnInit, AfterContentInit {
     private resolver = inject(ComponentFactoryResolver);
 
-    @ViewChild('entry', { read: ViewContainerRef }) entry!: ViewContainerRef;
-    @ViewChild('tmpl') tmpl!: TemplateRef<any>;
+    readonly entry = viewChild.required('entry', { read: ViewContainerRef });
+    readonly tmpl = viewChild.required<TemplateRef<any>>('tmpl');
     rememberMe = false;
     subjectOne: Subject<number> = new Subject<number>();
     observableOne: Observable<number> = new Observable<number>();
@@ -33,10 +43,12 @@ export class AngularProComponent implements OnInit, AfterContentInit {
         this.observableOne = this.subjectOne.asObservable();
         this.unsubscribe$ = new Subject<void>();
 
-        this.observableOne.pipe(
-            tap(r => console.log('Subject', r)),
-            takeUntil(this.unsubscribe$)
-        ).subscribe();
+        this.observableOne
+            .pipe(
+                tap((r) => console.log('Subject', r)),
+                takeUntil(this.unsubscribe$)
+            )
+            .subscribe();
         this.subjectOne.next(1);
         // with takeUntil, unsubscribe$.next() can be called instead of calling subjectOne.complete()
         this.unsubscribe$.next();
@@ -48,13 +60,13 @@ export class AngularProComponent implements OnInit, AfterContentInit {
         setTimeout(() => {
             // dynamically create third component
             const authFormFactory = this.resolver.resolveComponentFactory(AuthFormComponent);
-            this.component = this.entry.createComponent(authFormFactory);
+            this.component = this.entry().createComponent(authFormFactory);
             this.component.instance.title = 'Dynamic';
             this.component.instance.showButton = true;
             this.component.instance.submitted.subscribe(this.createUser);
-            this.entry.createComponent(authFormFactory, 0);
+            this.entry().createComponent(authFormFactory, 0);
 
-            this.entry.createEmbeddedView(this.tmpl, {
+            this.entry().createEmbeddedView(this.tmpl(), {
                 $implicit: 'Angular',
                 angularVar: 'Template'
             });
@@ -78,7 +90,6 @@ export class AngularProComponent implements OnInit, AfterContentInit {
     }
 
     moveComponent(): void {
-        this.entry.move(this.component.hostView, 0);
+        this.entry().move(this.component.hostView, 0);
     }
-
 }

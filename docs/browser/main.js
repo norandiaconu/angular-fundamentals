@@ -14,7 +14,7 @@ import {
   SelectControlValueAccessor,
   ɵNgNoValidate,
   ɵNgSelectMultipleOption
-} from "./chunk-4KCUKOIL.js";
+} from "./chunk-4AKFZKT6.js";
 import {
   ActivatedRoute,
   BrowserModule,
@@ -28,29 +28,27 @@ import {
   provideHttpClient,
   provideRouter,
   withInterceptorsFromDi
-} from "./chunk-RUF2AIAE.js";
+} from "./chunk-3QJ5RLCB.js";
 import {
   CommonModule,
   DatePipe,
   JsonPipe,
   UpperCasePipe
-} from "./chunk-DGU3WQUZ.js";
+} from "./chunk-W6YNQVUQ.js";
 import {
   Component,
-  EventEmitter,
   Injectable,
-  Input,
   NgModule,
-  Output,
   enableProdMode,
   importProvidersFrom,
   inject,
+  input,
   isDevMode,
   map,
+  output,
   setClassMetadata,
   switchMap,
   ɵsetClassDebugInfo,
-  ɵɵNgOnChangesFeature,
   ɵɵadvance,
   ɵɵclassProp,
   ɵɵconditional,
@@ -88,7 +86,7 @@ import {
   ɵɵtwoWayBindingSet,
   ɵɵtwoWayListener,
   ɵɵtwoWayProperty
-} from "./chunk-CKONHHS2.js";
+} from "./chunk-MYTS3FNW.js";
 
 // src/environments/environment.ts
 var environment = {
@@ -142,13 +140,14 @@ var PassengerDashboardService = class _PassengerDashboardService {
 // src/app/passenger-dashboard/passenger-count/passenger-count.component.ts
 var PassengerCountComponent = class _PassengerCountComponent {
   constructor() {
-    this.items = [];
+    this.items = input([]);
   }
   checkedInCount() {
-    if (!this.items) {
+    const items = this.items();
+    if (!items) {
       return 0;
     } else {
-      return this.items.filter((passenger) => passenger.checkedIn).length;
+      return items.filter((passenger) => passenger.checkedIn).length;
     }
   }
   static {
@@ -157,15 +156,16 @@ var PassengerCountComponent = class _PassengerCountComponent {
     };
   }
   static {
-    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _PassengerCountComponent, selectors: [["passenger-count"]], inputs: { items: "items" }, decls: 2, vars: 2, template: function PassengerCountComponent_Template(rf, ctx) {
+    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _PassengerCountComponent, selectors: [["passenger-count"]], inputs: { items: [1, "items"] }, decls: 2, vars: 2, template: function PassengerCountComponent_Template(rf, ctx) {
       if (rf & 1) {
         \u0275\u0275elementStart(0, "div");
         \u0275\u0275text(1);
         \u0275\u0275elementEnd();
       }
       if (rf & 2) {
+        let tmp_0_0;
         \u0275\u0275advance();
-        \u0275\u0275textInterpolate2(" Total checked in: ", ctx.checkedInCount(), " / ", ctx.items == null ? null : ctx.items.length, "\n");
+        \u0275\u0275textInterpolate2(" Total checked in: ", ctx.checkedInCount(), " / ", (tmp_0_0 = ctx.items()) == null ? null : tmp_0_0.length, "\n");
       }
     }, encapsulation: 2 });
   }
@@ -173,13 +173,11 @@ var PassengerCountComponent = class _PassengerCountComponent {
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(PassengerCountComponent, [{
     type: Component,
-    args: [{ selector: "passenger-count", standalone: true, template: "<div>\r\n    Total checked in: {{ checkedInCount() }} / {{ items?.length }}\r\n</div>\r\n" }]
-  }], null, { items: [{
-    type: Input
-  }] });
+    args: [{ selector: "passenger-count", standalone: true, template: "<div>\r\n    Total checked in: {{ checkedInCount() }} / {{ items()?.length }}\r\n</div>\r\n" }]
+  }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(PassengerCountComponent, { className: "PassengerCountComponent", filePath: "src/app/passenger-dashboard/passenger-count/passenger-count.component.ts", lineNumber: 11 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(PassengerCountComponent, { className: "PassengerCountComponent", filePath: "src/app/passenger-dashboard/passenger-count/passenger-count.component.ts", lineNumber: 10 });
 })();
 
 // src/app/passenger-dashboard/passenger-detail/passenger-detail.component.ts
@@ -198,7 +196,7 @@ function PassengerDetailComponent_Conditional_2_Template(rf, ctx) {
   if (rf & 2) {
     const ctx_r2 = \u0275\u0275nextContext();
     \u0275\u0275advance();
-    \u0275\u0275property("value", ctx_r2.detail.fullName);
+    \u0275\u0275property("value", ctx_r2.detail().fullName);
   }
 }
 function PassengerDetailComponent_Conditional_3_Template(rf, ctx) {
@@ -210,41 +208,36 @@ function PassengerDetailComponent_Conditional_3_Template(rf, ctx) {
   if (rf & 2) {
     const ctx_r2 = \u0275\u0275nextContext();
     \u0275\u0275advance();
-    \u0275\u0275textInterpolate1(" ", ctx_r2.detail.fullName, " ");
+    \u0275\u0275textInterpolate1(" ", ctx_r2.detail().fullName, " ");
   }
 }
 var PassengerDetailComponent = class _PassengerDetailComponent {
   constructor() {
-    this.detail = {
+    this.detail = input({
       id: 0,
       fullName: "",
       checkedIn: false,
       baggage: ""
-    };
+    });
     this.editing = false;
-    this.edit = new EventEmitter();
-    this.remove = new EventEmitter();
-    this.view = new EventEmitter();
+    this.edit = output();
+    this.remove = output();
+    this.view = output();
   }
   onNameChange(value) {
-    this.detail.fullName = value;
+    this.detail().fullName = value;
   }
   toggleEdit() {
     if (this.editing) {
-      this.edit.emit(this.detail);
+      this.edit.emit(this.detail());
     }
     this.editing = !this.editing;
   }
   onRemove() {
-    this.remove.emit(this.detail);
+    this.remove.emit(this.detail());
   }
   goToPassenger() {
-    this.view.emit(this.detail);
-  }
-  ngOnChanges(changes) {
-    if (changes.detail) {
-      this.detail = Object.assign({}, changes.detail.currentValue);
-    }
+    this.view.emit(this.detail());
   }
   static {
     this.\u0275fac = function PassengerDetailComponent_Factory(__ngFactoryType__) {
@@ -252,7 +245,7 @@ var PassengerDetailComponent = class _PassengerDetailComponent {
     };
   }
   static {
-    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _PassengerDetailComponent, selectors: [["passenger-detail"]], inputs: { detail: "detail" }, outputs: { edit: "edit", remove: "remove", view: "view" }, features: [\u0275\u0275NgOnChangesFeature], decls: 16, vars: 12, consts: [["name", ""], [1, "status"], [3, "click"], ["type", "text", 3, "input", "value"]], template: function PassengerDetailComponent_Template(rf, ctx) {
+    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _PassengerDetailComponent, selectors: [["passenger-detail"]], inputs: { detail: [1, "detail"] }, outputs: { edit: "edit", remove: "remove", view: "view" }, decls: 16, vars: 12, consts: [["name", ""], [1, "status"], [3, "click"], ["type", "text", 3, "input", "value"]], template: function PassengerDetailComponent_Template(rf, ctx) {
       if (rf & 1) {
         \u0275\u0275elementStart(0, "div");
         \u0275\u0275element(1, "span", 1);
@@ -285,16 +278,17 @@ var PassengerDetailComponent = class _PassengerDetailComponent {
         \u0275\u0275elementEnd()();
       }
       if (rf & 2) {
+        let tmp_4_0;
         \u0275\u0275advance();
-        \u0275\u0275classProp("checked-in", ctx.detail.checkedIn);
+        \u0275\u0275classProp("checked-in", ctx.detail().checkedIn);
         \u0275\u0275advance();
         \u0275\u0275conditional(ctx.editing ? 2 : -1);
         \u0275\u0275advance();
         \u0275\u0275conditional(!ctx.editing ? 3 : -1);
         \u0275\u0275advance(2);
-        \u0275\u0275textInterpolate1(" Check in Date: ", ctx.detail.checkedInDate ? \u0275\u0275pipeBind1(7, 10, \u0275\u0275pipeBind2(6, 7, ctx.detail.checkedInDate, "MMMM d, y")) : "Not checked in", " ");
+        \u0275\u0275textInterpolate1(" Check in Date: ", ctx.detail().checkedInDate ? \u0275\u0275pipeBind1(7, 10, \u0275\u0275pipeBind2(6, 7, ctx.detail().checkedInDate, "MMMM d, y")) : "Not checked in", " ");
         \u0275\u0275advance(4);
-        \u0275\u0275textInterpolate1("Children: ", (ctx.detail.children == null ? null : ctx.detail.children.length) || 0, "");
+        \u0275\u0275textInterpolate1("Children: ", ((tmp_4_0 = ctx.detail().children) == null ? null : tmp_4_0.length) || 0, "");
         \u0275\u0275advance(2);
         \u0275\u0275textInterpolate1(" ", ctx.editing ? "Done" : "Edit", " ");
       }
@@ -304,41 +298,33 @@ var PassengerDetailComponent = class _PassengerDetailComponent {
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(PassengerDetailComponent, [{
     type: Component,
-    args: [{ selector: "passenger-detail", imports: [UpperCasePipe, DatePipe], template: `<div>
-    <span class="status" [class.checked-in]="detail.checkedIn"> </span>
-    @if (editing) {
-    <div>
-        <input type="text" [value]="detail.fullName" (input)="onNameChange(name.value)" #name />
-    </div>
-    } @if (!editing) {
-    <div>
-        {{ detail.fullName }}
-    </div>
-    }
-    <p>
-        Check in Date:
-        {{ detail.checkedInDate ? (detail.checkedInDate | date : 'MMMM d, y' | uppercase) : 'Not checked in' }}
-    </p>
-    <p>Children: {{ detail.children?.length || 0 }}</p>
-    <button (click)="toggleEdit()">
-        {{ editing ? 'Done' : 'Edit' }}
-    </button>
-    <button (click)="onRemove()">Remove</button>
-    <button (click)="goToPassenger()">Go To Passenger</button>
-</div>
+    args: [{ selector: "passenger-detail", imports: [UpperCasePipe, DatePipe], template: `<div>\r
+    <span class="status" [class.checked-in]="detail().checkedIn"> </span>\r
+    @if (editing) {\r
+    <div>\r
+        <input type="text" [value]="detail().fullName" (input)="onNameChange(name.value)" #name />\r
+    </div>\r
+    } @if (!editing) {\r
+    <div>\r
+        {{ detail().fullName }}\r
+    </div>\r
+    }\r
+    <p>\r
+        Check in Date:\r
+        {{ detail().checkedInDate ? (detail().checkedInDate | date : 'MMMM d, y' | uppercase) : 'Not checked in' }}\r
+    </p>\r
+    <p>Children: {{ detail().children?.length || 0 }}</p>\r
+    <button (click)="toggleEdit()">\r
+        {{ editing ? 'Done' : 'Edit' }}\r
+    </button>\r
+    <button (click)="onRemove()">Remove</button>\r
+    <button (click)="goToPassenger()">Go To Passenger</button>\r
+</div>\r
 `, styles: ["/* src/app/passenger-dashboard/passenger-detail/passenger-detail.component.scss */\n.status {\n  width: 10px;\n  height: 10px;\n  background: red;\n  display: block;\n  margin: 8px 10px 0 0;\n  float: left;\n  border-radius: 50%;\n}\n.status.checked-in {\n  background: green;\n}\n"] }]
-  }], null, { detail: [{
-    type: Input
-  }], edit: [{
-    type: Output
-  }], remove: [{
-    type: Output
-  }], view: [{
-    type: Output
-  }] });
+  }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(PassengerDetailComponent, { className: "PassengerDetailComponent", filePath: "src/app/passenger-dashboard/passenger-detail/passenger-detail.component.ts", lineNumber: 12 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(PassengerDetailComponent, { className: "PassengerDetailComponent", filePath: "src/app/passenger-dashboard/passenger-detail/passenger-detail.component.ts", lineNumber: 11 });
 })();
 
 // src/app/passenger-dashboard/passenger-dashboard.component.ts
@@ -504,9 +490,10 @@ function PassengerFormComponent_Conditional_29_Template(rf, ctx) {
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
+    let tmp_4_0;
     const ctx_r2 = \u0275\u0275nextContext();
     \u0275\u0275advance(2);
-    \u0275\u0275property("ngModel", ctx_r2.detail == null ? null : ctx_r2.detail.checkedInDate);
+    \u0275\u0275property("ngModel", (tmp_4_0 = ctx_r2.detail()) == null ? null : tmp_4_0.checkedInDate);
   }
 }
 function PassengerFormComponent_For_34_Template(rf, ctx) {
@@ -516,9 +503,10 @@ function PassengerFormComponent_For_34_Template(rf, ctx) {
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
+    let tmp_14_0;
     const item_r4 = ctx.$implicit;
     const ctx_r2 = \u0275\u0275nextContext();
-    \u0275\u0275property("value", item_r4.key)("selected", item_r4.key === (ctx_r2.detail == null ? null : ctx_r2.detail.baggage));
+    \u0275\u0275property("value", item_r4.key)("selected", item_r4.key === ((tmp_14_0 = ctx_r2.detail()) == null ? null : tmp_14_0.baggage));
     \u0275\u0275advance();
     \u0275\u0275textInterpolate1(" ", item_r4.value, " ");
   }
@@ -538,13 +526,13 @@ function PassengerFormComponent_For_37_Template(rf, ctx) {
 }
 var PassengerFormComponent = class _PassengerFormComponent {
   constructor() {
-    this.detail = {
+    this.detail = input({
       id: 0,
       fullName: "",
       checkedIn: false,
       baggage: ""
-    };
-    this.update = new EventEmitter();
+    });
+    this.update = output();
     this.baggage = [
       {
         key: "none",
@@ -566,7 +554,7 @@ var PassengerFormComponent = class _PassengerFormComponent {
   }
   toggleCheckedIn(checkedIn) {
     if (checkedIn) {
-      this.detail.checkedInDate = Date.now();
+      this.detail().checkedInDate = Date.now();
     }
   }
   handleSubmit(passenger, isValid) {
@@ -580,7 +568,7 @@ var PassengerFormComponent = class _PassengerFormComponent {
     };
   }
   static {
-    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _PassengerFormComponent, selectors: [["passenger-form"]], inputs: { detail: "detail" }, outputs: { update: "update" }, decls: 46, vars: 32, consts: [["form", "ngForm"], ["fullName", "ngModel"], ["id", "ngModel"], ["novalidate", "", 3, "ngSubmit"], ["type", "text", "name", "fullName", "required", "", "minlength", "2", 3, "ngModel"], [1, "error"], ["type", "number", "name", "id", "required", "", 3, "ngModel"], ["type", "radio", "name", "checkedIn", 3, "ngModelChange", "value", "ngModel"], ["type", "radio", "name", "checkedIn", 3, "value", "ngModel"], ["type", "checkbox", "name", "checkedIn", 3, "ngModelChange", "ngModel"], ["name", "baggage", 3, "ngModel"], [3, "value", "selected"], [3, "ngValue"], ["type", "submit", 3, "disabled"], ["type", "number", "name", "checkedInDate", 3, "ngModel"]], template: function PassengerFormComponent_Template(rf, ctx) {
+    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _PassengerFormComponent, selectors: [["passenger-form"]], inputs: { detail: [1, "detail"] }, outputs: { update: "update" }, decls: 46, vars: 32, consts: [["form", "ngForm"], ["fullName", "ngModel"], ["id", "ngModel"], ["novalidate", "", 3, "ngSubmit"], ["type", "text", "name", "fullName", "required", "", "minlength", "2", 3, "ngModel"], [1, "error"], ["type", "number", "name", "id", "required", "", 3, "ngModel"], ["type", "radio", "name", "checkedIn", 3, "ngModelChange", "value", "ngModel"], ["type", "radio", "name", "checkedIn", 3, "value", "ngModel"], ["type", "checkbox", "name", "checkedIn", 3, "ngModelChange", "ngModel"], ["name", "baggage", 3, "ngModel"], [3, "value", "selected"], [3, "ngValue"], ["type", "submit", 3, "disabled"], ["type", "number", "name", "checkedInDate", 3, "ngModel"]], template: function PassengerFormComponent_Template(rf, ctx) {
       if (rf & 1) {
         const _r1 = \u0275\u0275getCurrentView();
         \u0275\u0275elementStart(0, "form", 3, 0);
@@ -646,13 +634,20 @@ var PassengerFormComponent = class _PassengerFormComponent {
         \u0275\u0275elementEnd()();
       }
       if (rf & 2) {
+        let tmp_4_0;
+        let tmp_8_0;
+        let tmp_12_0;
+        let tmp_14_0;
+        let tmp_15_0;
+        let tmp_17_0;
+        let tmp_19_0;
         const form_r2 = \u0275\u0275reference(1);
         const fullName_r6 = \u0275\u0275reference(7);
         const id_r7 = \u0275\u0275reference(15);
         \u0275\u0275advance(2);
-        \u0275\u0275textInterpolate1(" ", \u0275\u0275pipeBind1(3, 20, ctx.detail), " ");
+        \u0275\u0275textInterpolate1(" ", \u0275\u0275pipeBind1(3, 20, ctx.detail()), " ");
         \u0275\u0275advance(4);
-        \u0275\u0275property("ngModel", ctx.detail == null ? null : ctx.detail.fullName);
+        \u0275\u0275property("ngModel", (tmp_4_0 = ctx.detail()) == null ? null : tmp_4_0.fullName);
         \u0275\u0275advance(2);
         \u0275\u0275textInterpolate1(" ", \u0275\u0275pipeBind1(9, 22, fullName_r6.errors), " ");
         \u0275\u0275advance(2);
@@ -660,25 +655,25 @@ var PassengerFormComponent = class _PassengerFormComponent {
         \u0275\u0275advance();
         \u0275\u0275conditional((fullName_r6.errors == null ? null : fullName_r6.errors.minlength) && fullName_r6.dirty ? 11 : -1);
         \u0275\u0275advance(3);
-        \u0275\u0275property("ngModel", ctx.detail == null ? null : ctx.detail.id);
+        \u0275\u0275property("ngModel", (tmp_8_0 = ctx.detail()) == null ? null : tmp_8_0.id);
         \u0275\u0275advance(2);
         \u0275\u0275textInterpolate1(" ", \u0275\u0275pipeBind1(17, 24, id_r7.errors), " ");
         \u0275\u0275advance(2);
         \u0275\u0275conditional((id_r7.errors == null ? null : id_r7.errors.required) && id_r7.touched ? 18 : -1);
         \u0275\u0275advance(3);
-        \u0275\u0275property("value", true)("ngModel", ctx.detail == null ? null : ctx.detail.checkedIn);
+        \u0275\u0275property("value", true)("ngModel", (tmp_12_0 = ctx.detail()) == null ? null : tmp_12_0.checkedIn);
         \u0275\u0275advance(3);
-        \u0275\u0275property("value", false)("ngModel", ctx.detail == null ? null : ctx.detail.checkedIn);
+        \u0275\u0275property("value", false)("ngModel", (tmp_14_0 = ctx.detail()) == null ? null : tmp_14_0.checkedIn);
         \u0275\u0275advance(3);
-        \u0275\u0275property("ngModel", ctx.detail == null ? null : ctx.detail.checkedIn);
+        \u0275\u0275property("ngModel", (tmp_15_0 = ctx.detail()) == null ? null : tmp_15_0.checkedIn);
         \u0275\u0275advance(2);
         \u0275\u0275conditional(form_r2.value.checkedIn ? 29 : -1);
         \u0275\u0275advance(3);
-        \u0275\u0275property("ngModel", ctx.detail == null ? null : ctx.detail.baggage);
+        \u0275\u0275property("ngModel", (tmp_17_0 = ctx.detail()) == null ? null : tmp_17_0.baggage);
         \u0275\u0275advance();
         \u0275\u0275repeater(ctx.baggage);
         \u0275\u0275advance(2);
-        \u0275\u0275property("ngModel", ctx.detail == null ? null : ctx.detail.baggage);
+        \u0275\u0275property("ngModel", (tmp_19_0 = ctx.detail()) == null ? null : tmp_19_0.baggage);
         \u0275\u0275advance();
         \u0275\u0275repeater(ctx.baggage);
         \u0275\u0275advance(2);
@@ -694,12 +689,8 @@ var PassengerFormComponent = class _PassengerFormComponent {
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(PassengerFormComponent, [{
     type: Component,
-    args: [{ selector: "passenger-form", imports: [FormsModule, JsonPipe], template: '<form (ngSubmit)="handleSubmit(form.value, form.valid)" #form="ngForm" novalidate>\n    {{ detail | json }}\n    <div>\n        Passenger name:\n        <input type="text" name="fullName" required minlength="2" #fullName="ngModel" [ngModel]="detail?.fullName" />\n        {{ fullName.errors | json }}\n        @if (fullName.errors?.required && fullName.dirty) {\n        <div class="error">Passenger name is required</div>\n        } @if (fullName.errors?.minlength && fullName.dirty) {\n        <div class="error">Passenger name length must be greater than 2</div>\n        }\n    </div>\n    <div>\n        Passenger ID:\n        <input type="number" name="id" required #id="ngModel" [ngModel]="detail?.id" />\n        {{ id.errors | json }}\n        @if (id.errors?.required && id.touched) {\n        <div class="error">Passenger id is required</div>\n        }\n    </div>\n    <div>\n        <label>\n            <input type="radio" [value]="true" name="checkedIn" [ngModel]="detail?.checkedIn" (ngModelChange)="toggleCheckedIn($event)" />\n            Yes\n        </label>\n        <label>\n            <input type="radio" [value]="false" name="checkedIn" [ngModel]="detail?.checkedIn" />\n            No\n        </label>\n        <label>\n            <input type="checkbox" name="checkedIn" [ngModel]="detail?.checkedIn" (ngModelChange)="toggleCheckedIn($event)" />\n        </label>\n        Toggle check in date\n    </div>\n    @if (form.value.checkedIn) {\n    <div>\n        Check in date:\n        <input type="number" name="checkedInDate" [ngModel]="detail?.checkedInDate" />\n    </div>\n    }\n\n    <div>\n        Luggage:\n        <select name="baggage" [ngModel]="detail?.baggage">\n            @for (item of baggage; track item) {\n            <option [value]="item.key" [selected]="item.key === detail?.baggage">\n                {{ item.value }}\n            </option>\n            }\n        </select>\n        <select name="baggage" [ngModel]="detail?.baggage">\n            @for (item of baggage; track item) {\n            <option [ngValue]="item.key">\n                {{ item.value }}\n            </option>\n            }\n        </select>\n    </div>\n    {{ form.value | json }}\n    <div>Valid: {{ form.valid | json }} &bull; Invalid: {{ form.invalid | json }}</div>\n    <button type="submit" [disabled]="form.invalid">Update passenger</button>\n</form>\n', styles: ["/* src/app/passenger-dashboard/passenger-form/passenger-form.component.scss */\ndiv {\n  margin: 0 0 20px;\n}\n.error {\n  color: #da6969;\n  font-size: 10px;\n}\n"] }]
-  }], null, { detail: [{
-    type: Input
-  }], update: [{
-    type: Output
-  }] });
+    args: [{ selector: "passenger-form", imports: [FormsModule, JsonPipe], template: '<form (ngSubmit)="handleSubmit(form.value, form.valid)" #form="ngForm" novalidate>\r\n    {{ detail() | json }}\r\n    <div>\r\n        Passenger name:\r\n        <input type="text" name="fullName" required minlength="2" #fullName="ngModel" [ngModel]="detail()?.fullName" />\r\n        {{ fullName.errors | json }}\r\n        @if (fullName.errors?.required && fullName.dirty) {\r\n        <div class="error">Passenger name is required</div>\r\n        } @if (fullName.errors?.minlength && fullName.dirty) {\r\n        <div class="error">Passenger name length must be greater than 2</div>\r\n        }\r\n    </div>\r\n    <div>\r\n        Passenger ID:\r\n        <input type="number" name="id" required #id="ngModel" [ngModel]="detail()?.id" />\r\n        {{ id.errors | json }}\r\n        @if (id.errors?.required && id.touched) {\r\n        <div class="error">Passenger id is required</div>\r\n        }\r\n    </div>\r\n    <div>\r\n        <label>\r\n            <input type="radio" [value]="true" name="checkedIn" [ngModel]="detail()?.checkedIn" (ngModelChange)="toggleCheckedIn($event)" />\r\n            Yes\r\n        </label>\r\n        <label>\r\n            <input type="radio" [value]="false" name="checkedIn" [ngModel]="detail()?.checkedIn" />\r\n            No\r\n        </label>\r\n        <label>\r\n            <input type="checkbox" name="checkedIn" [ngModel]="detail()?.checkedIn" (ngModelChange)="toggleCheckedIn($event)" />\r\n        </label>\r\n        Toggle check in date\r\n    </div>\r\n    @if (form.value.checkedIn) {\r\n    <div>\r\n        Check in date:\r\n        <input type="number" name="checkedInDate" [ngModel]="detail()?.checkedInDate" />\r\n    </div>\r\n    }\r\n\r\n    <div>\r\n        Luggage:\r\n        <select name="baggage" [ngModel]="detail()?.baggage">\r\n            @for (item of baggage; track item) {\r\n            <option [value]="item.key" [selected]="item.key === detail()?.baggage">\r\n                {{ item.value }}\r\n            </option>\r\n            }\r\n        </select>\r\n        <select name="baggage" [ngModel]="detail()?.baggage">\r\n            @for (item of baggage; track item) {\r\n            <option [ngValue]="item.key">\r\n                {{ item.value }}\r\n            </option>\r\n            }\r\n        </select>\r\n    </div>\r\n    {{ form.value | json }}\r\n    <div>Valid: {{ form.valid | json }} &bull; Invalid: {{ form.invalid | json }}</div>\r\n    <button type="submit" [disabled]="form.invalid">Update passenger</button>\r\n</form>\r\n', styles: ["/* src/app/passenger-dashboard/passenger-form/passenger-form.component.scss */\ndiv {\n  margin: 0 0 20px;\n}\n.error {\n  color: #da6969;\n  font-size: 10px;\n}\n"] }]
+  }], null, null);
 })();
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(PassengerFormComponent, { className: "PassengerFormComponent", filePath: "src/app/passenger-dashboard/passenger-form/passenger-form.component.ts", lineNumber: 12 });
@@ -763,7 +754,7 @@ var PassengerViewerComponent = class _PassengerViewerComponent {
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(PassengerViewerComponent, [{
     type: Component,
-    args: [{ selector: "passenger-viewer", imports: [PassengerFormComponent], template: '<button (click)="goBack()">\r\n    Go Back\r\n</button>\r\n<passenger-form\r\n    [detail]="passenger"\r\n    (update)="onUpdatePassenger($event)">\r\n</passenger-form>\r\n' }]
+    args: [{ selector: "passenger-viewer", imports: [PassengerFormComponent], template: '<button (click)="goBack()">\r\n    Go Back\r\n</button>\r\n<passenger-form [detail]="passenger"\r\n    (update)="onUpdatePassenger($event)" />\r\n' }]
   }], null, null);
 })();
 (() => {
@@ -1198,17 +1189,17 @@ var AppComponent = class _AppComponent {
 // src/main.ts
 var routes2 = [
   { path: "", redirectTo: "passengers", pathMatch: "full" },
-  { path: "rxjs-basics", loadComponent: () => import("./rxjs-basics.component-S5WXEK5V.js").then((m) => m.RxjsBasicsComponent) },
+  { path: "rxjs-basics", loadComponent: () => import("./rxjs-basics.component-5PL7CSOF.js").then((m) => m.RxjsBasicsComponent) },
   {
     path: "rxjs-projects",
-    loadComponent: () => import("./rxjs-projects.component-WO6OVFRX.js").then((m) => m.RxjsProjectsComponent)
+    loadComponent: () => import("./rxjs-projects.component-7PLTIH6O.js").then((m) => m.RxjsProjectsComponent)
   },
   {
     path: "typescript-basics",
-    loadComponent: () => import("./typescript-basics.component-BYVUHNGD.js").then((m) => m.TypescriptBasicsComponent)
+    loadComponent: () => import("./typescript-basics.component-OMGZQCN6.js").then((m) => m.TypescriptBasicsComponent)
   },
-  { path: "angular-pro", loadComponent: () => import("./angular-pro.component-25BHSTLW.js").then((m) => m.AngularProComponent) },
-  { path: "**", loadComponent: () => import("./not-found.component-MUOVULJL.js").then((m) => m.NotFoundComponent) }
+  { path: "angular-pro", loadComponent: () => import("./angular-pro.component-NEKQWEPD.js").then((m) => m.AngularProComponent) },
+  { path: "**", loadComponent: () => import("./not-found.component-7RRGJTBX.js").then((m) => m.NotFoundComponent) }
 ];
 if (environment.production) {
   enableProdMode();

@@ -12,7 +12,7 @@ import {
   ɵɵlistener,
   ɵɵtext,
   ɵɵtextInterpolate1
-} from "./chunk-CKONHHS2.js";
+} from "./chunk-MYTS3FNW.js";
 
 // src/app/typescript-basics/typescript-basics.component.ts
 var TypescriptBasicsComponent = class _TypescriptBasicsComponent {

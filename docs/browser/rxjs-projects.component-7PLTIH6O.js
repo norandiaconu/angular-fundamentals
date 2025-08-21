@@ -1,6 +1,6 @@
 import {
   ajax
-} from "./chunk-2VWJROXG.js";
+} from "./chunk-46ZA6BMW.js";
 import {
   Component,
   Subscription,
@@ -25,7 +25,7 @@ import {
   ɵɵlistener,
   ɵɵtext,
   ɵɵtextInterpolate1
-} from "./chunk-CKONHHS2.js";
+} from "./chunk-MYTS3FNW.js";
 
 // src/app/rxjs-projects/rxjs-projects.component.ts
 var RxjsProjectsComponent = class _RxjsProjectsComponent {

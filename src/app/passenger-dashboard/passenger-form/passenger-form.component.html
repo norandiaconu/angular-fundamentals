@@ -1,8 +1,8 @@
 <form (ngSubmit)="handleSubmit(form.value, form.valid)" #form="ngForm" novalidate>
-    {{ detail | json }}
+    {{ detail() | json }}
     <div>
         Passenger name:
-        <input type="text" name="fullName" required minlength="2" #fullName="ngModel" [ngModel]="detail?.fullName" />
+        <input type="text" name="fullName" required minlength="2" #fullName="ngModel" [ngModel]="detail()?.fullName" />
         {{ fullName.errors | json }}
         @if (fullName.errors?.required && fullName.dirty) {
         <div class="error">Passenger name is required</div>
@@ -12,7 +12,7 @@
     </div>
     <div>
         Passenger ID:
-        <input type="number" name="id" required #id="ngModel" [ngModel]="detail?.id" />
+        <input type="number" name="id" required #id="ngModel" [ngModel]="detail()?.id" />
         {{ id.errors | json }}
         @if (id.errors?.required && id.touched) {
         <div class="error">Passenger id is required</div>
@@ -20,35 +20,35 @@
     </div>
     <div>
         <label>
-            <input type="radio" [value]="true" name="checkedIn" [ngModel]="detail?.checkedIn" (ngModelChange)="toggleCheckedIn($event)" />
+            <input type="radio" [value]="true" name="checkedIn" [ngModel]="detail()?.checkedIn" (ngModelChange)="toggleCheckedIn($event)" />
             Yes
         </label>
         <label>
-            <input type="radio" [value]="false" name="checkedIn" [ngModel]="detail?.checkedIn" />
+            <input type="radio" [value]="false" name="checkedIn" [ngModel]="detail()?.checkedIn" />
             No
         </label>
         <label>
-            <input type="checkbox" name="checkedIn" [ngModel]="detail?.checkedIn" (ngModelChange)="toggleCheckedIn($event)" />
+            <input type="checkbox" name="checkedIn" [ngModel]="detail()?.checkedIn" (ngModelChange)="toggleCheckedIn($event)" />
         </label>
         Toggle check in date
     </div>
     @if (form.value.checkedIn) {
     <div>
         Check in date:
-        <input type="number" name="checkedInDate" [ngModel]="detail?.checkedInDate" />
+        <input type="number" name="checkedInDate" [ngModel]="detail()?.checkedInDate" />
     </div>
     }
 
     <div>
         Luggage:
-        <select name="baggage" [ngModel]="detail?.baggage">
+        <select name="baggage" [ngModel]="detail()?.baggage">
             @for (item of baggage; track item) {
-            <option [value]="item.key" [selected]="item.key === detail?.baggage">
+            <option [value]="item.key" [selected]="item.key === detail()?.baggage">
                 {{ item.value }}
             </option>
             }
         </select>
-        <select name="baggage" [ngModel]="detail?.baggage">
+        <select name="baggage" [ngModel]="detail()?.baggage">
             @for (item of baggage; track item) {
             <option [ngValue]="item.key">
                 {{ item.value }}
