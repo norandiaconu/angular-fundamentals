@@ -1,10 +1,11 @@
 <div>
-    {{ passenger0?.fullName }}
+    <div>{{ passenger0.fullName }}</div>
     <passenger-count [items]="passengers"> </passenger-count>
     @for (passenger of passengers; track passenger) {
-    <div>{{ passenger?.fullName }}</div>
-    } @for (passenger of passengers; track passenger) {
-    <passenger-detail [detail]="passenger" (edit)="handleEdit($event)" (remove)="handleRemove($event)" (view)="handleView($event)">
-    </passenger-detail>
+        <div>{{ passenger?.fullName }}</div>
+    }
+    @for (passenger of passengers; track passenger) {
+        <passenger-detail [detail]="passenger" (edit)="handleEdit($event)" (remove)="handleRemove($event)" (view)="handleView($event)">
+        </passenger-detail>
     }
 </div>

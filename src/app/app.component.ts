@@ -79,11 +79,11 @@ export class AppComponent {
         this.title = value;
         console.log(value);
     }
-    handleNameChange(value: string): void {
+    handleNameChange(event: Event): void {
+        const value = (event.target as HTMLInputElement).value;
         this.name = value;
     }
     toggle(): void {
         this.display = !this.display;
     }
-
 }

@@ -9,8 +9,8 @@ import { Component, output } from '@angular/core';
 export class AuthRememberComponent {
     readonly checked = output<boolean>();
 
-    onChecked(value: boolean): void {
+    onChecked(event: Event): void {
+        const value = (event.target as HTMLInputElement).checked;
         this.checked.emit(value);
     }
-
 }

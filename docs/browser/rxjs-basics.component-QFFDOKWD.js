@@ -153,20 +153,19 @@ function RxjsBasicsComponent_Conditional_63_Template(rf, ctx) {
   }
 }
 var RxjsBasicsComponent = class _RxjsBasicsComponent {
-  constructor() {
-    this.amount = 0;
-    this.consoleString = "";
-    this.counter = new Subscription();
-    this.eventSub = new Subscription();
-    this.displayCount = false;
-    this.displayMouse = false;
-    this.displayKeys = false;
-    this.displayText = false;
-    this.theCountdown = "";
-    this.keyup$ = fromEvent(document, "keyup");
-    this.subscribed = false;
-    this.timeSub = new Subscription();
-  }
+  amount = 0;
+  consoleString = "";
+  counter = new Subscription();
+  eventSub = new Subscription();
+  observer;
+  displayCount = false;
+  displayMouse = false;
+  displayKeys = false;
+  displayText = false;
+  theCountdown = "";
+  keyup$ = fromEvent(document, "keyup");
+  subscribed = false;
+  timeSub = new Subscription();
   ngOnInit() {
     this.amount = 0;
     this.consoleString = "";
@@ -549,331 +548,327 @@ var RxjsBasicsComponent = class _RxjsBasicsComponent {
     this.counter.unsubscribe();
     this.eventSub.unsubscribe();
   }
-  static {
-    this.\u0275fac = function RxjsBasicsComponent_Factory(__ngFactoryType__) {
-      return new (__ngFactoryType__ || _RxjsBasicsComponent)();
-    };
-  }
-  static {
-    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _RxjsBasicsComponent, selectors: [["rxjs-basics"]], decls: 136, vars: 25, consts: [[3, "click"], ["id", "take", 3, "click"], ["id", "abort"], ["id", "timeText"], ["title", "Get and return JSON api request responses", 3, "click"], ["title", "Start on each run", 3, "click"], ["title", "Restart on each run", 3, "click"], ["title", "Queue onto the end of each run", 3, "click"], ["title", "Complete current run, then allow a new one to start", 3, "click"], ["id", "typeahead"], ["title", "Start and end with specified values", 3, "click"], ["title", "Order events to run one after another", 3, "click"], ["title", "Include latest value from stream that is passed in", 3, "click"], ["title", "Combine latest values before emitting", 3, "click"], ["id", "countdown2", 3, "click"], ["id", "abort2"], ["title", "Emit latest values when all passed observables have fired at least once", 3, "click"], ["type", "number", "id", "first"], ["type", "number", "id", "second"]], template: function RxjsBasicsComponent_Template(rf, ctx) {
-      if (rf & 1) {
-        \u0275\u0275elementStart(0, "div");
-        \u0275\u0275text(1);
-        \u0275\u0275elementEnd();
-        \u0275\u0275elementStart(2, "div");
-        \u0275\u0275text(3, " General: ");
-        \u0275\u0275elementStart(4, "button", 0);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_4_listener() {
-          return ctx.helloWorld();
-        });
-        \u0275\u0275text(5, "Hello World");
-        \u0275\u0275elementEnd();
-        \u0275\u0275text(6, " \u2022 ");
-        \u0275\u0275elementStart(7, "button", 0);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_7_listener() {
-          return ctx.setTimeout();
-        });
-        \u0275\u0275text(8, "Set Timeout");
-        \u0275\u0275elementEnd();
-        \u0275\u0275text(9, " \u2022 ");
-        \u0275\u0275elementStart(10, "button", 0);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_10_listener() {
-          return ctx.countOnce();
-        });
-        \u0275\u0275text(11, "Count Once");
-        \u0275\u0275elementEnd();
-        \u0275\u0275text(12, " \u2022 ");
-        \u0275\u0275elementStart(13, "button", 0);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_13_listener() {
-          return ctx.intervalTimer();
-        });
-        \u0275\u0275text(14, "Interval Timer");
-        \u0275\u0275elementEnd();
-        \u0275\u0275text(15, " \u2022 ");
-        \u0275\u0275elementStart(16, "button", 0);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_16_listener() {
-          return ctx.fetch();
-        });
-        \u0275\u0275text(17, "Fetch");
-        \u0275\u0275elementEnd();
-        \u0275\u0275element(18, "br")(19, "br");
-        \u0275\u0275text(20, "Looping: ");
-        \u0275\u0275elementStart(21, "button", 0);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_21_listener() {
-          return ctx.ofSubscription();
-        });
-        \u0275\u0275text(22, "Of Subscription");
-        \u0275\u0275elementEnd();
-        \u0275\u0275text(23, " \u2022 ");
-        \u0275\u0275elementStart(24, "button", 0);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_24_listener() {
-          return ctx.range();
-        });
-        \u0275\u0275text(25, "Range");
-        \u0275\u0275elementEnd();
-        \u0275\u0275text(26, " \u2022 ");
-        \u0275\u0275elementStart(27, "button", 0);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_27_listener() {
-          return ctx.from();
-        });
-        \u0275\u0275text(28, "From");
-        \u0275\u0275elementEnd();
-        \u0275\u0275text(29, " \u2022 ");
-        \u0275\u0275elementStart(30, "button", 0);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_30_listener() {
-          return ctx.ofPipe();
-        });
-        \u0275\u0275text(31, "Of Pipe");
-        \u0275\u0275elementEnd();
-        \u0275\u0275text(32, " \u2022 ");
-        \u0275\u0275elementStart(33, "button", 0);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_33_listener() {
-          return ctx.ofFilter();
-        });
-        \u0275\u0275text(34, "Of Filter");
-        \u0275\u0275elementEnd();
-        \u0275\u0275text(35, " \u2022 ");
-        \u0275\u0275elementStart(36, "button", 0);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_36_listener() {
-          return ctx.reducer();
-        });
-        \u0275\u0275text(37, "Reducer");
-        \u0275\u0275elementEnd();
-        \u0275\u0275text(38, " \u2022 ");
-        \u0275\u0275elementStart(39, "button", 0);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_39_listener() {
-          return ctx.scan();
-        });
-        \u0275\u0275text(40, "Scan");
-        \u0275\u0275elementEnd();
-        \u0275\u0275text(41, " \u2022 ");
-        \u0275\u0275elementStart(42, "button", 1);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_42_listener() {
-          return ctx.take();
-        });
-        \u0275\u0275text(43, "Take");
-        \u0275\u0275elementEnd();
-        \u0275\u0275element(44, "br")(45, "br");
-        \u0275\u0275elementStart(46, "button", 0);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_46_listener() {
-          return ctx.takeWhile();
-        });
-        \u0275\u0275text(47, "Take While");
-        \u0275\u0275elementEnd();
-        \u0275\u0275text(48, " \u2022 ");
-        \u0275\u0275elementStart(49, "button", 0);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_49_listener() {
-          return ctx.takeUntil();
-        });
-        \u0275\u0275text(50, "Take Until");
-        \u0275\u0275elementEnd();
-        \u0275\u0275text(51, " \u2022 ");
-        \u0275\u0275elementStart(52, "button", 0);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_52_listener() {
-          return ctx.distinctUntilChanged();
-        });
-        \u0275\u0275text(53, "Distinct Until Changed");
-        \u0275\u0275elementEnd();
-        \u0275\u0275element(54, "br")(55, "br");
-        \u0275\u0275text(56, "Event: ");
-        \u0275\u0275template(57, RxjsBasicsComponent_Conditional_57_Template, 4, 0, "span")(58, RxjsBasicsComponent_Conditional_58_Template, 4, 0, "span")(59, RxjsBasicsComponent_Conditional_59_Template, 4, 0, "span")(60, RxjsBasicsComponent_Conditional_60_Template, 4, 1, "span");
-        \u0275\u0275elementStart(61, "button", 0);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_61_listener() {
-          return ctx.restartEvents();
-        });
-        \u0275\u0275text(62, "Restart Events");
-        \u0275\u0275elementEnd();
-        \u0275\u0275template(63, RxjsBasicsComponent_Conditional_63_Template, 3, 1, "div");
-        \u0275\u0275element(64, "br")(65, "br");
-        \u0275\u0275elementStart(66, "button", 0);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_66_listener() {
-          return ctx.countdown();
-        });
-        \u0275\u0275text(67, "Countdown");
-        \u0275\u0275elementEnd();
-        \u0275\u0275text(68);
-        \u0275\u0275elementStart(69, "button", 2);
-        \u0275\u0275text(70, "Abort Mission");
-        \u0275\u0275elementEnd();
-        \u0275\u0275element(71, "hr")(72, "input", 3)(73, "br")(74, "br");
-        \u0275\u0275text(75, "Rate Limiting: ");
-        \u0275\u0275elementStart(76, "button", 0);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_76_listener() {
-          return ctx.debounceTime();
-        });
-        \u0275\u0275text(77);
-        \u0275\u0275elementEnd();
-        \u0275\u0275text(78, " \u2022 ");
-        \u0275\u0275elementStart(79, "button", 0);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_79_listener() {
-          return ctx.throttleTime();
-        });
-        \u0275\u0275text(80);
-        \u0275\u0275elementEnd();
-        \u0275\u0275text(81, " \u2022 ");
-        \u0275\u0275elementStart(82, "button", 0);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_82_listener() {
-          return ctx.sampleTime();
-        });
-        \u0275\u0275text(83);
-        \u0275\u0275elementEnd();
-        \u0275\u0275text(84, " \u2022 ");
-        \u0275\u0275elementStart(85, "button", 0);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_85_listener() {
-          return ctx.sample();
-        });
-        \u0275\u0275text(86);
-        \u0275\u0275elementEnd();
-        \u0275\u0275text(87, " \u2022 ");
-        \u0275\u0275elementStart(88, "button", 0);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_88_listener() {
-          return ctx.auditTime();
-        });
-        \u0275\u0275text(89);
-        \u0275\u0275elementEnd();
-        \u0275\u0275element(90, "br")(91, "br");
-        \u0275\u0275text(92, "Transformation: ");
-        \u0275\u0275elementStart(93, "button", 4);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_93_listener() {
-          return ctx.ajax();
-        });
-        \u0275\u0275text(94);
-        \u0275\u0275elementEnd();
-        \u0275\u0275text(95, " \u2022 ");
-        \u0275\u0275elementStart(96, "button", 5);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_96_listener() {
-          return ctx.mergeMap();
-        });
-        \u0275\u0275text(97);
-        \u0275\u0275elementEnd();
-        \u0275\u0275text(98, " \u2022 ");
-        \u0275\u0275elementStart(99, "button", 6);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_99_listener() {
-          return ctx.switchMap();
-        });
-        \u0275\u0275text(100);
-        \u0275\u0275elementEnd();
-        \u0275\u0275text(101, " \u2022 ");
-        \u0275\u0275elementStart(102, "button", 7);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_102_listener() {
-          return ctx.concatMap();
-        });
-        \u0275\u0275text(103);
-        \u0275\u0275elementEnd();
-        \u0275\u0275text(104, " \u2022 ");
-        \u0275\u0275elementStart(105, "button", 8);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_105_listener() {
-          return ctx.exhaustMap();
-        });
-        \u0275\u0275text(106);
-        \u0275\u0275elementEnd();
-        \u0275\u0275element(107, "br")(108, "br")(109, "div", 9);
-        \u0275\u0275text(110, " Combination Operators: ");
-        \u0275\u0275elementStart(111, "button", 10);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_111_listener() {
-          return ctx.startWith();
-        });
-        \u0275\u0275text(112);
-        \u0275\u0275elementEnd();
-        \u0275\u0275elementStart(113, "button", 11);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_113_listener() {
-          return ctx.concat();
-        });
-        \u0275\u0275text(114);
-        \u0275\u0275elementEnd();
-        \u0275\u0275elementStart(115, "button", 10);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_115_listener() {
-          return ctx.merge();
-        });
-        \u0275\u0275text(116);
-        \u0275\u0275elementEnd();
-        \u0275\u0275elementStart(117, "button", 12);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_117_listener() {
-          return ctx.withLatestFrom();
-        });
-        \u0275\u0275text(118);
-        \u0275\u0275elementEnd();
-        \u0275\u0275elementStart(119, "button", 13);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_119_listener() {
-          return ctx.forkJoin();
-        });
-        \u0275\u0275text(120);
-        \u0275\u0275elementEnd();
-        \u0275\u0275element(121, "br")(122, "br");
-        \u0275\u0275elementStart(123, "button", 14);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_123_listener() {
-          return ctx.countdown2();
-        });
-        \u0275\u0275text(124);
-        \u0275\u0275elementEnd();
-        \u0275\u0275text(125);
-        \u0275\u0275elementStart(126, "button", 15);
-        \u0275\u0275text(127, "Abort Mission");
-        \u0275\u0275elementEnd();
-        \u0275\u0275element(128, "br")(129, "br");
-        \u0275\u0275elementStart(130, "button", 16);
-        \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_130_listener() {
-          return ctx.combineLatest();
-        });
-        \u0275\u0275text(131);
-        \u0275\u0275elementEnd();
-        \u0275\u0275element(132, "input", 17)(133, "input", 18)(134, "br")(135, "br");
-        \u0275\u0275elementEnd();
-      }
-      if (rf & 2) {
-        \u0275\u0275advance();
-        \u0275\u0275textInterpolate1("Button presses: ", ctx.amount, "");
-        \u0275\u0275advance(56);
-        \u0275\u0275conditional(ctx.displayCount ? 57 : -1);
-        \u0275\u0275advance();
-        \u0275\u0275conditional(ctx.displayMouse ? 58 : -1);
-        \u0275\u0275advance();
-        \u0275\u0275conditional(ctx.displayKeys ? 59 : -1);
-        \u0275\u0275advance();
-        \u0275\u0275conditional(ctx.displayKeys ? 60 : -1);
-        \u0275\u0275advance(3);
-        \u0275\u0275conditional(ctx.displayText ? 63 : -1);
-        \u0275\u0275advance(5);
-        \u0275\u0275textInterpolate1(" ", ctx.theCountdown, " ");
-        \u0275\u0275advance(9);
-        \u0275\u0275textInterpolate(ctx.subscribed ? "Unsubscribe" : "Debounce Time");
-        \u0275\u0275advance(3);
-        \u0275\u0275textInterpolate(ctx.subscribed ? "Unsubscribe" : "Throttle Time");
-        \u0275\u0275advance(3);
-        \u0275\u0275textInterpolate(ctx.subscribed ? "Unsubscribe" : "Sample Time");
-        \u0275\u0275advance(3);
-        \u0275\u0275textInterpolate(ctx.subscribed ? "Unsubscribe" : "Sample");
-        \u0275\u0275advance(3);
-        \u0275\u0275textInterpolate(ctx.subscribed ? "Unsubscribe" : "Audit Time");
-        \u0275\u0275advance(5);
-        \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Ajax", " ");
-        \u0275\u0275advance(3);
-        \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Merge Map", " ");
-        \u0275\u0275advance(3);
-        \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Switch Map", " ");
-        \u0275\u0275advance(3);
-        \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Concat Map", " ");
-        \u0275\u0275advance(3);
-        \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Exhaust Map", " ");
-        \u0275\u0275advance(6);
-        \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Start With", " ");
-        \u0275\u0275advance(2);
-        \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Concat", " ");
-        \u0275\u0275advance(2);
-        \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Merge", " ");
-        \u0275\u0275advance(2);
-        \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "With Latest From", " ");
-        \u0275\u0275advance(2);
-        \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Fork Join", " ");
-        \u0275\u0275advance(4);
-        \u0275\u0275textInterpolate(ctx.subscribed ? "Start" : "Countdown");
-        \u0275\u0275advance();
-        \u0275\u0275textInterpolate1(" ", ctx.theCountdown, " ");
-        \u0275\u0275advance(6);
-        \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Combine Latest", " ");
-      }
-    }, styles: ["\n\nbutton[_ngcontent-%COMP%] {\n  background: #3a4250;\n  padding: 4px 10px;\n  margin: 0 2px;\n  border-radius: 2px;\n  min-width: 100px;\n}\ndiv[_ngcontent-%COMP%] {\n  text-align: center;\n}\n#take[_ngcontent-%COMP%] {\n  position: absolute;\n}"] });
-  }
+  static \u0275fac = function RxjsBasicsComponent_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _RxjsBasicsComponent)();
+  };
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _RxjsBasicsComponent, selectors: [["rxjs-basics"]], decls: 136, vars: 25, consts: [[3, "click"], ["id", "take", 3, "click"], ["id", "abort"], ["id", "timeText"], ["title", "Get and return JSON api request responses", 3, "click"], ["title", "Start on each run", 3, "click"], ["title", "Restart on each run", 3, "click"], ["title", "Queue onto the end of each run", 3, "click"], ["title", "Complete current run, then allow a new one to start", 3, "click"], ["id", "typeahead"], ["title", "Start and end with specified values", 3, "click"], ["title", "Order events to run one after another", 3, "click"], ["title", "Include latest value from stream that is passed in", 3, "click"], ["title", "Combine latest values before emitting", 3, "click"], ["id", "countdown2", 3, "click"], ["id", "abort2"], ["title", "Emit latest values when all passed observables have fired at least once", 3, "click"], ["type", "number", "id", "first"], ["type", "number", "id", "second"]], template: function RxjsBasicsComponent_Template(rf, ctx) {
+    if (rf & 1) {
+      \u0275\u0275elementStart(0, "div");
+      \u0275\u0275text(1);
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(2, "div");
+      \u0275\u0275text(3, " General: ");
+      \u0275\u0275elementStart(4, "button", 0);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_4_listener() {
+        return ctx.helloWorld();
+      });
+      \u0275\u0275text(5, "Hello World");
+      \u0275\u0275elementEnd();
+      \u0275\u0275text(6, " \u2022 ");
+      \u0275\u0275elementStart(7, "button", 0);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_7_listener() {
+        return ctx.setTimeout();
+      });
+      \u0275\u0275text(8, "Set Timeout");
+      \u0275\u0275elementEnd();
+      \u0275\u0275text(9, " \u2022 ");
+      \u0275\u0275elementStart(10, "button", 0);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_10_listener() {
+        return ctx.countOnce();
+      });
+      \u0275\u0275text(11, "Count Once");
+      \u0275\u0275elementEnd();
+      \u0275\u0275text(12, " \u2022 ");
+      \u0275\u0275elementStart(13, "button", 0);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_13_listener() {
+        return ctx.intervalTimer();
+      });
+      \u0275\u0275text(14, "Interval Timer");
+      \u0275\u0275elementEnd();
+      \u0275\u0275text(15, " \u2022 ");
+      \u0275\u0275elementStart(16, "button", 0);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_16_listener() {
+        return ctx.fetch();
+      });
+      \u0275\u0275text(17, "Fetch");
+      \u0275\u0275elementEnd();
+      \u0275\u0275element(18, "br")(19, "br");
+      \u0275\u0275text(20, "Looping: ");
+      \u0275\u0275elementStart(21, "button", 0);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_21_listener() {
+        return ctx.ofSubscription();
+      });
+      \u0275\u0275text(22, "Of Subscription");
+      \u0275\u0275elementEnd();
+      \u0275\u0275text(23, " \u2022 ");
+      \u0275\u0275elementStart(24, "button", 0);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_24_listener() {
+        return ctx.range();
+      });
+      \u0275\u0275text(25, "Range");
+      \u0275\u0275elementEnd();
+      \u0275\u0275text(26, " \u2022 ");
+      \u0275\u0275elementStart(27, "button", 0);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_27_listener() {
+        return ctx.from();
+      });
+      \u0275\u0275text(28, "From");
+      \u0275\u0275elementEnd();
+      \u0275\u0275text(29, " \u2022 ");
+      \u0275\u0275elementStart(30, "button", 0);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_30_listener() {
+        return ctx.ofPipe();
+      });
+      \u0275\u0275text(31, "Of Pipe");
+      \u0275\u0275elementEnd();
+      \u0275\u0275text(32, " \u2022 ");
+      \u0275\u0275elementStart(33, "button", 0);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_33_listener() {
+        return ctx.ofFilter();
+      });
+      \u0275\u0275text(34, "Of Filter");
+      \u0275\u0275elementEnd();
+      \u0275\u0275text(35, " \u2022 ");
+      \u0275\u0275elementStart(36, "button", 0);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_36_listener() {
+        return ctx.reducer();
+      });
+      \u0275\u0275text(37, "Reducer");
+      \u0275\u0275elementEnd();
+      \u0275\u0275text(38, " \u2022 ");
+      \u0275\u0275elementStart(39, "button", 0);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_39_listener() {
+        return ctx.scan();
+      });
+      \u0275\u0275text(40, "Scan");
+      \u0275\u0275elementEnd();
+      \u0275\u0275text(41, " \u2022 ");
+      \u0275\u0275elementStart(42, "button", 1);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_42_listener() {
+        return ctx.take();
+      });
+      \u0275\u0275text(43, "Take");
+      \u0275\u0275elementEnd();
+      \u0275\u0275element(44, "br")(45, "br");
+      \u0275\u0275elementStart(46, "button", 0);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_46_listener() {
+        return ctx.takeWhile();
+      });
+      \u0275\u0275text(47, "Take While");
+      \u0275\u0275elementEnd();
+      \u0275\u0275text(48, " \u2022 ");
+      \u0275\u0275elementStart(49, "button", 0);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_49_listener() {
+        return ctx.takeUntil();
+      });
+      \u0275\u0275text(50, "Take Until");
+      \u0275\u0275elementEnd();
+      \u0275\u0275text(51, " \u2022 ");
+      \u0275\u0275elementStart(52, "button", 0);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_52_listener() {
+        return ctx.distinctUntilChanged();
+      });
+      \u0275\u0275text(53, "Distinct Until Changed");
+      \u0275\u0275elementEnd();
+      \u0275\u0275element(54, "br")(55, "br");
+      \u0275\u0275text(56, "Event: ");
+      \u0275\u0275template(57, RxjsBasicsComponent_Conditional_57_Template, 4, 0, "span")(58, RxjsBasicsComponent_Conditional_58_Template, 4, 0, "span")(59, RxjsBasicsComponent_Conditional_59_Template, 4, 0, "span")(60, RxjsBasicsComponent_Conditional_60_Template, 4, 1, "span");
+      \u0275\u0275elementStart(61, "button", 0);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_61_listener() {
+        return ctx.restartEvents();
+      });
+      \u0275\u0275text(62, "Restart Events");
+      \u0275\u0275elementEnd();
+      \u0275\u0275template(63, RxjsBasicsComponent_Conditional_63_Template, 3, 1, "div");
+      \u0275\u0275element(64, "br")(65, "br");
+      \u0275\u0275elementStart(66, "button", 0);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_66_listener() {
+        return ctx.countdown();
+      });
+      \u0275\u0275text(67, "Countdown");
+      \u0275\u0275elementEnd();
+      \u0275\u0275text(68);
+      \u0275\u0275elementStart(69, "button", 2);
+      \u0275\u0275text(70, "Abort Mission");
+      \u0275\u0275elementEnd();
+      \u0275\u0275element(71, "hr")(72, "input", 3)(73, "br")(74, "br");
+      \u0275\u0275text(75, "Rate Limiting: ");
+      \u0275\u0275elementStart(76, "button", 0);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_76_listener() {
+        return ctx.debounceTime();
+      });
+      \u0275\u0275text(77);
+      \u0275\u0275elementEnd();
+      \u0275\u0275text(78, " \u2022 ");
+      \u0275\u0275elementStart(79, "button", 0);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_79_listener() {
+        return ctx.throttleTime();
+      });
+      \u0275\u0275text(80);
+      \u0275\u0275elementEnd();
+      \u0275\u0275text(81, " \u2022 ");
+      \u0275\u0275elementStart(82, "button", 0);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_82_listener() {
+        return ctx.sampleTime();
+      });
+      \u0275\u0275text(83);
+      \u0275\u0275elementEnd();
+      \u0275\u0275text(84, " \u2022 ");
+      \u0275\u0275elementStart(85, "button", 0);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_85_listener() {
+        return ctx.sample();
+      });
+      \u0275\u0275text(86);
+      \u0275\u0275elementEnd();
+      \u0275\u0275text(87, " \u2022 ");
+      \u0275\u0275elementStart(88, "button", 0);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_88_listener() {
+        return ctx.auditTime();
+      });
+      \u0275\u0275text(89);
+      \u0275\u0275elementEnd();
+      \u0275\u0275element(90, "br")(91, "br");
+      \u0275\u0275text(92, "Transformation: ");
+      \u0275\u0275elementStart(93, "button", 4);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_93_listener() {
+        return ctx.ajax();
+      });
+      \u0275\u0275text(94);
+      \u0275\u0275elementEnd();
+      \u0275\u0275text(95, " \u2022 ");
+      \u0275\u0275elementStart(96, "button", 5);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_96_listener() {
+        return ctx.mergeMap();
+      });
+      \u0275\u0275text(97);
+      \u0275\u0275elementEnd();
+      \u0275\u0275text(98, " \u2022 ");
+      \u0275\u0275elementStart(99, "button", 6);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_99_listener() {
+        return ctx.switchMap();
+      });
+      \u0275\u0275text(100);
+      \u0275\u0275elementEnd();
+      \u0275\u0275text(101, " \u2022 ");
+      \u0275\u0275elementStart(102, "button", 7);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_102_listener() {
+        return ctx.concatMap();
+      });
+      \u0275\u0275text(103);
+      \u0275\u0275elementEnd();
+      \u0275\u0275text(104, " \u2022 ");
+      \u0275\u0275elementStart(105, "button", 8);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_105_listener() {
+        return ctx.exhaustMap();
+      });
+      \u0275\u0275text(106);
+      \u0275\u0275elementEnd();
+      \u0275\u0275element(107, "br")(108, "br")(109, "div", 9);
+      \u0275\u0275text(110, " Combination Operators: ");
+      \u0275\u0275elementStart(111, "button", 10);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_111_listener() {
+        return ctx.startWith();
+      });
+      \u0275\u0275text(112);
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(113, "button", 11);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_113_listener() {
+        return ctx.concat();
+      });
+      \u0275\u0275text(114);
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(115, "button", 10);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_115_listener() {
+        return ctx.merge();
+      });
+      \u0275\u0275text(116);
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(117, "button", 12);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_117_listener() {
+        return ctx.withLatestFrom();
+      });
+      \u0275\u0275text(118);
+      \u0275\u0275elementEnd();
+      \u0275\u0275elementStart(119, "button", 13);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_119_listener() {
+        return ctx.forkJoin();
+      });
+      \u0275\u0275text(120);
+      \u0275\u0275elementEnd();
+      \u0275\u0275element(121, "br")(122, "br");
+      \u0275\u0275elementStart(123, "button", 14);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_123_listener() {
+        return ctx.countdown2();
+      });
+      \u0275\u0275text(124);
+      \u0275\u0275elementEnd();
+      \u0275\u0275text(125);
+      \u0275\u0275elementStart(126, "button", 15);
+      \u0275\u0275text(127, "Abort Mission");
+      \u0275\u0275elementEnd();
+      \u0275\u0275element(128, "br")(129, "br");
+      \u0275\u0275elementStart(130, "button", 16);
+      \u0275\u0275listener("click", function RxjsBasicsComponent_Template_button_click_130_listener() {
+        return ctx.combineLatest();
+      });
+      \u0275\u0275text(131);
+      \u0275\u0275elementEnd();
+      \u0275\u0275element(132, "input", 17)(133, "input", 18)(134, "br")(135, "br");
+      \u0275\u0275elementEnd();
+    }
+    if (rf & 2) {
+      \u0275\u0275advance();
+      \u0275\u0275textInterpolate1("Button presses: ", ctx.amount, "");
+      \u0275\u0275advance(56);
+      \u0275\u0275conditional(ctx.displayCount ? 57 : -1);
+      \u0275\u0275advance();
+      \u0275\u0275conditional(ctx.displayMouse ? 58 : -1);
+      \u0275\u0275advance();
+      \u0275\u0275conditional(ctx.displayKeys ? 59 : -1);
+      \u0275\u0275advance();
+      \u0275\u0275conditional(ctx.displayKeys ? 60 : -1);
+      \u0275\u0275advance(3);
+      \u0275\u0275conditional(ctx.displayText ? 63 : -1);
+      \u0275\u0275advance(5);
+      \u0275\u0275textInterpolate1(" ", ctx.theCountdown, " ");
+      \u0275\u0275advance(9);
+      \u0275\u0275textInterpolate(ctx.subscribed ? "Unsubscribe" : "Debounce Time");
+      \u0275\u0275advance(3);
+      \u0275\u0275textInterpolate(ctx.subscribed ? "Unsubscribe" : "Throttle Time");
+      \u0275\u0275advance(3);
+      \u0275\u0275textInterpolate(ctx.subscribed ? "Unsubscribe" : "Sample Time");
+      \u0275\u0275advance(3);
+      \u0275\u0275textInterpolate(ctx.subscribed ? "Unsubscribe" : "Sample");
+      \u0275\u0275advance(3);
+      \u0275\u0275textInterpolate(ctx.subscribed ? "Unsubscribe" : "Audit Time");
+      \u0275\u0275advance(5);
+      \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Ajax", " ");
+      \u0275\u0275advance(3);
+      \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Merge Map", " ");
+      \u0275\u0275advance(3);
+      \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Switch Map", " ");
+      \u0275\u0275advance(3);
+      \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Concat Map", " ");
+      \u0275\u0275advance(3);
+      \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Exhaust Map", " ");
+      \u0275\u0275advance(6);
+      \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Start With", " ");
+      \u0275\u0275advance(2);
+      \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Concat", " ");
+      \u0275\u0275advance(2);
+      \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Merge", " ");
+      \u0275\u0275advance(2);
+      \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "With Latest From", " ");
+      \u0275\u0275advance(2);
+      \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Fork Join", " ");
+      \u0275\u0275advance(4);
+      \u0275\u0275textInterpolate(ctx.subscribed ? "Start" : "Countdown");
+      \u0275\u0275advance();
+      \u0275\u0275textInterpolate1(" ", ctx.theCountdown, " ");
+      \u0275\u0275advance(6);
+      \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Combine Latest", " ");
+    }
+  }, styles: ["\n\nbutton[_ngcontent-%COMP%] {\n  background: #3a4250;\n  padding: 4px 10px;\n  margin: 0 2px;\n  border-radius: 2px;\n  min-width: 100px;\n}\ndiv[_ngcontent-%COMP%] {\n  text-align: center;\n}\n#take[_ngcontent-%COMP%] {\n  position: absolute;\n}"] });
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(RxjsBasicsComponent, [{

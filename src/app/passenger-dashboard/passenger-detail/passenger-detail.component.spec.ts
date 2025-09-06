@@ -22,11 +22,15 @@ describe('PassengerDetailComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(PassengerDetailComponent);
         component = fixture.componentInstance;
-        component.detail = passenger;
+        fixture.componentRef.setInput('detail', passenger);
         fixture.detectChanges();
     });
 
     it('should create', () => {
         expect(component).toBeTruthy();
+    });
+
+    it('should set passenger input', () => {
+        expect(component.detail()).toBe(passenger);
     });
 });

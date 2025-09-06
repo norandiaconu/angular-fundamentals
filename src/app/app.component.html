@@ -1,7 +1,8 @@
 <style>
     :host {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji',
-            'Segoe UI Emoji', 'Segoe UI Symbol';
+        font-family:
+            -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+            "Segoe UI Symbol";
         font-size: 14px;
         color: #333;
         box-sizing: border-box;
@@ -34,42 +35,42 @@
 <div class="progress-bar"></div>
 <div class="content" role="main">
     @if (display) {
-    <div class="app">
-        {{ title + '!' }}
-        <h1 [innerHTML]="title"></h1>
-        <div>
-            {{ numberOne + numberTwo }} &bull;
-            {{ isHappy ? ':)' : ':(' }}
+        <div class="app">
+            {{ title + "!" }}
+            <h1 [innerHTML]="title"></h1>
+            <div>
+                {{ numberOne + numberTwo }} &bull;
+                {{ isHappy ? ":)" : ":(" }}
+            </div>
+            <div>
+                <img [src]="logo" alt="Angular" style="width: 100px; height: 100px" />
+            </div>
+            <input type="text" [value]="title" (input)="handleInput($event)" (blur)="handleBlur($event)" />
+            <input type="text" [ngModel]="title" (ngModelChange)="handleChange($event)" />
+            <input type="text" [(ngModel)]="title" />
+            <button (click)="handleClick()">Change Name</button>
+            <div>
+                <input type="text" #username />
+                <button (click)="handleChange(username.value)">Get Value</button>
+            </div>
+            <input type="text" [value]="name" (input)="handleNameChange($event)" />
+            @if (name.length > 2) {
+                <div>
+                    Searching for... {{ name }} <br /><br />
+                    <nav class="nav" aria-label="nav1">
+                        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a> &bull;
+                        <a routerLink="oops" routerLinkActive="active">404</a> &bull;
+                        <a routerLink="passengers" routerLinkActive="active">Passengers</a>
+                    </nav>
+                </div>
+            }
+            <br /><br />
+            <div class="flexbox-container">
+                <div class="flexbox-item flexbox-item-1">1</div>
+                <div class="flexbox-item flexbox-item-2">2</div>
+                <div class="flexbox-item flexbox-item-3">3</div>
+            </div>
         </div>
-        <div>
-            <img [src]="logo" alt="Angular" style="width: 100px; height: 100px" />
-        </div>
-        <input type="text" [value]="title" (input)="handleInput($event)" (blur)="handleBlur($event)" />
-        <input type="text" [ngModel]="title" (ngModelChange)="handleChange($event)" />
-        <input type="text" [(ngModel)]="title" />
-        <button (click)="handleClick()">Change Name</button>
-        <div>
-            <input type="text" #username />
-            <button (click)="handleChange(username.value)">Get Value</button>
-        </div>
-        <input type="text" [value]="name" (input)="handleNameChange($event.target.value)" />
-        @if (name.length > 2) {
-        <div>
-            Searching for... {{ name }} <br /><br />
-            <nav class="nav" aria-label="nav1">
-                <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a> &bull;
-                <a routerLink="oops" routerLinkActive="active">404</a> &bull;
-                <a routerLink="passengers" routerLinkActive="active">Passengers</a>
-            </nav>
-        </div>
-        }
-        <br /><br />
-        <div class="flexbox-container">
-            <div class="flexbox-item flexbox-item-1">1</div>
-            <div class="flexbox-item flexbox-item-2">2</div>
-            <div class="flexbox-item flexbox-item-3">3</div>
-        </div>
-    </div>
     }
     <br />
     <!-- <passenger-dashboard>/passenger-dashboard> -->
@@ -78,9 +79,9 @@
     <div>
         <nav class="nav" aria-label="nav2">
             @for (item of nav; track item) {
-            <a [routerLink]="item.link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: item.exact }">
-                {{ item.name }}
-            </a>
+                <a [routerLink]="item.link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: item.exact }">
+                    {{ item.name }}
+                </a>
             }
         </nav>
         <router-outlet></router-outlet>
