@@ -3,13 +3,12 @@ import { Component } from '@angular/core';
 @Component({
     selector: 'typescript-basics',
     templateUrl: './typescript-basics.component.html',
-    styleUrls: ['./typescript-basics.component.scss'],
-    standalone: true
+    styleUrls: ['./typescript-basics.component.scss']
 })
 export class TypescriptBasicsComponent {
-    subscribed = false;
+    protected subscribed = false;
 
-    multiplier(): void {
+    protected multiplier(): void {
         function multiply(a: number, b: number = 5): number {
             return a * b;
         }
@@ -18,7 +17,7 @@ export class TypescriptBasicsComponent {
         console.log(multiply(5));
     }
 
-    createOrder(): void {
+    protected createOrder(): void {
         const pizza = {
             name: 'Pepperoni',
             price: 15,
@@ -36,7 +35,7 @@ export class TypescriptBasicsComponent {
         console.log(pizza.getName());
     }
 
-    sumAll(): void {
+    protected sumAll(): void {
         function addAll(message: string, ...arr: Array<number>): number {
             console.log(message);
             console.log(arguments);
@@ -46,7 +45,7 @@ export class TypescriptBasicsComponent {
         console.log(addAll('Hello', 1, 2, 3));
     }
 
-    concatArrays(): void {
+    protected concatArrays(): void {
         const toppings = ['bacon', 'chili'];
         const newToppings = ['pepperoni'];
         const allToppings = [...toppings, ...newToppings];
@@ -54,7 +53,7 @@ export class TypescriptBasicsComponent {
         console.log(allToppings);
     }
 
-    spreadOperator(): void {
+    protected spreadOperator(): void {
         const pizza = { name: 'Pepperoni' };
         const toppings = ['Pepperoni'];
         const spreadOrder = { ...pizza, toppings };
@@ -62,7 +61,7 @@ export class TypescriptBasicsComponent {
         console.log(spreadOrder);
     }
 
-    destructure(): void {
+    protected destructure(): void {
         const pizza = {
             name: 'Pepperoni',
             toppings: ['Pepperoni']
@@ -85,7 +84,7 @@ export class TypescriptBasicsComponent {
         logToppings(toppings);
     }
 
-    allowNull(): void {
+    protected allowNull(): void {
         let coupon: string | null = 'pizza';
         function removeCoupon(): void {
             coupon = null;
@@ -95,7 +94,7 @@ export class TypescriptBasicsComponent {
         console.log(coupon);
     }
 
-    literalTypes(): void {
+    protected literalTypes(): void {
         let pizzaSize = 'small';
         function selectSize(size: 'small' | 'medium' | 'large'): void {
             pizzaSize = size;
@@ -105,7 +104,7 @@ export class TypescriptBasicsComponent {
         console.log(pizzaSize);
     }
 
-    functionTypes(): void {
+    protected functionTypes(): void {
         const sumOrder: (price: number, quantity: number) => number = (x, y) => x * y;
         const sum = sumOrder(25, 2);
         console.log(sum);

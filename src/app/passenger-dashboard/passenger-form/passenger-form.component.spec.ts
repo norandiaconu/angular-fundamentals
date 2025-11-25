@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { PassengerFormComponent } from './passenger-form.component';
 
@@ -6,11 +6,11 @@ describe('PassengerFormComponent', () => {
     let component: PassengerFormComponent;
     let fixture: ComponentFixture<PassengerFormComponent>;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [FormsModule, PassengerFormComponent]
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(PassengerFormComponent);

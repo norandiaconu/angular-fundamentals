@@ -1,11 +1,9 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-
 import { Passenger } from './passenger';
 import { PassengerDashboardService } from './passenger-dashboard.service';
 import { PassengerCountComponent } from './passenger-count/passenger-count.component';
-
 import { PassengerDetailComponent } from './passenger-detail/passenger-detail.component';
 
 @Component({
@@ -15,18 +13,18 @@ import { PassengerDetailComponent } from './passenger-detail/passenger-detail.co
     imports: [PassengerCountComponent, PassengerDetailComponent]
 })
 export class PassengerDashboardComponent implements OnInit {
-    private passengerDashboardService = inject(PassengerDashboardService);
-    private router = inject(Router);
-
-    passengers: Passenger[] = [];
-    passenger0: Passenger = {
+    protected passengers: Passenger[] = [];
+    protected passenger0: Passenger = {
         id: 0,
         fullName: '',
         checkedIn: false,
         baggage: ''
     };
 
-    handleEdit(event: Passenger): void {
+    private readonly passengerDashboardService = inject(PassengerDashboardService);
+    private readonly router = inject(Router);
+
+    protected handleEdit(event: Passenger): void {
         this.passengerDashboardService.updatePassenger(event).subscribe(
             (data: Passenger) => {
                 if (data.id === event.id) {
@@ -41,7 +39,7 @@ export class PassengerDashboardComponent implements OnInit {
         );
     }
 
-    handleRemove(event: Passenger): void {
+    protected handleRemove(event: Passenger): void {
         this.passengerDashboardService.deletePassenger(event).subscribe(
             (data: Passenger) => {
                 this.passengers = this.passengers.filter((passenger: Passenger) => passenger.id !== event.id);
@@ -52,7 +50,7 @@ export class PassengerDashboardComponent implements OnInit {
         );
     }
 
-    getAllPassengers(): void {
+    private getAllPassengers(): void {
         this.passengerDashboardService.getPassengers().subscribe(
             (data: Passenger[]) => {
                 // console.log(data);
@@ -65,7 +63,7 @@ export class PassengerDashboardComponent implements OnInit {
         );
     }
 
-    getThePassenger(): Passenger {
+    public getThePassenger(): Passenger {
         this.passengerDashboardService.getPassenger(1).subscribe(
             (data: Passenger) => {
                 this.passenger0 = data;
@@ -78,7 +76,7 @@ export class PassengerDashboardComponent implements OnInit {
         return this.passenger0;
     }
 
-    getThePassengerPromise(): Passenger {
+    public getThePassengerPromise(): Passenger {
         this.passengerDashboardService.getPassengerPromise().then((data: Passenger) => {
             this.passenger0 = data;
             console.log(this.passenger0);
@@ -86,13 +84,13 @@ export class PassengerDashboardComponent implements OnInit {
         return this.passenger0;
     }
 
-    handleView(event: Passenger): void {
+    protected handleView(event: Passenger): void {
         this.router.navigate(['/passengers', event.id]);
     }
 
     ngOnInit(): void {
-    // this.getThePassenger();
-    // this.getThePassengerPromise();
+        // this.getThePassenger();
+        // this.getThePassengerPromise();
 
         this.getAllPassengers();
     }

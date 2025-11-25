@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AngularProComponent } from './angular-pro.component';
 import { FormsModule } from '@angular/forms';
 import { AuthRememberComponent } from './auth-remember/auth-remember.component';
@@ -9,11 +9,11 @@ describe('AngularProComponent', () => {
     let component: AngularProComponent;
     let fixture: ComponentFixture<AngularProComponent>;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [FormsModule, AngularProComponent, AuthRememberComponent, AuthFormComponent, AuthMessageComponent]
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(AngularProComponent);

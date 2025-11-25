@@ -28,18 +28,18 @@ interface User {
     imports: [FormsModule, AuthMessageComponent]
 })
 export class AuthFormComponent implements AfterContentInit, AfterViewInit {
-    private cd = inject(ChangeDetectorRef);
-    private renderer = inject(Renderer2);
+    public readonly submitted = output<User>();
+    public title = '';
+    public showButton = false;
+    protected showMessage = false;
 
-    readonly submitted = output<User>();
-    readonly remember = contentChild(AuthRememberComponent);
-    readonly remember2 = contentChildren(AuthRememberComponent);
-    readonly message = viewChild(AuthMessageComponent);
-    readonly message2 = viewChildren(AuthMessageComponent);
-    readonly email = viewChild.required<ElementRef>('email');
-    showMessage = false;
-    title = '';
-    showButton = false;
+    private readonly cd = inject(ChangeDetectorRef);
+    private readonly renderer = inject(Renderer2);
+    private readonly remember = contentChild(AuthRememberComponent);
+    private readonly remember2 = contentChildren(AuthRememberComponent);
+    private readonly message = viewChild(AuthMessageComponent);
+    private readonly message2 = viewChildren(AuthMessageComponent);
+    private readonly email = viewChild.required<ElementRef>('email');
 
     ngAfterContentInit(): void {
         const remember = this.remember();
@@ -86,7 +86,7 @@ export class AuthFormComponent implements AfterContentInit, AfterViewInit {
         }
     }
 
-    onSubmit(value: User): void {
+    protected onSubmit(value: User): void {
         this.submitted.emit(value);
     }
 }

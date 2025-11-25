@@ -187,7 +187,7 @@ var TypescriptBasicsComponent = class _TypescriptBasicsComponent {
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(TypescriptBasicsComponent, [{
     type: Component,
-    args: [{ selector: "typescript-basics", standalone: true, template: `<div>\r
+    args: [{ selector: "typescript-basics", template: `<div>\r
     <button (click)="multiplier()"\r
         title="Parameters can be assigned a default value in case one is not passed in">\r
     {{ subscribed ? 'Unsubscribe' : 'Default Function Parameters'}}</button>\r
@@ -221,7 +221,7 @@ var TypescriptBasicsComponent = class _TypescriptBasicsComponent {
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(TypescriptBasicsComponent, { className: "TypescriptBasicsComponent", filePath: "src/app/typescript-basics/typescript-basics.component.ts", lineNumber: 9 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(TypescriptBasicsComponent, { className: "TypescriptBasicsComponent", filePath: "src/app/typescript-basics/typescript-basics.component.ts", lineNumber: 8 });
 })();
 export {
   TypescriptBasicsComponent

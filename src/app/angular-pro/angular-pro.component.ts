@@ -27,15 +27,15 @@ interface User {
     imports: [AuthFormComponent, AuthRememberComponent, NgTemplateOutlet]
 })
 export class AngularProComponent implements OnInit, AfterContentInit {
-    private resolver = inject(ComponentFactoryResolver);
+    private readonly resolver = inject(ComponentFactoryResolver);
 
-    readonly entry = viewChild.required('entry', { read: ViewContainerRef });
-    readonly tmpl = viewChild.required<TemplateRef<any>>('tmpl');
-    rememberMe = false;
-    subjectOne: Subject<number> = new Subject<number>();
-    observableOne: Observable<number> = new Observable<number>();
-    unsubscribe$: Subject<void> = new Subject<void>();
-    component!: ComponentRef<AuthFormComponent>;
+    private readonly entry = viewChild.required('entry', { read: ViewContainerRef });
+    private readonly tmpl = viewChild.required<TemplateRef<any>>('tmpl');
+    private rememberMe = false;
+    private subjectOne: Subject<number> = new Subject<number>();
+    private observableOne: Observable<number> = new Observable<number>();
+    private unsubscribe$: Subject<void> = new Subject<void>();
+    private component!: ComponentRef<AuthFormComponent>;
 
     ngOnInit(): void {
         this.rememberMe = false;
@@ -73,23 +73,23 @@ export class AngularProComponent implements OnInit, AfterContentInit {
         });
     }
 
-    createUser(user: User): void {
+    protected createUser(user: User): void {
         console.log('Create user', user);
     }
 
-    rememberUser(remember: boolean): void {
+    protected rememberUser(remember: boolean): void {
         this.rememberMe = remember;
     }
 
-    loginUser(user: User): void {
+    protected loginUser(user: User): void {
         console.log('Log in user', user, this.rememberMe);
     }
 
-    destroyComponent(): void {
+    protected destroyComponent(): void {
         this.component.destroy();
     }
 
-    moveComponent(): void {
+    protected moveComponent(): void {
         this.entry().move(this.component.hostView, 0);
     }
 }

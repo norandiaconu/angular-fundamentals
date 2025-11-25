@@ -4,13 +4,12 @@ import { Passenger } from '../passenger';
 @Component({
     selector: 'passenger-count',
     templateUrl: './passenger-count.component.html',
-    styleUrls: ['./passenger-count.component.scss'],
-    standalone: true
+    styleUrls: ['./passenger-count.component.scss']
 })
 export class PassengerCountComponent {
-    readonly items = input<Passenger[]>([]);
+    public readonly items = input<Passenger[]>([]);
 
-    checkedInCount(): number {
+    protected checkedInCount(): number {
         const items = this.items();
         if (!items) {
             return 0;

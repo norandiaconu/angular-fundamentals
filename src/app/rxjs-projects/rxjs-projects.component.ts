@@ -1,25 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { fromEvent, timer, Subscription, combineLatest, of } from 'rxjs';
+import { fromEvent, timer, Subscription, combineLatest } from 'rxjs';
 import { exhaustMap, switchMapTo, pluck, takeUntil, map, filter, tap, share } from 'rxjs/operators';
 import { ajax } from 'rxjs/ajax';
 
 @Component({
     selector: 'rxjs-projects',
     templateUrl: './rxjs-projects.component.html',
-    styleUrls: ['./rxjs-projects.component.scss'],
-    standalone: true
+    styleUrls: ['./rxjs-projects.component.scss']
 })
 export class RxjsProjectsComponent implements OnInit {
-    subscribed = false;
-    timeSub: Subscription = new Subscription();
-    polling = false;
+    protected subscribed = false;
+    protected polling = false;
+    private timeSub: Subscription = new Subscription();
 
     ngOnInit(): void {
         this.subscribed = false;
         this.polling = false;
     }
 
-    dogSub(): void {
+    protected dogSub(): void {
         if (this.subscribed === false) {
             const dogImage = document.getElementById('dog') as HTMLImageElement;
             const dogVideo = document.getElementById('dogVid') as HTMLVideoElement;
@@ -45,31 +44,26 @@ export class RxjsProjectsComponent implements OnInit {
         this.subscribed = !this.subscribed;
     }
 
-    dogStart(): void {
+    protected dogStart(): void {
         if (this.polling === false) {
             this.polling = true;
         }
     }
 
-    dogStop(): void {
+    protected dogStop(): void {
         if (this.polling === true) {
             this.polling = false;
         }
     }
 
-    calculateMortgage(interest: number, loanAmount: number, loanLength: number): string {
-        const calculatedInterest = interest / 1200;
-        const total = (loanAmount * calculatedInterest) / (1 - Math.pow(1 / (1 + calculatedInterest), loanLength));
-        return total.toFixed(2);
-    }
-
-    mortgageSub(): void {
+    protected mortgageSub(): void {
         if (this.subscribed === false) {
             const loanAmount = document.getElementById('loanAmount');
             const interest = document.getElementById('interest');
             const loanLength = document.querySelectorAll('.loanLength');
             const expected = document.getElementById('expected');
-            const createInputValueStream = (elem: any) => fromEvent(elem, 'input').pipe(map((event: any) => parseFloat(event.target.value)));
+            const createInputValueStream = (elem: any) =>
+                fromEvent(elem, 'input').pipe(map((event: any) => parseFloat(event.target.value)));
             const interest$ = createInputValueStream(interest);
             const loanLength$ = createInputValueStream(loanLength);
             const loanAmount$ = createInputValueStream(loanAmount);
@@ -91,7 +85,9 @@ export class RxjsProjectsComponent implements OnInit {
 
             this.timeSub = combineLatest([interest$, loanAmount$, loanLength$])
                 .pipe(
-                    map(([interestTemp, loanAmountTemp, loanLengthTemp]) => this.calculateMortgage(interestTemp, loanAmountTemp, loanLengthTemp)),
+                    map(([interestTemp, loanAmountTemp, loanLengthTemp]) =>
+                        this.calculateMortgage(interestTemp, loanAmountTemp, loanLengthTemp)
+                    ),
                     tap(console.log),
                     filter((mortgageAmount) => !isNaN(Number(mortgageAmount))),
                     share()
@@ -103,5 +99,11 @@ export class RxjsProjectsComponent implements OnInit {
             this.timeSub.unsubscribe();
         }
         this.subscribed = !this.subscribed;
+    }
+
+    private calculateMortgage(interest: number, loanAmount: number, loanLength: number): string {
+        const calculatedInterest = interest / 1200;
+        const total = (loanAmount * calculatedInterest) / (1 - Math.pow(1 / (1 + calculatedInterest), loanLength));
+        return total.toFixed(2);
     }
 }

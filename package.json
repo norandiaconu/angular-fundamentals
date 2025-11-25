@@ -1,6 +1,6 @@
 {
     "name": "angular-fundamentals",
-    "version": "19.1.1",
+    "version": "19.1.2",
     "scripts": {
         "1": "ng serve",
         "2": "json-server db.json",

@@ -48,7 +48,6 @@ import {
 } from 'rxjs/operators';
 import { ajax } from 'rxjs/ajax';
 
-
 @Component({
     selector: 'rxjs-basics',
     templateUrl: './rxjs-basics.component.html',
@@ -56,19 +55,20 @@ import { ajax } from 'rxjs/ajax';
     imports: []
 })
 export class RxjsBasicsComponent implements OnInit, OnDestroy {
-    amount = 0;
-    consoleString = '';
-    counter: Subscription = new Subscription();
-    eventSub: Subscription = new Subscription();
-    observer!: Observer<number | Event>;
-    displayCount = false;
-    displayMouse = false;
-    displayKeys = false;
-    displayText = false;
-    theCountdown = '';
-    keyup$ = fromEvent(document, 'keyup');
-    subscribed = false;
-    timeSub: Subscription = new Subscription();
+    protected amount = 0;
+    protected displayCount = false;
+    protected displayMouse = false;
+    protected displayKeys = false;
+    protected displayText = false;
+    protected theCountdown = '';
+    protected subscribed = false;
+
+    private consoleString = '';
+    private counter: Subscription = new Subscription();
+    private eventSub: Subscription = new Subscription();
+    private observer!: Observer<number | Event>;
+    private keyup$ = fromEvent(document, 'keyup');
+    private timeSub: Subscription = new Subscription();
 
     ngOnInit(): void {
         this.amount = 0;
@@ -88,7 +88,7 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
         this.subscribed = false;
     }
 
-    helloWorld(): void {
+    protected helloWorld(): void {
         const observable1 = new Observable((subscriber) => {
             subscriber.next('Hello');
             subscriber.next('World');
@@ -101,13 +101,13 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
         console.log('after');
     }
 
-    setTimeout(): void {
+    protected setTimeout(): void {
         setTimeout(() => {
             console.log('timeout');
         }, 3000);
     }
 
-    countOnce(): void {
+    protected countOnce(): void {
         this.consoleString = 'countOnce';
         const observable2 = new Observable((subscriber) => {
             let count = 0;
@@ -125,7 +125,7 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
         this.counter = observable2.subscribe(this.observer as any);
     }
 
-    intervalTimer(): void {
+    protected intervalTimer(): void {
         this.consoleString = 'intervalTimer';
         const timer$ = interval(1000);
         const timerSub = timer$.subscribe(this.observer);
@@ -137,33 +137,33 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
         }, 10000);
     }
 
-    fetch(): void {
+    protected fetch(): void {
         const fetchedPromise = fetch('https://api.github.com/users/octocat');
         fetchedPromise.then((data) => {
             console.log(data.json());
         });
     }
 
-    ofSubscription(): void {
+    protected ofSubscription(): void {
         this.consoleString = 'ofSubscription';
         const source2$ = of(11, 12, 13, 14, 15);
         const sub = source2$.subscribe(this.observer);
         sub.unsubscribe();
     }
 
-    range(): void {
+    protected range(): void {
         this.consoleString = 'range';
         const source3$ = range(100, 5);
         source3$.subscribe(this.observer).unsubscribe();
     }
 
-    from(): void {
+    protected from(): void {
         this.consoleString = 'from';
         const source4$ = from([21, 22, 23, 24, 25]);
         source4$.subscribe(this.observer).unsubscribe();
     }
 
-    ofPipe(): void {
+    protected ofPipe(): void {
         this.consoleString = 'ofPipe';
         of(1, 2, 3, 4, 5)
             .pipe(
@@ -178,7 +178,7 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
             .unsubscribe();
     }
 
-    ofFilter(): void {
+    protected ofFilter(): void {
         this.consoleString = 'ofFilter';
         of(30, 31, 32, 33, 34, 35)
             .pipe(filter((value) => value > 32))
@@ -186,7 +186,7 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
             .unsubscribe();
     }
 
-    reducer(): void {
+    protected reducer(): void {
         this.consoleString = 'reducer';
         const numbers = [1, 2, 3, 4, 5];
         const totalReducer = (accumulator: number, currentValue: number) => accumulator + currentValue;
@@ -201,12 +201,10 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
         }, 1000);
     }
 
-    scan(): void {
+    protected scan(): void {
         this.consoleString = 'scan';
         from([1, 2, 3, 4, 5])
-            .pipe(
-                scan((accumulator, currentValue) => accumulator + currentValue, 0)
-            )
+            .pipe(scan((accumulator, currentValue) => accumulator + currentValue, 0))
             .subscribe(this.observer)
             .unsubscribe();
 
@@ -221,9 +219,7 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
             { name: 'Brian', loggedIn: true, token: '123' }
         ];
 
-        const state$ = from(user).pipe(
-            scan((accumulator, currentValue) => ({ ...accumulator, ...currentValue }), {})
-        );
+        const state$ = from(user).pipe(scan((accumulator, currentValue) => ({ ...accumulator, ...currentValue }), {}));
         state$.subscribe(this.observer as any).unsubscribe();
         from(user)
             .pipe(
@@ -242,7 +238,7 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
             .unsubscribe();
     }
 
-    take(): void {
+    protected take(): void {
         of(1, 2, 3, 4, 5)
             .pipe(take(3))
             .subscribe({
@@ -281,7 +277,7 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
         document.getElementById('take')!.style.top = randomNum + 'px';
     }
 
-    takeWhile(): void {
+    protected takeWhile(): void {
         fromEvent(document, 'click')
             .pipe(
                 map((event: Event) => event as MouseEvent),
@@ -297,17 +293,17 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
             });
     }
 
-    takeUntil(): void {
+    protected takeUntil(): void {
         interval(1000)
             .pipe(takeUntil(fromEvent(document, 'keyup')))
             .subscribe(console.log);
     }
 
-    distinctUntilChanged(): void {
+    protected distinctUntilChanged(): void {
         of(1, 1, 2, 3).pipe(distinctUntilChanged()).subscribe(console.log).unsubscribe();
     }
 
-    keyCount(): void {
+    protected keyCount(): void {
         this.displayCount = false;
         this.eventSub.add(
             this.keyup$.subscribe((observer1) => {
@@ -318,7 +314,7 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
         );
     }
 
-    mouseClickEvent(): void {
+    protected mouseClickEvent(): void {
         this.displayMouse = false;
         this.consoleString = 'mouseClickEvent';
         const source1$ = fromEvent(document, 'click');
@@ -330,9 +326,12 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
         }, 5000);
     }
 
-    keyCodes(): void {
+    protected keyCodes(): void {
         this.displayKeys = false;
-        const keyCodeMap$ = this.keyup$.pipe(map((event: Event) => event as KeyboardEvent), map((event: KeyboardEvent) => event.code));
+        const keyCodeMap$ = this.keyup$.pipe(
+            map((event: Event) => event as KeyboardEvent),
+            map((event: KeyboardEvent) => event.code)
+        );
         this.eventSub.add(keyCodeMap$.subscribe(console.log));
 
         const keyCodePluck$ = this.keyup$.pipe(pluck('code'));
@@ -341,11 +340,14 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
         const keyCodeMapTo$ = this.keyup$.pipe(mapTo('keyPressed'));
         this.eventSub.add(keyCodeMapTo$.subscribe(console.log));
 
-        const enter$ = this.keyup$.pipe(map((event: Event) => event as KeyboardEvent), filter((code: KeyboardEvent) => code.code === 'Enter'));
+        const enter$ = this.keyup$.pipe(
+            map((event: Event) => event as KeyboardEvent),
+            filter((code: KeyboardEvent) => code.code === 'Enter')
+        );
         this.eventSub.add(enter$.subscribe(console.log));
     }
 
-    scrollBar(): void {
+    protected scrollBar(): void {
         if (this.subscribed === false) {
             this.displayText = true;
             const scroll$ = fromEvent(document, 'scroll');
@@ -373,7 +375,7 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
         this.subscribed = !this.subscribed;
     }
 
-    restartEvents(): void {
+    protected restartEvents(): void {
         this.eventSub.unsubscribe();
         this.displayCount = true;
         this.displayMouse = true;
@@ -382,7 +384,7 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
         this.eventSub = new Subscription();
     }
 
-    countdown(): void {
+    protected countdown(): void {
         const abortButton = document.getElementById('abort');
 
         interval(1000)
@@ -400,58 +402,33 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
             });
     }
 
-    debounceTime(): void {
+    protected debounceTime(): void {
         this.genericTime(debounceTime(1000));
     }
 
-    throttleTime(): void {
+    protected throttleTime(): void {
         this.genericTime(throttleTime(1000));
     }
 
-    sampleTime(): void {
+    protected sampleTime(): void {
         this.genericTime(sampleTime(1000));
     }
 
-    sample(): void {
+    protected sample(): void {
         this.genericTime(sample(interval(1000)));
     }
 
-    auditTime(): void {
+    protected auditTime(): void {
         this.genericTime(auditTime(1000));
     }
 
-    genericTime(style: any): void {
-        if (this.subscribed === false) {
-            this.timeSub = fromEvent(document, 'click')
-                .pipe(
-                    style,
-                    map((event: MouseEvent) => ({
-                        x: event.clientX,
-                        y: event.clientY
-                    }))
-                )
-                .subscribe(console.log);
-
-            this.timeSub.add(
-                fromEvent(document.getElementById('timeText')!, 'keyup')
-                    .pipe(style, pluck('target', 'value'), distinctUntilChanged())
-                    .subscribe(console.log)
-            );
-        } else {
-            this.timeSub.unsubscribe();
-        }
-        this.subscribed = !this.subscribed;
-    }
-
-    ajax(): void {
+    protected ajax(): void {
         if (this.subscribed === false) {
             this.timeSub = fromEvent(document.getElementById('timeText')!, 'keyup')
                 .pipe(
                     debounceTime(1000),
                     pluck('target', 'value'),
-                    map((event) => ajax.getJSON('http://localhost:3000/passengers/' + event).pipe(
-                        catchError(() => EMPTY)
-                    )),
+                    map((event) => ajax.getJSON('http://localhost:3000/passengers/' + event).pipe(catchError(() => EMPTY))),
                     mergeAll()
                 )
                 .subscribe(console.log);
@@ -461,9 +438,7 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
                     .pipe(
                         debounceTime(1000),
                         pluck('target', 'value'),
-                        mergeMap((event) => ajax.getJSON('https://api.github.com/users/' + event).pipe(
-                            catchError(() => EMPTY)
-                        ))
+                        mergeMap((event) => ajax.getJSON('https://api.github.com/users/' + event).pipe(catchError(() => EMPTY)))
                     )
                     .subscribe(console.log)
             );
@@ -473,7 +448,7 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
         this.subscribed = !this.subscribed;
     }
 
-    mergeMap(): void {
+    protected mergeMap(): void {
         if (this.subscribed === false) {
             this.timeSub = fromEvent(document, 'mousedown')
                 .pipe(mergeMap(() => interval(1000).pipe(takeUntil(fromEvent(document, 'mouseup')))))
@@ -490,9 +465,7 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
                     )
                     .pipe(
                         mergeMap((coords) =>
-                            ajax.post('https://run.mocky.io/v3/4cd66c07-e46c-425d-94ec-a53724bdc1ec', coords).pipe(
-                                catchError(() => EMPTY)
-                            )
+                            ajax.post('https://run.mocky.io/v3/4cd66c07-e46c-425d-94ec-a53724bdc1ec', coords).pipe(catchError(() => EMPTY))
                         )
                     )
                     .subscribe(console.log)
@@ -503,7 +476,7 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
         this.subscribed = !this.subscribed;
     }
 
-    switchMap(): void {
+    protected switchMap(): void {
         const baseUrl = 'https://api.openbrewerydb.org/breweries';
         const typeaheadBox = document.getElementById('typeahead');
         if (this.subscribed === false) {
@@ -518,11 +491,7 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
                         pluck('target', 'value'),
                         distinctUntilChanged(),
                         map((searchTerm: unknown) => searchTerm as string),
-                        switchMap((searchTerm: string) =>
-                            ajax.getJSON(baseUrl + '?by_name=' + searchTerm).pipe(
-                                catchError(() => EMPTY)
-                            )
-                        )
+                        switchMap((searchTerm: string) => ajax.getJSON(baseUrl + '?by_name=' + searchTerm).pipe(catchError(() => EMPTY)))
                     )
                     .subscribe((response: any) => {
                         typeaheadBox!.innerHTML = response.map((b: any) => b.name).join('<br>');
@@ -534,7 +503,7 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
         this.subscribed = !this.subscribed;
     }
 
-    concatMap(): void {
+    protected concatMap(): void {
         if (this.subscribed === false) {
             this.timeSub = fromEvent(document, 'click')
                 .pipe(concatMap(() => interval(1000).pipe(take(3))))
@@ -545,7 +514,7 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
         this.subscribed = !this.subscribed;
     }
 
-    exhaustMap(): void {
+    protected exhaustMap(): void {
         if (this.subscribed === false) {
             this.timeSub = fromEvent(document, 'click')
                 .pipe(exhaustMap(() => interval(1000).pipe(take(3))))
@@ -556,7 +525,7 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
         this.subscribed = !this.subscribed;
     }
 
-    startWith(): void {
+    protected startWith(): void {
         if (this.subscribed === false) {
             const numbers = of(1, 2, 3);
             this.timeSub = numbers.pipe(startWith('a', 'b'), endWith('c', 'd')).subscribe(console.log);
@@ -566,7 +535,7 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
         this.subscribed = !this.subscribed;
     }
 
-    concat(): void {
+    protected concat(): void {
         if (this.subscribed === false) {
             const interval$ = interval(1000);
             this.timeSub = concat(interval$.pipe(take(3)), interval$.pipe(take(2))).subscribe(console.log);
@@ -576,7 +545,7 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
         this.subscribed = !this.subscribed;
     }
 
-    merge(): void {
+    protected merge(): void {
         if (this.subscribed === false) {
             this.timeSub = merge(fromEvent(document, 'keyup'), fromEvent(document, 'click')).subscribe(console.log);
         } else {
@@ -585,13 +554,13 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
         this.subscribed = !this.subscribed;
     }
 
-    countdown2(): void {
+    protected countdown2(): void {
         const startButton = document.getElementById('countdown2');
         const pauseButton = document.getElementById('abort2');
 
         merge(fromEvent(startButton!, 'click').pipe(mapTo(true)), fromEvent(pauseButton!, 'click').pipe(mapTo(false)))
             .pipe(
-                switchMap((shouldStart) => shouldStart ? interval(1000) : EMPTY),
+                switchMap((shouldStart) => (shouldStart ? interval(1000) : EMPTY)),
                 mapTo(-1),
                 scan((accumulator, current) => accumulator + current, 10),
                 takeWhile((value) => value >= 0),
@@ -608,7 +577,7 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
         }
     }
 
-    combineLatest(): void {
+    protected combineLatest(): void {
         if (this.subscribed === false) {
             const firstElem = document.getElementById('first');
             const secondElem = document.getElementById('second');
@@ -628,7 +597,7 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
         this.subscribed = !this.subscribed;
     }
 
-    withLatestFrom(): void {
+    protected withLatestFrom(): void {
         if (this.subscribed === false) {
             this.timeSub = fromEvent(document, 'click')
                 .pipe(withLatestFrom(interval(1000)))
@@ -639,7 +608,7 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
         this.subscribed = !this.subscribed;
     }
 
-    forkJoin(): void {
+    protected forkJoin(): void {
         if (this.subscribed === false) {
             this.timeSub = forkJoin({
                 numbers: of(1, 2, 3),
@@ -650,6 +619,29 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
                 user: ajax.getJSON('https://api.github.com/users/reactivex'),
                 repo: ajax.getJSON('https://api.github.com/users/reactivex/repos')
             }).subscribe(console.log);
+        } else {
+            this.timeSub.unsubscribe();
+        }
+        this.subscribed = !this.subscribed;
+    }
+
+    private genericTime(style: any): void {
+        if (this.subscribed === false) {
+            this.timeSub = fromEvent(document, 'click')
+                .pipe(
+                    style,
+                    map((event: MouseEvent) => ({
+                        x: event.clientX,
+                        y: event.clientY
+                    }))
+                )
+                .subscribe(console.log);
+
+            this.timeSub.add(
+                fromEvent(document.getElementById('timeText')!, 'keyup')
+                    .pipe(style, pluck('target', 'value'), distinctUntilChanged())
+                    .subscribe(console.log)
+            );
         } else {
             this.timeSub.unsubscribe();
         }

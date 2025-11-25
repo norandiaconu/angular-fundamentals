@@ -1,15 +1,15 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AuthRememberComponent } from './auth-remember.component';
 
 describe('AuthRememberComponent', () => {
     let component: AuthRememberComponent;
     let fixture: ComponentFixture<AuthRememberComponent>;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [AuthRememberComponent]
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(AuthRememberComponent);

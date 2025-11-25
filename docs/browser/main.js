@@ -162,11 +162,11 @@ var PassengerCountComponent = class _PassengerCountComponent {
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(PassengerCountComponent, [{
     type: Component,
-    args: [{ selector: "passenger-count", standalone: true, template: "<div>Total checked in: {{ checkedInCount() }} / {{ items().length }}</div>\r\n" }]
+    args: [{ selector: "passenger-count", template: "<div>Total checked in: {{ checkedInCount() }} / {{ items().length }}</div>\r\n" }]
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(PassengerCountComponent, { className: "PassengerCountComponent", filePath: "src/app/passenger-dashboard/passenger-count/passenger-count.component.ts", lineNumber: 10 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(PassengerCountComponent, { className: "PassengerCountComponent", filePath: "src/app/passenger-dashboard/passenger-count/passenger-count.component.ts", lineNumber: 9 });
 })();
 
 // src/app/passenger-dashboard/passenger-detail/passenger-detail.component.ts
@@ -348,8 +348,6 @@ function PassengerDashboardComponent_For_7_Template(rf, ctx) {
   }
 }
 var PassengerDashboardComponent = class _PassengerDashboardComponent {
-  passengerDashboardService = inject(PassengerDashboardService);
-  router = inject(Router);
   passengers = [];
   passenger0 = {
     id: 0,
@@ -357,6 +355,8 @@ var PassengerDashboardComponent = class _PassengerDashboardComponent {
     checkedIn: false,
     baggage: ""
   };
+  passengerDashboardService = inject(PassengerDashboardService);
+  router = inject(Router);
   handleEdit(event) {
     this.passengerDashboardService.updatePassenger(event).subscribe((data) => {
       if (data.id === event.id) {
@@ -435,7 +435,7 @@ var PassengerDashboardComponent = class _PassengerDashboardComponent {
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(PassengerDashboardComponent, { className: "PassengerDashboardComponent", filePath: "src/app/passenger-dashboard/passenger-dashboard.component.ts", lineNumber: 17 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(PassengerDashboardComponent, { className: "PassengerDashboardComponent", filePath: "src/app/passenger-dashboard/passenger-dashboard.component.ts", lineNumber: 15 });
 })();
 
 // src/app/passenger-dashboard/passenger-form/passenger-form.component.ts
@@ -661,15 +661,15 @@ var PassengerFormComponent = class _PassengerFormComponent {
 
 // src/app/passenger-dashboard/passenger-viewer/passenger-viewer.component.ts
 var PassengerViewerComponent = class _PassengerViewerComponent {
-  passengerDashboardService = inject(PassengerDashboardService);
-  router = inject(Router);
-  route = inject(ActivatedRoute);
   passenger = {
     id: 0,
     fullName: "",
     checkedIn: false,
     baggage: ""
   };
+  passengerDashboardService = inject(PassengerDashboardService);
+  router = inject(Router);
+  route = inject(ActivatedRoute);
   onUpdatePassenger(event) {
     console.log(event);
     this.passengerDashboardService.updatePassenger(event).subscribe((data) => {
@@ -715,7 +715,7 @@ var PassengerViewerComponent = class _PassengerViewerComponent {
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(PassengerViewerComponent, { className: "PassengerViewerComponent", filePath: "src/app/passenger-dashboard/passenger-viewer/passenger-viewer.component.ts", lineNumber: 15 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(PassengerViewerComponent, { className: "PassengerViewerComponent", filePath: "src/app/passenger-dashboard/passenger-viewer/passenger-viewer.component.ts", lineNumber: 14 });
 })();
 
 // src/app/passenger-dashboard/passenger-dashboard.module.ts
@@ -1033,16 +1033,16 @@ var AppComponent = class _AppComponent {
 // src/main.ts
 var routes2 = [
   { path: "", redirectTo: "passengers", pathMatch: "full" },
-  { path: "rxjs-basics", loadComponent: () => import("./rxjs-basics.component-QFFDOKWD.js").then((m) => m.RxjsBasicsComponent) },
+  { path: "rxjs-basics", loadComponent: () => import("./rxjs-basics.component-GE5GOIET.js").then((m) => m.RxjsBasicsComponent) },
   {
     path: "rxjs-projects",
-    loadComponent: () => import("./rxjs-projects.component-X2U77I5R.js").then((m) => m.RxjsProjectsComponent)
+    loadComponent: () => import("./rxjs-projects.component-NGK54BL2.js").then((m) => m.RxjsProjectsComponent)
   },
   {
     path: "typescript-basics",
-    loadComponent: () => import("./typescript-basics.component-5QI7P4GW.js").then((m) => m.TypescriptBasicsComponent)
+    loadComponent: () => import("./typescript-basics.component-IZ2ACOFU.js").then((m) => m.TypescriptBasicsComponent)
   },
-  { path: "angular-pro", loadComponent: () => import("./angular-pro.component-LH5LJTAN.js").then((m) => m.AngularProComponent) },
+  { path: "angular-pro", loadComponent: () => import("./angular-pro.component-MXUNFNXR.js").then((m) => m.AngularProComponent) },
   { path: "**", loadComponent: () => import("./not-found.component-4U2YY2IR.js").then((m) => m.NotFoundComponent) }
 ];
 if (environment.production) {

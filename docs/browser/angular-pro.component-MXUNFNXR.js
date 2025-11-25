@@ -79,11 +79,11 @@ var AuthRememberComponent = class _AuthRememberComponent {
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(AuthRememberComponent, [{
     type: Component,
-    args: [{ selector: "auth-remember", standalone: true, template: '<label>\r\n    <input type="checkbox" (change)="onChecked($event)" />\r\n    Keep me logged in\r\n</label>\r\n' }]
+    args: [{ selector: "auth-remember", template: '<label>\r\n    <input type="checkbox" (change)="onChecked($event)" />\r\n    Keep me logged in\r\n</label>\r\n' }]
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AuthRememberComponent, { className: "AuthRememberComponent", filePath: "src/app/angular-pro/auth-remember/auth-remember.component.ts", lineNumber: 9 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AuthRememberComponent, { className: "AuthRememberComponent", filePath: "src/app/angular-pro/auth-remember/auth-remember.component.ts", lineNumber: 8 });
 })();
 
 // src/app/angular-pro/auth-message/auth-message.component.ts
@@ -110,11 +110,11 @@ var AuthMessageComponent = class _AuthMessageComponent {
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(AuthMessageComponent, [{
     type: Component,
-    args: [{ selector: "auth-message", standalone: true, template: "<div>\r\n    You will be logged in for {{ days }} days\r\n</div>\r\n" }]
+    args: [{ selector: "auth-message", template: "<div>\r\n    You will be logged in for {{ days }} days\r\n</div>\r\n" }]
   }], () => [], null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AuthMessageComponent, { className: "AuthMessageComponent", filePath: "src/app/angular-pro/auth-message/auth-message.component.ts", lineNumber: 9 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AuthMessageComponent, { className: "AuthMessageComponent", filePath: "src/app/angular-pro/auth-message/auth-message.component.ts", lineNumber: 8 });
 })();
 
 // src/app/angular-pro/auth-form/auth-form.component.ts
@@ -129,17 +129,17 @@ function AuthFormComponent_Conditional_16_Template(rf, ctx) {
   }
 }
 var AuthFormComponent = class _AuthFormComponent {
+  submitted = output();
+  title = "";
+  showButton = false;
+  showMessage = false;
   cd = inject(ChangeDetectorRef);
   renderer = inject(Renderer2);
-  submitted = output();
   remember = contentChild(AuthRememberComponent);
   remember2 = contentChildren(AuthRememberComponent);
   message = viewChild(AuthMessageComponent);
   message2 = viewChildren(AuthMessageComponent);
   email = viewChild.required("email");
-  showMessage = false;
-  title = "";
-  showButton = false;
   ngAfterContentInit() {
     const remember = this.remember();
     if (remember) {

@@ -16,14 +16,14 @@ interface Nav {
     imports: [FormsModule, RouterLink, RouterLinkActive, RouterOutlet]
 })
 export class AppComponent {
-    title: string;
-    numberOne = 1;
-    numberTwo = 2;
-    isHappy = true;
-    logo = 'assets/logo.svg';
-    name = '';
-    display = false;
-    nav: Nav[] = [
+    protected title: string;
+    protected numberOne = 1;
+    protected numberTwo = 2;
+    protected isHappy = true;
+    protected logo = 'assets/logo.svg';
+    protected name = '';
+    protected display = false;
+    protected nav: Nav[] = [
         {
             link: '/',
             name: 'Home',
@@ -65,25 +65,30 @@ export class AppComponent {
         this.title = 'Ultimate Angular';
     }
 
-    handleInput(event: any): void {
+    protected handleInput(event: any): void {
         this.title = event.target.value;
     }
-    handleBlur(event: any): void {
+
+    protected handleBlur(event: any): void {
         this.title = event.target.value;
         console.log(event);
     }
-    handleClick(): void {
+
+    protected handleClick(): void {
         this.title = 'Angular';
     }
-    handleChange(value: string): void {
+
+    protected handleChange(value: string): void {
         this.title = value;
         console.log(value);
     }
-    handleNameChange(event: Event): void {
+
+    protected handleNameChange(event: Event): void {
         const value = (event.target as HTMLInputElement).value;
         this.name = value;
     }
-    toggle(): void {
+
+    protected toggle(): void {
         this.display = !this.display;
     }
 }

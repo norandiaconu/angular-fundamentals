@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PassengerDetailComponent } from './passenger-detail.component';
 import { Passenger } from '../passenger';
 
@@ -13,11 +13,11 @@ describe('PassengerDetailComponent', () => {
         checkedInDate: 1595271717001
     };
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [PassengerDetailComponent]
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(PassengerDetailComponent);

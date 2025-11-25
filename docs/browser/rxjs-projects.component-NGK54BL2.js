@@ -30,8 +30,8 @@ import {
 // src/app/rxjs-projects/rxjs-projects.component.ts
 var RxjsProjectsComponent = class _RxjsProjectsComponent {
   subscribed = false;
-  timeSub = new Subscription();
   polling = false;
+  timeSub = new Subscription();
   ngOnInit() {
     this.subscribed = false;
     this.polling = false;
@@ -62,11 +62,6 @@ var RxjsProjectsComponent = class _RxjsProjectsComponent {
       this.polling = false;
     }
   }
-  calculateMortgage(interest, loanAmount, loanLength) {
-    const calculatedInterest = interest / 1200;
-    const total = loanAmount * calculatedInterest / (1 - Math.pow(1 / (1 + calculatedInterest), loanLength));
-    return total.toFixed(2);
-  }
   mortgageSub() {
     if (this.subscribed === false) {
       const loanAmount = document.getElementById("loanAmount");
@@ -84,6 +79,11 @@ var RxjsProjectsComponent = class _RxjsProjectsComponent {
       this.timeSub.unsubscribe();
     }
     this.subscribed = !this.subscribed;
+  }
+  calculateMortgage(interest, loanAmount, loanLength) {
+    const calculatedInterest = interest / 1200;
+    const total = loanAmount * calculatedInterest / (1 - Math.pow(1 / (1 + calculatedInterest), loanLength));
+    return total.toFixed(2);
   }
   static \u0275fac = function RxjsProjectsComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _RxjsProjectsComponent)();
@@ -157,7 +157,7 @@ var RxjsProjectsComponent = class _RxjsProjectsComponent {
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(RxjsProjectsComponent, [{
     type: Component,
-    args: [{ selector: "rxjs-projects", standalone: true, template: `Dog Polling:<br/>\r
+    args: [{ selector: "rxjs-projects", template: `Dog Polling:<br/>\r
 <button (click)="dogSub()" title="Start dog subscription" id="dogSub">\r
     {{ subscribed ? 'Unsub' : 'Dog Sub'}}</button>\r
 <button (click)="dogStart()" title="Start and stop dog polling" id="dogStart">Start Polling</button>\r
@@ -191,7 +191,7 @@ $<strong id="expected"></strong>\r
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(RxjsProjectsComponent, { className: "RxjsProjectsComponent", filePath: "src/app/rxjs-projects/rxjs-projects.component.ts", lineNumber: 12 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(RxjsProjectsComponent, { className: "RxjsProjectsComponent", filePath: "src/app/rxjs-projects/rxjs-projects.component.ts", lineNumber: 11 });
 })();
 export {
   RxjsProjectsComponent

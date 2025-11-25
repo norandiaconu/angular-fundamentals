@@ -9,32 +9,35 @@ import { UpperCasePipe, DatePipe } from '@angular/common';
     imports: [UpperCasePipe, DatePipe]
 })
 export class PassengerDetailComponent {
-    readonly detail = input<Passenger>({
+    public readonly detail = input<Passenger>({
         id: 0,
         fullName: '',
         checkedIn: false,
         baggage: ''
     });
 
-    editing = false;
+    protected editing = false;
 
-    readonly edit = output<Passenger>();
-    readonly remove = output<Passenger>();
-    readonly view = output<Passenger>();
+    protected readonly edit = output<Passenger>();
+    protected readonly remove = output<Passenger>();
+    protected readonly view = output<Passenger>();
 
-    onNameChange(value: string): void {
+    protected onNameChange(value: string): void {
         this.detail().fullName = value;
     }
-    toggleEdit(): void {
+
+    protected toggleEdit(): void {
         if (this.editing) {
             this.edit.emit(this.detail());
         }
         this.editing = !this.editing;
     }
-    onRemove(): void {
+
+    protected onRemove(): void {
         this.remove.emit(this.detail());
     }
-    goToPassenger(): void {
+
+    protected goToPassenger(): void {
         this.view.emit(this.detail());
     }
 }

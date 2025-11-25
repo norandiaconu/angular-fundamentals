@@ -154,17 +154,17 @@ function RxjsBasicsComponent_Conditional_63_Template(rf, ctx) {
 }
 var RxjsBasicsComponent = class _RxjsBasicsComponent {
   amount = 0;
-  consoleString = "";
-  counter = new Subscription();
-  eventSub = new Subscription();
-  observer;
   displayCount = false;
   displayMouse = false;
   displayKeys = false;
   displayText = false;
   theCountdown = "";
-  keyup$ = fromEvent(document, "keyup");
   subscribed = false;
+  consoleString = "";
+  counter = new Subscription();
+  eventSub = new Subscription();
+  observer;
+  keyup$ = fromEvent(document, "keyup");
   timeSub = new Subscription();
   ngOnInit() {
     this.amount = 0;
@@ -408,18 +408,6 @@ var RxjsBasicsComponent = class _RxjsBasicsComponent {
   auditTime() {
     this.genericTime(auditTime(1e3));
   }
-  genericTime(style) {
-    if (this.subscribed === false) {
-      this.timeSub = fromEvent(document, "click").pipe(style, map((event) => ({
-        x: event.clientX,
-        y: event.clientY
-      }))).subscribe(console.log);
-      this.timeSub.add(fromEvent(document.getElementById("timeText"), "keyup").pipe(style, pluck("target", "value"), distinctUntilChanged()).subscribe(console.log));
-    } else {
-      this.timeSub.unsubscribe();
-    }
-    this.subscribed = !this.subscribed;
-  }
   ajax() {
     if (this.subscribed === false) {
       this.timeSub = fromEvent(document.getElementById("timeText"), "keyup").pipe(debounceTime(1e3), pluck("target", "value"), map((event) => ajax.getJSON("http://localhost:3000/passengers/" + event).pipe(catchError(() => EMPTY))), mergeAll()).subscribe(console.log);
@@ -539,6 +527,18 @@ var RxjsBasicsComponent = class _RxjsBasicsComponent {
         user: ajax.getJSON("https://api.github.com/users/reactivex"),
         repo: ajax.getJSON("https://api.github.com/users/reactivex/repos")
       }).subscribe(console.log);
+    } else {
+      this.timeSub.unsubscribe();
+    }
+    this.subscribed = !this.subscribed;
+  }
+  genericTime(style) {
+    if (this.subscribed === false) {
+      this.timeSub = fromEvent(document, "click").pipe(style, map((event) => ({
+        x: event.clientX,
+        y: event.clientY
+      }))).subscribe(console.log);
+      this.timeSub.add(fromEvent(document.getElementById("timeText"), "keyup").pipe(style, pluck("target", "value"), distinctUntilChanged()).subscribe(console.log));
     } else {
       this.timeSub.unsubscribe();
     }
@@ -969,7 +969,7 @@ var RxjsBasicsComponent = class _RxjsBasicsComponent {
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(RxjsBasicsComponent, { className: "RxjsBasicsComponent", filePath: "src/app/rxjs-basics/rxjs-basics.component.ts", lineNumber: 58 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(RxjsBasicsComponent, { className: "RxjsBasicsComponent", filePath: "src/app/rxjs-basics/rxjs-basics.component.ts", lineNumber: 57 });
 })();
 export {
   RxjsBasicsComponent

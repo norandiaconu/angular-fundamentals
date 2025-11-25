@@ -5,8 +5,8 @@ describe('TypescriptBasicsComponent', () => {
     let component: TypescriptBasicsComponent;
     let fixture: ComponentFixture<TypescriptBasicsComponent>;
 
-    beforeEach(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [TypescriptBasicsComponent]
         }).compileComponents();
     });
@@ -23,14 +23,14 @@ describe('TypescriptBasicsComponent', () => {
 
     it('should multiplier', () => {
         jest.spyOn(window.console, 'log');
-        component.multiplier();
+        component['multiplier']();
         expect(window.console.log).toHaveBeenCalledWith(50);
         expect(window.console.log).toHaveBeenCalledWith(25);
     });
 
     it('should functionTypes', () => {
         jest.spyOn(window.console, 'log');
-        component.functionTypes();
+        component['functionTypes']();
         expect(window.console.log).toHaveBeenCalledWith(50);
     });
 });

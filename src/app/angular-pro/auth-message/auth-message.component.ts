@@ -3,11 +3,10 @@ import { Component } from '@angular/core';
 @Component({
     selector: 'auth-message',
     templateUrl: './auth-message.component.html',
-    styleUrls: ['./auth-message.component.scss'],
-    standalone: true
+    styleUrls: ['./auth-message.component.scss']
 })
 export class AuthMessageComponent {
-    days: number;
+    public days: number;
 
     constructor() {
         this.days = 7;
