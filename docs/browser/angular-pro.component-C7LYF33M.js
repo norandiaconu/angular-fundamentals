@@ -6,20 +6,28 @@ import {
   NgForm,
   NgModel,
   ɵNgNoValidate
-} from "./chunk-4AKFZKT6.js";
+} from "./chunk-6BOV4TUJ.js";
 import {
   NgTemplateOutlet
-} from "./chunk-W6YNQVUQ.js";
+} from "./chunk-7FRVAEVA.js";
 import {
   ChangeDetectorRef,
   Component,
   ComponentFactoryResolver$1,
+  ContentChild,
+  ContentChildren,
   Observable,
+  Output,
   Renderer2,
   Subject,
+  ViewChild,
+  ViewChildren,
   ViewContainerRef,
+  __spreadProps,
+  __spreadValues,
   contentChild,
   contentChildren,
+  forwardRef,
   inject,
   output,
   setClassMetadata,
@@ -30,8 +38,12 @@ import {
   ɵsetClassDebugInfo,
   ɵɵadvance,
   ɵɵconditional,
+  ɵɵconditionalCreate,
   ɵɵcontentQuerySignal,
   ɵɵdefineComponent,
+  ɵɵdomElementEnd,
+  ɵɵdomElementStart,
+  ɵɵdomListener,
   ɵɵelement,
   ɵɵelementContainer,
   ɵɵelementEnd,
@@ -52,7 +64,7 @@ import {
   ɵɵtextInterpolate1,
   ɵɵtextInterpolate2,
   ɵɵviewQuerySignal
-} from "./chunk-MYTS3FNW.js";
+} from "./chunk-24ZF6Q5R.js";
 
 // src/app/angular-pro/auth-remember/auth-remember.component.ts
 var AuthRememberComponent = class _AuthRememberComponent {
@@ -66,13 +78,13 @@ var AuthRememberComponent = class _AuthRememberComponent {
   };
   static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _AuthRememberComponent, selectors: [["auth-remember"]], outputs: { checked: "checked" }, decls: 3, vars: 0, consts: [["type", "checkbox", 3, "change"]], template: function AuthRememberComponent_Template(rf, ctx) {
     if (rf & 1) {
-      \u0275\u0275elementStart(0, "label")(1, "input", 0);
-      \u0275\u0275listener("change", function AuthRememberComponent_Template_input_change_1_listener($event) {
+      \u0275\u0275domElementStart(0, "label")(1, "input", 0);
+      \u0275\u0275domListener("change", function AuthRememberComponent_Template_input_change_1_listener($event) {
         return ctx.onChecked($event);
       });
-      \u0275\u0275elementEnd();
+      \u0275\u0275domElementEnd();
       \u0275\u0275text(2, " Keep me logged in\n");
-      \u0275\u0275elementEnd();
+      \u0275\u0275domElementEnd();
     }
   }, encapsulation: 2 });
 };
@@ -80,7 +92,7 @@ var AuthRememberComponent = class _AuthRememberComponent {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(AuthRememberComponent, [{
     type: Component,
     args: [{ selector: "auth-remember", template: '<label>\r\n    <input type="checkbox" (change)="onChecked($event)" />\r\n    Keep me logged in\r\n</label>\r\n' }]
-  }], null, null);
+  }], null, { checked: [{ type: Output, args: ["checked"] }] });
 })();
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AuthRememberComponent, { className: "AuthRememberComponent", filePath: "src/app/angular-pro/auth-remember/auth-remember.component.ts", lineNumber: 8 });
@@ -97,9 +109,9 @@ var AuthMessageComponent = class _AuthMessageComponent {
   };
   static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _AuthMessageComponent, selectors: [["auth-message"]], decls: 2, vars: 1, template: function AuthMessageComponent_Template(rf, ctx) {
     if (rf & 1) {
-      \u0275\u0275elementStart(0, "div");
+      \u0275\u0275domElementStart(0, "div");
       \u0275\u0275text(1);
-      \u0275\u0275elementEnd();
+      \u0275\u0275domElementEnd();
     }
     if (rf & 2) {
       \u0275\u0275advance();
@@ -135,10 +147,10 @@ var AuthFormComponent = class _AuthFormComponent {
   showMessage = false;
   cd = inject(ChangeDetectorRef);
   renderer = inject(Renderer2);
-  remember = contentChild(AuthRememberComponent);
-  remember2 = contentChildren(AuthRememberComponent);
-  message = viewChild(AuthMessageComponent);
-  message2 = viewChildren(AuthMessageComponent);
+  remember = contentChild(AuthRememberComponent, ...ngDevMode ? [{ debugName: "remember" }] : []);
+  remember2 = contentChildren(AuthRememberComponent, ...ngDevMode ? [{ debugName: "remember2" }] : []);
+  message = viewChild(AuthMessageComponent, ...ngDevMode ? [{ debugName: "message" }] : []);
+  message2 = viewChildren(AuthMessageComponent, ...ngDevMode ? [{ debugName: "message2" }] : []);
   email = viewChild.required("email");
   ngAfterContentInit() {
     const remember = this.remember();
@@ -212,7 +224,7 @@ var AuthFormComponent = class _AuthFormComponent {
       \u0275\u0275projection(11, 1);
       \u0275\u0275element(12, "br")(13, "auth-message")(14, "auth-message");
       \u0275\u0275projection(15, 2);
-      \u0275\u0275template(16, AuthFormComponent_Conditional_16_Template, 2, 0, "button", 5);
+      \u0275\u0275conditionalCreate(16, AuthFormComponent_Conditional_16_Template, 2, 0, "button", 5);
       \u0275\u0275elementEnd()();
     }
     if (rf & 2) {
@@ -252,7 +264,7 @@ var AuthFormComponent = class _AuthFormComponent {
     </form>
 </div>
 `, styles: ["/* src/app/angular-pro/auth-form/auth-form.component.scss */\n.email {\n  border-color: purple;\n}\nbutton {\n  background: #3a4250;\n  padding: 4px 10px;\n  margin: 0 2px;\n  border-radius: 2px;\n}\n"] }]
-  }], null, null);
+  }], null, { submitted: [{ type: Output, args: ["submitted"] }], remember: [{ type: ContentChild, args: [forwardRef(() => AuthRememberComponent), { isSignal: true }] }], remember2: [{ type: ContentChildren, args: [forwardRef(() => AuthRememberComponent), { isSignal: true }] }], message: [{ type: ViewChild, args: [forwardRef(() => AuthMessageComponent), { isSignal: true }] }], message2: [{ type: ViewChildren, args: [forwardRef(() => AuthMessageComponent), { isSignal: true }] }], email: [{ type: ViewChild, args: ["email", { isSignal: true }] }] });
 })();
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AuthFormComponent, { className: "AuthFormComponent", filePath: "src/app/angular-pro/auth-form/auth-form.component.ts", lineNumber: 30 });
@@ -405,7 +417,7 @@ var AngularProComponent = class _AngularProComponent {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(AngularProComponent, [{
     type: Component,
     args: [{ selector: "angular-pro", imports: [AuthFormComponent, AuthRememberComponent, NgTemplateOutlet], template: '<auth-form (submitted)="createUser($event)">\r\n    <h3>Create Account</h3>\r\n    <button type="submit">Join Us</button>\r\n</auth-form>\r\n<auth-form (submitted)="loginUser($event)">\r\n    <h3>Login</h3>\r\n    <auth-remember (checked)="rememberUser($event)" />\r\n    <auth-remember (checked)="rememberUser($event)" />\r\n    <button type="submit">Login</button>\r\n</auth-form>\r\n<div #entry>\r\n    <h3>Dynamic Component</h3>\r\n    <button (click)="destroyComponent()">Destroy</button>\r\n    <button (click)="moveComponent()">Move</button>\r\n</div>\r\n<ng-template #tmpl let-implicitVar let-angularVar="angularVar">\r\n    {{ implicitVar }} {{ angularVar }}\r\n</ng-template>\r\n<ng-container [ngTemplateOutlet]="tmpl2" />\r\n<ng-template #tmpl2>Angular Template Outlet</ng-template>\r\n', styles: ["/* src/app/angular-pro/angular-pro.component.scss */\nbutton {\n  background: #3a4250;\n  padding: 4px 10px;\n  margin: 0 2px;\n  border-radius: 2px;\n}\n"] }]
-  }], null, null);
+  }], null, { entry: [{ type: ViewChild, args: ["entry", __spreadProps(__spreadValues({}, { read: ViewContainerRef }), { isSignal: true })] }], tmpl: [{ type: ViewChild, args: ["tmpl", { isSignal: true }] }] });
 })();
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AngularProComponent, { className: "AngularProComponent", filePath: "src/app/angular-pro/angular-pro.component.ts", lineNumber: 29 });

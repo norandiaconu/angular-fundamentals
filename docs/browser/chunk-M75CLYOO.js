@@ -2,7 +2,7 @@ import {
   Observable,
   Subscriber,
   map
-} from "./chunk-MYTS3FNW.js";
+} from "./chunk-24ZF6Q5R.js";
 
 // node_modules/rxjs/_esm2015/internal/util/root.js
 var __window = typeof window !== "undefined" && window;
@@ -48,42 +48,19 @@ function getXMLHttpRequest() {
   }
 }
 function ajaxGet(url, headers = null) {
-  return new AjaxObservable({
-    method: "GET",
-    url,
-    headers
-  });
+  return new AjaxObservable({ method: "GET", url, headers });
 }
 function ajaxPost(url, body, headers) {
-  return new AjaxObservable({
-    method: "POST",
-    url,
-    body,
-    headers
-  });
+  return new AjaxObservable({ method: "POST", url, body, headers });
 }
 function ajaxDelete(url, headers) {
-  return new AjaxObservable({
-    method: "DELETE",
-    url,
-    headers
-  });
+  return new AjaxObservable({ method: "DELETE", url, headers });
 }
 function ajaxPut(url, body, headers) {
-  return new AjaxObservable({
-    method: "PUT",
-    url,
-    body,
-    headers
-  });
+  return new AjaxObservable({ method: "PUT", url, body, headers });
 }
 function ajaxPatch(url, body, headers) {
-  return new AjaxObservable({
-    method: "PATCH",
-    url,
-    body,
-    headers
-  });
+  return new AjaxObservable({ method: "PATCH", url, body, headers });
 }
 var mapResponse = map((x, index) => x.response);
 function ajaxGetJSON(url, headers) {
@@ -154,11 +131,7 @@ var AjaxSubscriber = class extends Subscriber {
   }
   next(e) {
     this.done = true;
-    const {
-      xhr,
-      request,
-      destination
-    } = this;
+    const { xhr, request, destination } = this;
     let result;
     try {
       result = new AjaxResponse(e, xhr, request);
@@ -168,18 +141,7 @@ var AjaxSubscriber = class extends Subscriber {
     destination.next(result);
   }
   send() {
-    const {
-      request,
-      request: {
-        user,
-        method,
-        url,
-        async,
-        password,
-        headers,
-        body
-      }
-    } = this;
+    const { request, request: { user, method, url, async, password, headers, body } } = this;
     try {
       const xhr = this.xhr = request.createXHR();
       this.setupEvents(xhr, request);
@@ -244,11 +206,7 @@ var AjaxSubscriber = class extends Subscriber {
   setupEvents(xhr, request) {
     const progressSubscriber = request.progressSubscriber;
     function xhrTimeout(e) {
-      const {
-        subscriber,
-        progressSubscriber: progressSubscriber2,
-        request: request2
-      } = xhrTimeout;
+      const { subscriber, progressSubscriber: progressSubscriber2, request: request2 } = xhrTimeout;
       if (progressSubscriber2) {
         progressSubscriber2.error(e);
       }
@@ -268,9 +226,7 @@ var AjaxSubscriber = class extends Subscriber {
       if (progressSubscriber) {
         let xhrProgress;
         xhrProgress = function(e) {
-          const {
-            progressSubscriber: progressSubscriber2
-          } = xhrProgress;
+          const { progressSubscriber: progressSubscriber2 } = xhrProgress;
           progressSubscriber2.next(e);
         };
         if (_root.XDomainRequest) {
@@ -282,11 +238,7 @@ var AjaxSubscriber = class extends Subscriber {
       }
       let xhrError;
       xhrError = function(e) {
-        const {
-          progressSubscriber: progressSubscriber2,
-          subscriber,
-          request: request2
-        } = xhrError;
+        const { progressSubscriber: progressSubscriber2, subscriber, request: request2 } = xhrError;
         if (progressSubscriber2) {
           progressSubscriber2.error(e);
         }
@@ -311,11 +263,7 @@ var AjaxSubscriber = class extends Subscriber {
     xhrReadyStateChange.progressSubscriber = progressSubscriber;
     xhrReadyStateChange.request = request;
     function xhrLoad(e) {
-      const {
-        subscriber,
-        progressSubscriber: progressSubscriber2,
-        request: request2
-      } = xhrLoad;
+      const { subscriber, progressSubscriber: progressSubscriber2, request: request2 } = xhrLoad;
       if (this.readyState === 4) {
         let status = this.status === 1223 ? 204 : this.status;
         let response = this.responseType === "text" ? this.response || this.responseText : this.response;
@@ -348,10 +296,7 @@ var AjaxSubscriber = class extends Subscriber {
     xhrLoad.request = request;
   }
   unsubscribe() {
-    const {
-      done,
-      xhr
-    } = this;
+    const { done, xhr } = this;
     if (!done && xhr && xhr.readyState !== 4 && typeof xhr.abort === "function") {
       xhr.abort();
     }

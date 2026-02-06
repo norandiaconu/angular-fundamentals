@@ -6,13 +6,13 @@ import {
   ɵsetClassDebugInfo,
   ɵɵadvance,
   ɵɵdefineComponent,
-  ɵɵelement,
-  ɵɵelementEnd,
-  ɵɵelementStart,
-  ɵɵlistener,
+  ɵɵdomElement,
+  ɵɵdomElementEnd,
+  ɵɵdomElementStart,
+  ɵɵdomListener,
   ɵɵtext,
   ɵɵtextInterpolate1
-} from "./chunk-MYTS3FNW.js";
+} from "./chunk-24ZF6Q5R.js";
 
 // src/app/typescript-basics/typescript-basics.component.ts
 var TypescriptBasicsComponent = class _TypescriptBasicsComponent {
@@ -106,81 +106,81 @@ var TypescriptBasicsComponent = class _TypescriptBasicsComponent {
   };
   static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _TypescriptBasicsComponent, selectors: [["typescript-basics"]], decls: 21, vars: 9, consts: [["title", "Parameters can be assigned a default value in case one is not passed in", 3, "click"], ["title", "Pass parameters to a function call", 3, "click"], ["title", "Add all the passed in parameters", 3, "click"], ["title", "Combine arrays", 3, "click"], ["title", "Spread operator", 3, "click"], ["title", "Destructure arrays and objects", 3, "click"], ["title", "Allow passing a string or null to a function", 3, "click"], ["title", "Only allow specific values to be passed in", 3, "click"], ["title", "Set function to a variable", 3, "click"]], template: function TypescriptBasicsComponent_Template(rf, ctx) {
     if (rf & 1) {
-      \u0275\u0275elementStart(0, "div")(1, "button", 0);
-      \u0275\u0275listener("click", function TypescriptBasicsComponent_Template_button_click_1_listener() {
+      \u0275\u0275domElementStart(0, "div")(1, "button", 0);
+      \u0275\u0275domListener("click", function TypescriptBasicsComponent_Template_button_click_1_listener() {
         return ctx.multiplier();
       });
       \u0275\u0275text(2);
-      \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(3, "button", 1);
-      \u0275\u0275listener("click", function TypescriptBasicsComponent_Template_button_click_3_listener() {
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(3, "button", 1);
+      \u0275\u0275domListener("click", function TypescriptBasicsComponent_Template_button_click_3_listener() {
         return ctx.createOrder();
       });
       \u0275\u0275text(4);
-      \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(5, "button", 2);
-      \u0275\u0275listener("click", function TypescriptBasicsComponent_Template_button_click_5_listener() {
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(5, "button", 2);
+      \u0275\u0275domListener("click", function TypescriptBasicsComponent_Template_button_click_5_listener() {
         return ctx.sumAll();
       });
       \u0275\u0275text(6);
-      \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(7, "button", 3);
-      \u0275\u0275listener("click", function TypescriptBasicsComponent_Template_button_click_7_listener() {
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(7, "button", 3);
+      \u0275\u0275domListener("click", function TypescriptBasicsComponent_Template_button_click_7_listener() {
         return ctx.concatArrays();
       });
       \u0275\u0275text(8);
-      \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(9, "button", 4);
-      \u0275\u0275listener("click", function TypescriptBasicsComponent_Template_button_click_9_listener() {
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(9, "button", 4);
+      \u0275\u0275domListener("click", function TypescriptBasicsComponent_Template_button_click_9_listener() {
         return ctx.spreadOperator();
       });
       \u0275\u0275text(10);
-      \u0275\u0275elementEnd();
-      \u0275\u0275element(11, "br")(12, "br");
-      \u0275\u0275elementStart(13, "button", 5);
-      \u0275\u0275listener("click", function TypescriptBasicsComponent_Template_button_click_13_listener() {
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElement(11, "br")(12, "br");
+      \u0275\u0275domElementStart(13, "button", 5);
+      \u0275\u0275domListener("click", function TypescriptBasicsComponent_Template_button_click_13_listener() {
         return ctx.destructure();
       });
       \u0275\u0275text(14);
-      \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(15, "button", 6);
-      \u0275\u0275listener("click", function TypescriptBasicsComponent_Template_button_click_15_listener() {
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(15, "button", 6);
+      \u0275\u0275domListener("click", function TypescriptBasicsComponent_Template_button_click_15_listener() {
         return ctx.allowNull();
       });
       \u0275\u0275text(16);
-      \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(17, "button", 7);
-      \u0275\u0275listener("click", function TypescriptBasicsComponent_Template_button_click_17_listener() {
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(17, "button", 7);
+      \u0275\u0275domListener("click", function TypescriptBasicsComponent_Template_button_click_17_listener() {
         return ctx.literalTypes();
       });
       \u0275\u0275text(18);
-      \u0275\u0275elementEnd();
-      \u0275\u0275elementStart(19, "button", 8);
-      \u0275\u0275listener("click", function TypescriptBasicsComponent_Template_button_click_19_listener() {
+      \u0275\u0275domElementEnd();
+      \u0275\u0275domElementStart(19, "button", 8);
+      \u0275\u0275domListener("click", function TypescriptBasicsComponent_Template_button_click_19_listener() {
         return ctx.functionTypes();
       });
       \u0275\u0275text(20);
-      \u0275\u0275elementEnd()();
+      \u0275\u0275domElementEnd()();
     }
     if (rf & 2) {
       \u0275\u0275advance(2);
-      \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Default Function Parameters", "");
+      \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Default Function Parameters");
       \u0275\u0275advance(2);
-      \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Create Order", "");
+      \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Create Order");
       \u0275\u0275advance(2);
-      \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Sum All", "");
+      \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Sum All");
       \u0275\u0275advance(2);
-      \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Concat Arrays", "");
+      \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Concat Arrays");
       \u0275\u0275advance(2);
-      \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Spread Operator", "");
+      \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Spread Operator");
       \u0275\u0275advance(4);
-      \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Destructure", "");
+      \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Destructure");
       \u0275\u0275advance(2);
-      \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Allow Null", "");
+      \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Allow Null");
       \u0275\u0275advance(2);
-      \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Literal Types", "");
+      \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Literal Types");
       \u0275\u0275advance(2);
-      \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Function Types", "");
+      \u0275\u0275textInterpolate1(" ", ctx.subscribed ? "Unsubscribe" : "Function Types");
     }
   }, styles: ["\n\nbutton[_ngcontent-%COMP%] {\n  background: #3a4250;\n  padding: 4px 10px;\n  margin: 0 2px;\n  border-radius: 2px;\n}\ndiv[_ngcontent-%COMP%] {\n  text-align: center;\n}"] });
 };

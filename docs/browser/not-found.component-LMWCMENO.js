@@ -1,7 +1,7 @@
 import {
   RouterLink
-} from "./chunk-3QJ5RLCB.js";
-import "./chunk-W6YNQVUQ.js";
+} from "./chunk-VAX5NOKA.js";
+import "./chunk-7FRVAEVA.js";
 import {
   Component,
   setClassMetadata,
@@ -11,7 +11,7 @@ import {
   ɵɵelementEnd,
   ɵɵelementStart,
   ɵɵtext
-} from "./chunk-MYTS3FNW.js";
+} from "./chunk-24ZF6Q5R.js";
 
 // src/app/not-found/not-found.component.ts
 var NotFoundComponent = class _NotFoundComponent {
