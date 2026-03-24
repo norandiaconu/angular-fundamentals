@@ -22,7 +22,7 @@ describe('RxjsBasicsComponent', () => {
     });
 
     it('should helloWorld', () => {
-        jest.spyOn(console, 'log');
+        vi.spyOn(console, 'log');
         component['helloWorld']();
         expect(console.log).toHaveBeenCalledTimes(5);
         expect(component['consoleString']).toBe('helloWorld');

@@ -28,7 +28,7 @@ export class PassengerDashboardService {
         return this.httpClient.get<Passenger>(path + '/' + id);
     }
 
-    public getPassengerPromise(): Promise<Passenger> {
+    public getPassengerPromise(): Promise<Passenger | undefined> {
         return this.httpClient.get<Passenger>(path + '/1').toPromise();
     }
 

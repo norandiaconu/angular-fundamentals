@@ -31,7 +31,8 @@ export class RxjsProjectsComponent implements OnInit {
                         )
                     )
                 )
-                .subscribe((url: string) => {
+                .subscribe((resp) => {
+                    const url = resp as string;
                     if (url.includes('.mp4')) {
                         dogVideo.src = url;
                     } else {

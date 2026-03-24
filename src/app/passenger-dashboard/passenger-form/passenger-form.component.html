@@ -4,10 +4,10 @@
         Passenger name:
         <input type="text" name="fullName" required minlength="2" #fullName="ngModel" [ngModel]="detail().fullName" />
         {{ fullName.errors | json }}
-        @if (fullName.errors?.required && fullName.dirty) {
+        @if (fullName.errors && fullName.errors["required"] && fullName.dirty) {
             <div class="error">Passenger name is required</div>
         }
-        @if (fullName.errors?.minlength && fullName.dirty) {
+        @if (fullName.errors && fullName.errors["minlength"] && fullName.dirty) {
             <div class="error">Passenger name length must be greater than 2</div>
         }
     </div>
@@ -15,7 +15,7 @@
         Passenger ID:
         <input type="number" name="id" required #id="ngModel" [ngModel]="detail().id" />
         {{ id.errors | json }}
-        @if (id.errors?.required && id.touched) {
+        @if (id.errors && id.errors["required"] && id.touched) {
             <div class="error">Passenger id is required</div>
         }
     </div>

@@ -77,8 +77,10 @@ export class PassengerDashboardComponent implements OnInit {
     }
 
     public getThePassengerPromise(): Passenger {
-        this.passengerDashboardService.getPassengerPromise().then((data: Passenger) => {
-            this.passenger0 = data;
+        this.passengerDashboardService.getPassengerPromise().then((data: Passenger | undefined) => {
+            if (data) {
+                this.passenger0 = data;
+            }
             console.log(this.passenger0);
         });
         return this.passenger0;
