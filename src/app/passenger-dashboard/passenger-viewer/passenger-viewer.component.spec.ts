@@ -1,10 +1,12 @@
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { PassengerViewerComponent } from './passenger-viewer.component';
 import { FormsModule } from '@angular/forms';
+import { provideRouter } from '@angular/router';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { AuthFormComponent } from '../../angular-pro/auth-form/auth-form.component';
 import { PassengerFormComponent } from '../passenger-form/passenger-form.component';
-import { provideHttpClient } from '@angular/common/http';
-import { provideRouter } from '@angular/router';
+import { PassengerViewerComponent } from './passenger-viewer.component';
 
 describe('PassengerViewerComponent', () => {
     let component: PassengerViewerComponent;
@@ -13,7 +15,7 @@ describe('PassengerViewerComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [FormsModule, AuthFormComponent, PassengerFormComponent, PassengerViewerComponent],
-            providers: [provideHttpClient(), provideRouter([])]
+            providers: [provideHttpClient(), provideRouter([]), provideHttpClientTesting()]
         }).compileComponents();
     });
 

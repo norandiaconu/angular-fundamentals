@@ -1,9 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AngularProComponent } from './angular-pro.component';
 import { FormsModule } from '@angular/forms';
-import { AuthRememberComponent } from './auth-remember/auth-remember.component';
+import { describe, it, expect, beforeEach } from 'vitest';
+import { AngularProComponent } from './angular-pro.component';
 import { AuthFormComponent } from './auth-form/auth-form.component';
 import { AuthMessageComponent } from './auth-message/auth-message.component';
+import { AuthRememberComponent } from './auth-remember/auth-remember.component';
 
 describe('AngularProComponent', () => {
     let component: AngularProComponent;
@@ -11,7 +12,8 @@ describe('AngularProComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [FormsModule, AngularProComponent, AuthRememberComponent, AuthFormComponent, AuthMessageComponent]
+            imports: [FormsModule, AngularProComponent, AuthRememberComponent, AuthFormComponent, AuthMessageComponent],
+            teardown: { destroyAfterEach: false }
         }).compileComponents();
     });
 

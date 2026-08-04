@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, signal } from '@angular/core';
 import {
     fromEvent,
     Observable,
@@ -16,6 +16,7 @@ import {
     combineLatest,
     forkJoin
 } from 'rxjs';
+import { ajax } from 'rxjs/ajax';
 import {
     map,
     pluck,
@@ -46,7 +47,6 @@ import {
     delay,
     withLatestFrom
 } from 'rxjs/operators';
-import { ajax } from 'rxjs/ajax';
 
 @Component({
     selector: 'rxjs-basics',
@@ -60,7 +60,7 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
     protected displayMouse = false;
     protected displayKeys = false;
     protected displayText = false;
-    protected theCountdown = '';
+    protected theCountdown = signal<string>('');
     protected subscribed = false;
 
     private consoleString = '';
@@ -84,7 +84,7 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
         this.displayMouse = true;
         this.displayKeys = true;
         this.displayText = false;
-        this.theCountdown = '10';
+        this.theCountdown.set('10');
         this.subscribed = false;
     }
 
@@ -395,9 +395,9 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
                 takeUntil(fromEvent(abortButton!, 'click'))
             )
             .subscribe((value) => {
-                this.theCountdown = '' + value;
+                this.theCountdown.set('' + value);
                 if (!value) {
-                    this.theCountdown = 'LIFTOFF';
+                    this.theCountdown.set('LIFTOFF');
                 }
             });
     }
@@ -567,9 +567,9 @@ export class RxjsBasicsComponent implements OnInit, OnDestroy {
                 startWith(10)
             )
             .subscribe((value) => {
-                this.theCountdown = '' + value;
+                this.theCountdown.set('' + value);
                 if (!value) {
-                    this.theCountdown = 'LIFTOFF';
+                    this.theCountdown.set('LIFTOFF');
                 }
             });
         if (this.subscribed === false) {

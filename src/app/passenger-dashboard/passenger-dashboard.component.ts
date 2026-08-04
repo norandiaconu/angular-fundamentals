@@ -1,9 +1,9 @@
-import { Component, OnInit, inject } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { Passenger } from './passenger';
-import { PassengerDashboardService } from './passenger-dashboard.service';
 import { PassengerCountComponent } from './passenger-count/passenger-count.component';
+import { PassengerDashboardService } from './passenger-dashboard.service';
 import { PassengerDetailComponent } from './passenger-detail/passenger-detail.component';
 
 @Component({
@@ -13,7 +13,8 @@ import { PassengerDetailComponent } from './passenger-detail/passenger-detail.co
     imports: [PassengerCountComponent, PassengerDetailComponent]
 })
 export class PassengerDashboardComponent implements OnInit {
-    protected passengers: Passenger[] = [];
+    protected passengers = signal<Passenger[]>([]);
+
     protected passenger0: Passenger = {
         id: 0,
         fullName: '',
@@ -23,6 +24,7 @@ export class PassengerDashboardComponent implements OnInit {
 
     private readonly passengerDashboardService = inject(PassengerDashboardService);
     private readonly router = inject(Router);
+    // private readonly cdRef = inject(ChangeDetectorRef);
 
     protected handleEdit(event: Passenger): void {
         this.passengerDashboardService.updatePassenger(event).subscribe(
@@ -42,7 +44,7 @@ export class PassengerDashboardComponent implements OnInit {
     protected handleRemove(event: Passenger): void {
         this.passengerDashboardService.deletePassenger(event).subscribe(
             (data: Passenger) => {
-                this.passengers = this.passengers.filter((passenger: Passenger) => passenger.id !== event.id);
+                this.passengers.set(this.passengers().filter((passenger: Passenger) => passenger.id !== event.id));
             },
             (error: HttpErrorResponse) => {
                 console.error(error);
@@ -54,7 +56,7 @@ export class PassengerDashboardComponent implements OnInit {
         this.passengerDashboardService.getPassengers().subscribe(
             (data: Passenger[]) => {
                 // console.log(data);
-                this.passengers = data;
+                this.passengers.set(data);
                 // console.log(this.passengers);
             },
             (error: HttpErrorResponse) => {
